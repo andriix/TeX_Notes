@@ -4,6 +4,7 @@
 \title{}
 \author{}
 \usepackage{neuralnetwork}
+\usepackage{amsmath}
 
 \begin{document}
 
@@ -26,6 +27,19 @@ Here, an example of NN can be presented as:
 	\hiddenlayer[count=3, bias=false, title=Hidden\\layer 2, text=\hsecond] \linklayers
 	\outputlayer[count=2, title=Output\\layer, text=\y] \linklayers
 \end{neuralnetwork}
+
+Also, an example of some system of equation is shown:
+
+\begin{equation*}
+	\left\{
+	\begin{alignedat}{3}
+		% R & L   &  R & L   &  R & L 
+		2x & +{} &  y & +{} & 3z & = 10 \\
+		x & +{} &  y & +{} &  z & = 6 \\
+		x & +{} & 3y & +{} & 2z & = 13
+	\end{alignedat}
+	\right.
+\end{equation*}
 
 The article is finished.
 \end{document}
