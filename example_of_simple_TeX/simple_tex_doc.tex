@@ -1,45 +1,23 @@
-\documentclass[]{article}
-
-%opening
-\title{}
-\author{}
-\usepackage{neuralnetwork}
-\usepackage{amsmath}
-
+\documentclass[a4paper,12pt]{eskdtext}
+\ESKDdepartment{ДП Енергоатом}
+\ESKDcompany{НТЦ}
+\ESKDclassCode{----}
+\ESKDtitle{Звіт з ІАБ}
+\ESKDdocName{Технічні умови}
+\ESKDsignature{ААА ХХХХХХХХ}
+\ESKDauthor{Хріненко~А.~О.}
+\ESKDtitleApprovedBy{%
+Керівник НТЦ м. Одеса}{Балашевський~О.~С.}
+\ESKDtitleAgreedBy{%
+Керівник ТТПіАР}{Запорожан~В.~В.}
+\ESKDtitleDesignedBy{%
+Головний інженер ТТПіАР}{Комаров~Ю.~О.}
+\ESKDtitleDesignedBy{%
+Керівник з розроблення}{Хріненко~А.~О.}
 \begin{document}
-
 \maketitle
-
-\begin{abstract}
-Text of this abstract
-\end{abstract}
-Main part of the article. An example of an equation:
-\[E=mc^2\]
-Here, an example of NN can be presented as:
-
-\begin{neuralnetwork}[height=4]
-	\newcommand{\x}[2]{$x_#2$}
-	\newcommand{\y}[2]{$\hat{y}_#2$}
-	\newcommand{\hfirst}[2]{\small $h^{(1)}_#2$}
-	\newcommand{\hsecond}[2]{\small $h^{(2)}_#2$}
-	\inputlayer[count=3, bias=true, title=Input\\layer, text=\x]
-	\hiddenlayer[count=4, bias=false, title=Hidden\\layer 1, text=\hfirst] \linklayers
-	\hiddenlayer[count=3, bias=false, title=Hidden\\layer 2, text=\hsecond] \linklayers
-	\outputlayer[count=2, title=Output\\layer, text=\y] \linklayers
-\end{neuralnetwork}
-
-Also, an example of some system of equation is shown:
-
-\begin{equation*}
-	\left\{
-	\begin{alignedat}{3}
-		% R & L   &  R & L   &  R & L 
-		2x & +{} &  y & +{} & 3z & = 10 \\
-		x & +{} &  y & +{} &  z & = 6 \\
-		x & +{} & 3y & +{} & 2z & = 13
-	\end{alignedat}
-	\right.
-\end{equation*}
-
-The article is finished.
+\tableofcontents
+\newpage
+\section{Розділ 1}
+Текст текст текст.
 \end{document}
