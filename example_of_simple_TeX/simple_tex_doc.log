@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.3) (preloaded format=xelatex 2022.6.27)  27 JUN 2022 14:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.6.27)  29 JUN 2022 10:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -11,14 +11,14 @@ Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
 (D:\ProgramFiles\MikTex\tex/latex/base\size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count181
-\c@section=\count182
-\c@subsection=\count183
-\c@subsubsection=\count184
-\c@paragraph=\count185
-\c@subparagraph=\count186
-\c@figure=\count187
-\c@table=\count188
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
@@ -29,24 +29,24 @@ Package: blindtext 2012/01/06 V2.0 blindtext-Package
 (D:\ProgramFiles\MikTex\tex/latex/tools\xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-\c@blindtext=\count189
-\c@Blindtext=\count190
-\c@blind@countparstart=\count191
-\blind@countxx=\count192
-\blindtext@numBlindtext=\count193
-\blind@countyy=\count194
-\c@blindlist=\count195
-\c@blindlistlevel=\count196
-\c@blindlist@level=\count197
-\blind@listitem=\count198
-\c@blind@listcount=\count199
-\c@blind@levelcount=\count266
-\blind@mathformula=\count267
-\blind@Mathformula=\count268
-\c@blind@randomcount=\count269
-\c@blind@randommax=\count270
-\c@blind@pangramcount=\count271
-\c@blind@pangrammax=\count272
+\c@blindtext=\count193
+\c@Blindtext=\count194
+\c@blind@countparstart=\count195
+\blind@countxx=\count196
+\blindtext@numBlindtext=\count197
+\blind@countyy=\count198
+\c@blindlist=\count199
+\c@blindlistlevel=\count266
+\c@blindlist@level=\count267
+\blind@listitem=\count268
+\c@blind@listcount=\count269
+\c@blind@levelcount=\count270
+\blind@mathformula=\count271
+\blind@Mathformula=\count272
+\c@blind@randomcount=\count273
+\c@blind@randommax=\count274
+\c@blind@pangramcount=\count275
+\c@blind@pangrammax=\count276
 )
 (D:\ProgramFiles\MikTex\tex/latex/psnfss\mathpazo.sty
 Package: mathpazo 2020/03/25 PSNFSS-v9.3 Palatino w/ Pazo Math (D.Puga, WaS) 
@@ -69,22 +69,25 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 )
 (D:\ProgramFiles\MikTex\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count273
+\etb@tempcnta=\count277
 )
 \MT@toks=\toks17
 \MT@tempbox=\box51
-\MT@count=\count274
+\MT@count=\count278
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1045.
 LaTeX Info: Redefining \leftprotrusion on input line 1046.
 LaTeX Info: Redefining \rightprotrusion on input line 1056.
 LaTeX Info: Redefining \textls on input line 1234.
 \MT@outer@kern=\dimen139
 LaTeX Info: Redefining \textmicrotypecontext on input line 1858.
-\MT@listname@count=\count275
+\MT@listname@count=\count279
 
-(D:\ProgramFiles\MikTex\tex/latex/microtype\microtype-xetex.def
-File: microtype-xetex.def 2022/06/23 v3.0f Definitions specific to xetex (RS)
-LaTeX Info: Redefining \lsstyle on input line 236.
+(D:\ProgramFiles\MikTex\tex/latex/microtype\microtype-pdftex.def
+File: microtype-pdftex.def 2022/06/23 v3.0f Definitions specific to pdftex (RS)
+
+LaTeX Info: Redefining \lsstyle on input line 900.
+LaTeX Info: Redefining \lslig on input line 900.
+\MT@outer@space=\skip49
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
@@ -93,14 +96,13 @@ File: microtype.cfg 2022/06/23 v3.0f microtype main configuration file (RS)
 ))
 (D:\ProgramFiles\MikTex\tex/generic/babel\babel.sty
 Package: babel 2022/06/06 3.76 The Babel package
-\babel@savecnt=\count276
+\babel@savecnt=\count280
 \U@D=\dimen140
 \l@unhyphenated=\language79
 
-(D:\ProgramFiles\MikTex\tex/generic/babel\xebabel.def
-(D:\ProgramFiles\MikTex\tex/generic/babel\txtbabel.def))
+(D:\ProgramFiles\MikTex\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count277
+\bbl@dirlevel=\count281
 
 *************************************
 * Local config file bblopts.cfg used
@@ -131,9 +133,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (D:\ProgramFiles\MikTex\tex/generic/iftex\iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count278
-\Gm@cntv=\count279
-\c@Gm@tempcnt=\count280
+\Gm@cnth=\count282
+\Gm@cntv=\count283
+\c@Gm@tempcnt=\count284
 \Gm@bindingoffset=\dimen141
 \Gm@wd@mp=\dimen142
 \Gm@odd@mp=\dimen143
@@ -160,8 +162,8 @@ Package: caption3 2022/03/17 v2.3b caption3 kernel (AR)
 \caption@hangindent=\dimen156
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count281
-\c@continuedfloat=\count282
+\c@caption@flags=\count285
+\c@continuedfloat=\count286
 )
 (D:\ProgramFiles\MikTex\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
@@ -175,12 +177,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen164
 \cmidrulekern=\dimen165
 \defaultaddspace=\dimen166
-\@cmidla=\count283
-\@cmidlb=\count284
+\@cmidla=\count287
+\@cmidlb=\count288
 \@aboverulesep=\dimen167
 \@belowrulesep=\dimen168
-\@thisruleclass=\count285
-\@lastruleclass=\count286
+\@thisruleclass=\count289
+\@lastruleclass=\count290
 \@thisrulewidth=\dimen169
 )
 (D:\ProgramFiles\MikTex\tex/latex/lettrine\lettrine.sty
@@ -189,18 +191,18 @@ File: lettrine.sty 2020-03-14 v2.23 (Daniel Flipo)
 (D:\ProgramFiles\MikTex\tex/generic/minifp\minifp.sty
 Package: minifp 2013/12/30 v0.96. Macros for real number operations and a stack
 -based programing language.
-\MFP@loopctr=\count287
+\MFP@loopctr=\count291
 )
-\c@DefaultLines=\count288
-\c@DefaultDepth=\count289
+\c@DefaultLines=\count292
+\c@DefaultDepth=\count293
 \DefaultFindent=\dimen170
 \DefaultNindent=\dimen171
 \DefaultSlope=\dimen172
 \DiscardVskip=\dimen173
 \L@lbox=\box52
 \L@tbox=\box53
-\c@L@lines=\count290
-\c@L@depth=\count291
+\c@L@lines=\count294
+\c@L@depth=\count295
 \L@Pindent=\dimen174
 \L@Findent=\dimen175
 \L@Nindent=\dimen176
@@ -222,26 +224,26 @@ Loading lettrine.cfg
 (D:\ProgramFiles\MikTex\tex/latex/lettrine\lettrine.cfg))
 (D:\ProgramFiles\MikTex\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\labelindent=\skip49
+\labelindent=\skip50
 \enit@outerparindent=\dimen189
 \enit@toks=\toks20
 \enit@inbox=\box54
-\enit@count@id=\count292
-\enitdp@description=\count293
+\enit@count@id=\count296
+\enitdp@description=\count297
 )
 (D:\ProgramFiles\MikTex\tex/latex/abstract\abstract.sty
 Package: abstract 2009/06/08 v1.2a configurable abstracts
-\abstitleskip=\skip50
-\absleftindent=\skip51
-\absrightindent=\skip52
-\absparindent=\skip53
-\absparsep=\skip54
+\abstitleskip=\skip51
+\absleftindent=\skip52
+\absrightindent=\skip53
+\absparindent=\skip54
+\absparsep=\skip55
 )
 (D:\ProgramFiles\MikTex\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2021/07/05 v2.14 Sectioning titles
 \ttl@box=\box55
-\beforetitleunit=\skip55
-\aftertitleunit=\skip56
+\beforetitleunit=\skip56
+\aftertitleunit=\skip57
 \ttl@plus=\dimen190
 \ttl@minus=\dimen191
 \ttl@toksa=\toks21
@@ -252,21 +254,21 @@ Package: titlesec 2021/07/05 v2.14 Sectioning titles
 (D:\ProgramFiles\MikTex\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2022/05/18 v4.0.3 Extensive control of page headers and foote
 rs
-\f@nch@headwidth=\skip57
-\f@nch@O@elh=\skip58
-\f@nch@O@erh=\skip59
-\f@nch@O@olh=\skip60
-\f@nch@O@orh=\skip61
-\f@nch@O@elf=\skip62
-\f@nch@O@erf=\skip63
-\f@nch@O@olf=\skip64
-\f@nch@O@orf=\skip65
+\f@nch@headwidth=\skip58
+\f@nch@O@elh=\skip59
+\f@nch@O@erh=\skip60
+\f@nch@O@olh=\skip61
+\f@nch@O@orh=\skip62
+\f@nch@O@elf=\skip63
+\f@nch@O@erf=\skip64
+\f@nch@O@olf=\skip65
+\f@nch@O@orf=\skip66
 )
 (D:\ProgramFiles\MikTex\tex/latex/titling\titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
-\thanksmarkwidth=\skip66
-\thanksmargin=\skip67
-\droptitle=\skip68
+\thanksmarkwidth=\skip67
+\thanksmargin=\skip68
+\droptitle=\skip69
 )
 (D:\ProgramFiles\MikTex\tex/latex/hyperref\hyperref.sty
 Package: hyperref 2022-06-20 v7.00s Hypertext links for LaTeX
@@ -283,7 +285,7 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode not found.
+Package pdftexcmds Info: \pdfdraftmode found.
 )
 (D:\ProgramFiles\MikTex\tex/generic/kvsetkeys\kvsetkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
@@ -315,14 +317,16 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (D:\ProgramFiles\MikTex\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count294
+\c@section@level=\count298
 )
 \@linkdim=\dimen195
-\Hy@linkcounter=\count295
-\Hy@pagecounter=\count296
+\Hy@linkcounter=\count299
+\Hy@pagecounter=\count300
 
 (D:\ProgramFiles\MikTex\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2022-06-20 v7.00s Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
 )
 (D:\ProgramFiles\MikTex\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
@@ -330,10 +334,12 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 (D:\ProgramFiles\MikTex\tex/generic/etexcmds\etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count297
+\Hy@SavedSpaceFactor=\count301
 
 (D:\ProgramFiles\MikTex\tex/latex/hyperref\puenc.def
 File: puenc.def 2022-06-20 v7.00s Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
 )
 Package hyperref Info: Hyper figures OFF on input line 4162.
 Package hyperref Info: Link nesting OFF on input line 4167.
@@ -342,7 +348,7 @@ Package hyperref Info: Plain pages OFF on input line 4177.
 Package hyperref Info: Backreferencing OFF on input line 4182.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4408.
-\c@Hy@tempcnt=\count298
+\c@Hy@tempcnt=\count302
 
 (D:\ProgramFiles\MikTex\tex/latex/url\url.sty
 \Urlmuskip=\muskip16
@@ -358,7 +364,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count299
+\Fld@menulength=\count303
 \Field@Width=\dimen197
 \Fld@charsize=\dimen198
 Package hyperref Info: Hyper figures OFF on input line 6024.
@@ -373,48 +379,38 @@ Package hyperref Info: PDF/A mode OFF on input line 6054.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count300
-\c@Item=\count301
-\c@Hfootnote=\count302
+\Hy@abspage=\count304
+\c@Item=\count305
+\c@Hfootnote=\count306
 )
-Package hyperref Info: Driver (autodetected): hxetex.
+Package hyperref Info: Driver (autodetected): hpdftex.
 
-(D:\ProgramFiles\MikTex\tex/latex/hyperref\hxetex.def
-File: hxetex.def 2022-06-20 v7.00s Hyperref driver for XeTeX
-
-(D:\ProgramFiles\MikTex\tex/generic/stringenc\stringenc.sty
-Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
-)
-)
-\pdfm@box=\box56
-\c@Hy@AnnotLevel=\count303
-\HyField@AnnotCount=\count304
-\Fld@listcount=\count305
-\c@bookmark@seq@number=\count306
-
-(D:\ProgramFiles\MikTex\tex/latex/rerunfilecheck\rerunfilecheck.sty
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+(D:\ProgramFiles\MikTex\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2022-06-20 v7.00s Hyperref driver for pdfTeX
 
 (D:\ProgramFiles\MikTex\tex/latex/base\atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
+\Fld@listcount=\count307
+\c@bookmark@seq@number=\count308
+
+(D:\ProgramFiles\MikTex\tex/latex/rerunfilecheck\rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
 (D:\ProgramFiles\MikTex\tex/generic/uniquecounter\uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip69
+\Hy@SectionHShift=\skip70
 )
-(D:\ProgramFiles\MikTex\tex/latex/l3backend\l3backend-xetex.def
-File: l3backend-xetex.def 2022-04-20 L3 backend support: XeTeX
-\g__graphics_track_int=\count307
-\l__pdf_internal_box=\box57
-\g__pdf_backend_object_int=\count308
-\g__pdf_backend_annotation_int=\count309
-\g__pdf_backend_link_int=\count310
+(D:\ProgramFiles\MikTex\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count309
+\l__pdf_internal_box=\box56
 )
 (simple_tex_doc.aux)
 \openout1 = `simple_tex_doc.aux'.
@@ -428,13 +424,6 @@ LaTeX Font Info:    ... okay on input line 90.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
 LaTeX Font Info:    ... okay on input line 90.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 9
-0.
- (D:\ProgramFiles\MikTex\tex/latex/base\ts1cmr.fd
-File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 90.
 LaTeX Font Info:    ... okay on input line 90.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
 LaTeX Font Info:    ... okay on input line 90.
@@ -450,19 +439,23 @@ Package microtype Info: Applying patch `item' on input line 90.
 Package microtype Info: Applying patch `toc' on input line 90.
 Package microtype Info: Applying patch `eqnum' on input line 90.
 Package microtype Info: Applying patch `footnote' on input line 90.
+Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: Automatic font expansion enabled (level 2),
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
+Package microtype Info: Using default expansion set `alltext-nott'.
+LaTeX Info: Redefining \showhyphens on input line 90.
 Package microtype Info: No adjustment of tracking.
-Package microtype Info: No adjustment of spacing.
-Package microtype Info: No adjustment of kerning.
-
-(D:\ProgramFiles\MikTex\tex/latex/microtype\mt-ppl.cfg
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
+ (D:\ProgramFiles\MikTex\tex/latex/microtype\mt-ppl.cfg
 File: mt-ppl.cfg 2005/11/16 v1.6 microtype config. file: Palatino (RS)
 )
 *geometry* driver: auto-detecting
-*geometry* detected driver: xetex
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: xetex
+* driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -552,27 +545,22 @@ Package lettrine.sty Info: Targeted height = 30.07506pt
 (lettrine.sty)             (for loversize=0, accent excluded),
 (lettrine.sty)             Lettrine height = 30.07518pt (L);
 (lettrine.sty)             reported on input line 101.
- [1
+ [1{C:/Users/akhrinenko/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 158--160
-\T1/pplx/m/n/10 A state-ment re-quir-ing ci-ta-tion
+\T1/pplx/m/n/10 (+20) A state-ment re-quir-ing ci-ta-tion
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 158--160
-\T1/pplx/m/n/10 [[]]. Lorem ip-sum
- []
-
-
-Underfull \hbox (badness 1226) in paragraph at lines 158--160
-\T1/pplx/m/n/10 in sapien. Lorem ip-sum do-lor sit amet,
+Underfull \hbox (badness 10000) in paragraph at lines 158--160
+\T1/pplx/m/n/10 (+20) [[]]. Lorem ip-
  []
 
 [2]
-Underfull \hbox (badness 2486) in paragraph at lines 172--176
-[]\T1/pplx/m/n/10 Figueredo, A. J.
+Underfull \hbox (badness 1748) in paragraph at lines 172--176
+[]\T1/pplx/m/n/10 (+20) Figueredo, A. J.
  []
 
 [3
@@ -582,12 +570,22 @@ Package rerunfilecheck Info: File `simple_tex_doc.out' has not changed.
 (rerunfilecheck)             Checksum: F34AA34F12CB73510CB06753FBF1E7B9;612.
  ) 
 Here is how much of TeX's memory you used:
- 14113 strings out of 410670
- 229333 string characters out of 2821174
- 596497 words of memory out of 3000000
- 35009 multiletter control sequences out of 15000+600000
- 514453 words of font info for 89 fonts, out of 8000000 for 9000
- 1348 hyphenation exceptions out of 8191
- 72i,13n,76p,1013b,407s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 14479 strings out of 478351
+ 235962 string characters out of 2847355
+ 595371 words of memory out of 3000000
+ 32382 multiletter control sequences out of 15000+600000
+ 542288 words of font info for 293 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 72i,13n,77p,1013b,467s stack positions out of 10000i,1000n,20000p,200000b,80000s
+{D:/ProgramFiles/MikTex/fonts/enc/dvips/base/8r.enc}<D:/ProgramFiles/MikTex/f
+onts/type1/public/amsfonts/cm/cmr10.pfb><D:/ProgramFiles/MikTex/fonts/type1/pub
+lic/amsfonts/cm/cmsy10.pfb><D:/ProgramFiles/MikTex/fonts/type1/public/fpl/fplrc
+8a.pfb><D:/ProgramFiles/MikTex/fonts/type1/urw/palatino/uplb8a.pfb><D:/ProgramF
+iles/MikTex/fonts/type1/urw/palatino/uplr8a.pfb><D:/ProgramFiles/MikTex/fonts/t
+ype1/urw/palatino/uplri8a.pfb>
+Output written on simple_tex_doc.pdf (3 pages, 100278 bytes).
+PDF statistics:
+ 85 PDF objects out of 1000 (max. 8388607)
+ 14 named destinations out of 1000 (max. 500000)
+ 118833 words of extra memory for PDF output out of 128383 (max. 10000000)
 
-Output written on simple_tex_doc.pdf (3 pages).
