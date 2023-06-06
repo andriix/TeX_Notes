@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english,ukrainian]{babel}
 \usepackage{hyperref}
+\usepackage{amsmath}
 %Header information
 \title{"Math for ML and DS" Specialization }
 \author{ Andrii X }
@@ -13,17 +14,43 @@
 	\maketitle
 	
 	\section{Linear Algebra for Machine Learning and Data Science}
-	\subsubsection{System of linear equations:}
-\begin{itemize}
+	\subsection{System of linear equations:}
+	\begin{itemize}
 	\item {Systems of equations: \textbf{Non-singular} (complete), \textbf{Singular} (Redundant, Contradictory).}
 	\item {\textbf{Determinant} of a matrix is the signed \textbf{factor by which areas are scaled by this matrix}. 
 	\\
-	For A = [[a,b],[c,d]] determinant is det(A) = ad-cb. 
+	For A = 
+	$\begin{bmatrix}
+		a & b\\
+		c & d
+	\end{bmatrix}$ 
+	determinant is $\det(A) = ad-cb$. 
 	\\
-	For non-singular system determinant has non-zero value.}
-\end{itemize}
+	For \textbf{non-singular} system determinant has \textbf{non-zero} value.
+	\\
+	Determinant of an \textbf{inverse matrix} is an \textbf{inverse of determinant} for original matrix: 
+	$det(A^{-1})=\frac{1}{det(A)}$. 
+	}
+	\end{itemize}
 
- 
+	\subsection{Solving system of linear equations:}
+	\begin{itemize}
+	\item {\textbf{Rank} of a matrix tells how much information matrix has. For example, a matrix with 3 rows max rank is 3, since 3 eq and 3 pieces of information, but if one of eq is just a combination of 2 others then rank will be 2.
+	\\
+	Rank of a matrix can be calculated via \textbf{row echelon form}: 
+	\begin{itemize}
+		\item Zero rows at the bottom. 
+		\item Each row has pivot (leftmost non-zero entry). 
+		\item Every pivot is to the right of the pivots on the rows above. 
+		\item Rank of the matrix is the number of pivots
+	\end{itemize}
+	Difference of Reduced REF from REF is that any number above a pivot is \textbf{0} in RREF. 
+	}	
+	\end{itemize}
+	\subsection{Vectors and Linear Transformations:}
+	\begin{itemize}
+	\item {\textbf{Norm} is a function from vector space to the non-nega tive real numbers that behaves \textbf{like the distance} from the origin.}
+	\end{itemize}
 	
 	
 \end{document}
