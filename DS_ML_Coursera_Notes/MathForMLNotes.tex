@@ -5,6 +5,7 @@
 \usepackage[english,ukrainian]{babel}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 %Header information
 \title{"Math for ML and DS" Specialization }
 \author{ Andrii X }
@@ -32,7 +33,6 @@
 	$det(A^{-1})=\frac{1}{det(A)}$. 
 	}
 	\end{itemize}
-
 	\subsection{Solving system of linear equations:}
 	\begin{itemize}
 	\item {\textbf{Rank} of a matrix tells how much information matrix has. For example, a matrix with 3 rows max rank is 3, since 3 eq and 3 pieces of information, but if one of eq is just a combination of 2 others then rank will be 2.
@@ -50,7 +50,50 @@
 	\subsection{Vectors and Linear Transformations:}
 	\begin{itemize}
 	\item {\textbf{Norm} is a function from vector space to the non-nega tive real numbers that behaves \textbf{like the distance} from the origin.}
+	\item \textbf{Operations} on vectors: sum and difference of vectors, multiplication by scalar, dot product.
+	\item \textbf{Dot product}: $a \cdot b = |a| \cdot |b| \cdot \cos \Theta$ or $a \cdot b = a_x \cdot b_x + a_y \cdot b_y$.
+	\\
+	Dot product provides an easy way to \textbf{test the orthogonality} between vectors. If $\mathbf{x}$ and $\mathbf{y}$ are orthogonal (the angle between vectors is $90^\circ$), then since $\cos(90^\circ)=0$, it implies that the d\textbf{ot product of any two orthogonal vectors must be $0$}. The geometric definition of the Dot Product can be used to evaluate \textbf{vector similarity}.
+	\item \textbf{Matrices} can be seen as \textbf{linear transformations}.
+	\\
+	Matrix multiplication is defined only if the number of columns of matrix $A$ is equal to the number of rows of matrix $B$.
+	\item A \textbf{transformation} is a function from one vector space to another that respects the underlying (linear) structure of each vector space. Referring to a specific transformation, you can use a symbol, such as $T$. Specifying the spaces containing the input and output vectors, e.g., $\mathbb{R}^2$ and $\mathbb{R}^3$, you can write $T: \mathbb{R}^2 \to \mathbb{R}^3$. Transforming vector $v \in \mathbb{R}^2$ into the vector $w \in \mathbb{R}^3$ by the transformation $T$, you can use the notation $T(v) = w$ and read it as "$ T $ of $ v $ equals $ w $" or "vector $ w $ is an image of vector $ v $ with the transformation $ T $".
+	\item A \textbf{transformation} $T$ is said to \textbf{be linear} if the following two properties are true for any scalar $k$ and any input vectors $u$ and $v$:
+	\begin{itemize}
+		\item $T(k \cdot v) = k \cdot T(v)$,
+		\item $T(u+v) = T(u) + T(v)$.
 	\end{itemize}
-	
+	\item \textbf{Transformations Defined as a Matrix Multiplication}: Let $L: \mathbb{R}^m \to \mathbb{R}^n$ be defined by a matrix $A$, where $L(v) = A \cdot v$, multiplication of the matrix $A$($n \times m$) and vector $v$($m \times 1$) results in the vector $w$($n \times 1$).
+	\item \textbf{Simple Linear Regression:}
+	\begin{itemize}
+		\item \textbf{Linear regression} is a \textbf{linear approach} for modelling the relationship between a \textbf{scalar response} (dependent variable) and one or more \textbf{explanatory variables} (independent variables).
+		\item \textbf{Simple linear regression model} can be written as $\hat{y} = wx + b$, where $\hat{y}$ is a prediction of dependent variable $y$ based on independent variable $x$ using a line equation with the slope $w$ and intercept $b$.
+		\item The \textbf{simplest neural network} model has only \textbf{one perceptron}. It takes some inputs and calculates the output value. Weight ($w$) and bias ($b$) are the parameters which will get updated when you will train the model.
+		\item If you have $m$ training examples, vector operations will give you a chance to perform the calculations \textbf{simultaneously} for all of them! Organise all training examples as a \textbf{vector} $X$ of size $(1\times m)$. Then perform \textbf{scalar multiplication} of $X$ $(1\times m)$ by a scalar $w$, adding $b$, which will be \textbf{broadcasted} to the vector of size $(1\times m)$: $\hat{Y} = wX + b$. This set of calculations is called \textbf{forward propagation}.
+		\item Now, you can compare the resulting vector of the predictions $\hat{Y}$$(1\times m)$ with the original vector of data $Y$. This can be done with the so-called \textbf{cost function} that measures how close vector of predictions to the training data. It evaluates how well the parameters $w$ and $b$ work to solve the problem. There are many different cost functions available depending on the nature of a problem. For a simple neural network it can be calculated it as:
+		\begin{equation*}
+			L(w, b) = \frac{1}{2m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})^2
+		\end{equation*}
+		The \textbf{aim is to minimize the cost function} during the training, which will minimize the differences between original values $y^{(i)}$ and predicted values $\hat{y}^{(i)}$ (division by $2m$ is taken just for scaling purposes).
+		\item Next step is to \textbf{adjust the weights and bias}, in order to minimize the cost function. This process is called \textbf{backward propagation} and is done iteratively: you update the parameters with a small change and repeat the process.
+	\end{itemize}
+	\item \textbf{Multiple Linear Regression:}
+	\begin{itemize}
+		\item \textbf{Multiple linear regression} model with two independent variables $x_1, x_2$ can be written as
+		\begin{equation*}
+			\hat{y} = w_1x_1 + w_2x_2 + b = \mathbf{Wx} + b,
+		\end{equation*}
+		where $\mathbf{Wx}$ is the \textbf{dot product} of the input vector $\mathbf{x}=[x_1, x_2]$ and parameters vector $\mathbf{W}=[w_1, w_2]$, scalar parameter $b$ is the intercept.
+	\end{itemize}
+	\end{itemize}
+	\subsection{Eigenvectors:}
+	\begin{itemize}
+		\item \textbf{Span} -- set of all the linear combinations of a number vector. \textbf{1 vector span is a line}.
+		\item A set $B$ of vectors in vector space $V$ is called \textbf{basis} if \textbf{every element of $V$} may be written in a unique way as a finite linear \textbf{combination of elements of $B$}. A \textbf{basis} is a \textbf{minimal spanning set}.
+		\item An \textbf{eigenvector} or characteristic vector of a \textbf{linear transformation} is a \textbf{nonzero vector that changes at most by a scalar factor} when that linear transformation is applied to it. 
+		\\
+		The corresponding \textbf{eigenvalue}, often denoted by $\lambda$, is the \textbf{factor by which the eigenvector is scaled}. Geometrically, an \textbf{eigenvector}, corresponding to a real nonzero eigenvalue, \textbf{points in a direction in which it is stretched by the transformation} and the eigenvalue is the factor by which it is stretched. If the eigenvalue is \textbf{negative}, the direction is \textbf{reversed}. Loosely speaking, in a multidimensional vector space, the eigenvector is not rotated.
+		\item A square matrix is called a \textbf{Markov matrix} if all entries are \textbf{nonnegative} and the sum of each column elements is equal to \textbf{1}.
+	\end{itemize}
 	
 \end{document}
