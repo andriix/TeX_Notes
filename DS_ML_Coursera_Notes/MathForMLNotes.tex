@@ -138,6 +138,10 @@
 	\end{itemize}
 	\subsection{Optimization:}
 	\begin{itemize}
+		\item \textbf{Optimization of squared loss}: \(y_i\) as the actual value of the i-th sample,  \(n\) as the total number of samples, \(w\) as the model parameters (weights). The squared loss for a single sample is given by: $ L(y_i, \hat{y}_i) = (y_i - \hat{y}_i)^2 $.
+		
+		In case of linear regression, the optimization problem can be written as:
+		$$\min_{w} \frac{1}{n} \sum_{i=1}^{n} (y_i - w^T x_i - b)^2$$
 		\item 
 	\end{itemize}
 	
