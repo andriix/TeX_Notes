@@ -142,6 +142,14 @@
 		
 		In case of linear regression, the optimization problem can be written as:
 		$$\min_{w} \frac{1}{n} \sum_{i=1}^{n} (y_i - w^T x_i - b)^2$$
+		\item \textbf{Log-loss}, also known as logistic loss or cross-entropy loss, is often used in binary classification problems. Given a set of true labels \(y_i\) and predicted probabilities \(p_i\), the log-loss for a single observation is defined as:
+		\[
+		L(y_i, p_i) = -y_i \log(p_i) - (1 - y_i) \log(1 - p_i)
+		\]
+		The goal of optimization is to find the model parameters that minimize the average log-loss across all observations in the training set. If we have \(N\) observations, the average log-loss is:
+		\[
+		L = -\frac{1}{N} \sum_{i=1}^{N} [y_i \log(p_i) + (1 - y_i) \log(1 - p_i)]
+		\]
 		\item 
 	\end{itemize}
 	
