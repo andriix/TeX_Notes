@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.1)  10 JUL 2023 15:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.1)  10 JUL 2023 15:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./MathForMLNotes.tex
-(MathForMLNotes.tex
+**./TensorFlowCourseNotes.tex
+(TensorFlowCourseNotes.tex
 LaTeX2e <2022-06-01> patch level 3
 L3 programming layer <2022-06-16>
 (D:\ProgramFiles\MikTex\tex/latex/base\article.cls
@@ -511,8 +511,8 @@ File: l3backend-pdftex.def 2022-04-20 L3 backend support: PDF output (pdfTeX)
 LaTeX Warning: Unused global option(s):
     [16pt].
 
-(MathForMLNotes.aux)
-\openout1 = `MathForMLNotes.aux'.
+(TensorFlowCourseNotes.aux)
+\openout1 = `TensorFlowCourseNotes.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
@@ -536,61 +536,45 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 14.
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Info: Redefining \th on input line 14.
 Package hyperref Info: Link coloring OFF on input line 14.
- (MathForMLNotes.out) (MathForMLNotes.out)
+ (TensorFlowCourseNotes.out)
+(TensorFlowCourseNotes.out)
 \@outlinefile=\write3
-\openout3 = `MathForMLNotes.out'.
+\openout3 = `TensorFlowCourseNotes.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 16.
 
-
-(D:\ProgramFiles\MikTex\tex/latex/amsfonts\umsa.fd
+ (D:\ProgramFiles\MikTex\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 16.
-
 
 (D:\ProgramFiles\MikTex\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{C:/Users/akhrinenko/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
-Overfull \hbox (10.1741pt too wide) in paragraph at lines 93--96
-\T2A/cmr/bx/n/10 ch the ei-genvector is scaled\T2A/cmr/m/n/10 . Geometri-cally,
- an \T2A/cmr/bx/n/10 ei-genvector\T2A/cmr/m/n/10 , correspondi-
- []
-
-[3] [4] [5] (MathForMLNotes.aux)
-Package rerunfilecheck Info: File `MathForMLNotes.out' has not changed.
-(rerunfilecheck)             Checksum: A258264C192242989BDE71A3B0A5479E;1662.
+{C:/Users/akhrinenko/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (Tensor
+FlowCourseNotes.aux)
+Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
+(rerunfilecheck)             Checksum: 65FC39578060A8B519AA39383D47B61B;381.
  ) 
 Here is how much of TeX's memory you used:
- 10433 strings out of 478351
- 163230 string characters out of 2847356
- 474740 words of memory out of 3000000
- 28707 multiletter control sequences out of 15000+600000
- 483292 words of font info for 66 fonts, out of 8000000 for 9000
+ 10390 strings out of 478351
+ 162859 string characters out of 2847356
+ 464789 words of memory out of 3000000
+ 28680 multiletter control sequences out of 15000+600000
+ 479849 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 72i,8n,77p,692b,613s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 72i,6n,77p,347b,448s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\akhrinenko\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\l
-abx1000.pk> <C:\Users\akhrinenko\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
-/dpi600\larm1000.pk> <C:\Users\akhrinenko\AppData\Local\MiKTeX\fonts/pk/ljfour/
-jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\akhrinenko\AppData\Local\MiKTeX\fonts
-/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\akhrinenko\AppData\Local\MiK
-TeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\akhrinenko\AppData\
-Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\akhrinenko
-\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk><D:/ProgramF
-iles/MikTex/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/ProgramFiles/MikTex/f
-onts/type1/public/amsfonts/cm/cmex10.pfb><D:/ProgramFiles/MikTex/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb><D:/ProgramFiles/MikTex/fonts/type1/public/amsfonts
-/cm/cmmi7.pfb><D:/ProgramFiles/MikTex/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-<D:/ProgramFiles/MikTex/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/ProgramFile
-s/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/ProgramFiles/MikTex/font
-s/type1/public/amsfonts/cm/cmsy5.pfb><D:/ProgramFiles/MikTex/fonts/type1/public
-/amsfonts/cm/cmsy7.pfb><D:/ProgramFiles/MikTex/fonts/type1/public/amsfonts/symb
-ols/msbm10.pfb>
-Output written on MathForMLNotes.pdf (5 pages, 186699 bytes).
+arm1000.pk> <C:\Users\akhrinenko\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/
+ec/dpi600\tcrm1000.pk> <C:\Users\akhrinenko\AppData\Local\MiKTeX\fonts/pk/ljfou
+r/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\akhrinenko\AppData\Local\MiKTeX\fonts
+/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\akhrinenko\AppData\Local\MiK
+TeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\akhrinenko\AppData\
+Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
+Output written on TensorFlowCourseNotes.pdf (1 page, 27789 bytes).
 PDF statistics:
- 330 PDF objects out of 1000 (max. 8388607)
- 14 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 108 PDF objects out of 1000 (max. 8388607)
+ 4 named destinations out of 1000 (max. 500000)
+ 17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
