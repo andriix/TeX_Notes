@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.1)  10 JUL 2023 14:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2022.7.1)  10 JUL 2023 15:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -564,10 +564,10 @@ Package rerunfilecheck Info: File `MathForMLNotes.out' has not changed.
 (rerunfilecheck)             Checksum: A258264C192242989BDE71A3B0A5479E;1662.
  ) 
 Here is how much of TeX's memory you used:
- 10434 strings out of 478351
- 163221 string characters out of 2847356
- 474773 words of memory out of 3000000
- 28708 multiletter control sequences out of 15000+600000
+ 10433 strings out of 478351
+ 163206 string characters out of 2847356
+ 474740 words of memory out of 3000000
+ 28707 multiletter control sequences out of 15000+600000
  483292 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,8n,77p,692b,613s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -588,9 +588,9 @@ s/MikTex/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/ProgramFiles/MikTex/font
 s/type1/public/amsfonts/cm/cmsy5.pfb><D:/ProgramFiles/MikTex/fonts/type1/public
 /amsfonts/cm/cmsy7.pfb><D:/ProgramFiles/MikTex/fonts/type1/public/amsfonts/symb
 ols/msbm10.pfb>
-Output written on MathForMLNotes.pdf (5 pages, 186379 bytes).
+Output written on MathForMLNotes.pdf (5 pages, 186699 bytes).
 PDF statistics:
- 329 PDF objects out of 1000 (max. 8388607)
+ 330 PDF objects out of 1000 (max. 8388607)
  14 named destinations out of 1000 (max. 500000)
  65 words of extra memory for PDF output out of 10000 (max. 10000000)
 
