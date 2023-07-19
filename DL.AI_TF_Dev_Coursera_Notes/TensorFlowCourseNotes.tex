@@ -6,6 +6,10 @@
 \usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{changepage}
+\usepackage{minted}
+%\setminted[python]{breaklines}
+
 %Header information
 \title{"DeepLearning.AI TensorFlow Developer" Specialization }
 \author{ Andrii X }
@@ -15,9 +19,40 @@
 	\maketitle
 	
 	\section{Introduction to TensorFlow for AI, ML, and DL}
-	\subsection{<name>:}
+	\subsection{Week 1}
 	\begin{itemize}
-		\item 
+		
+		\item \textbf{Simple example aka "Hello, World!":}
+		\\
+		Define NN (1 layer with 1 neuron):
+		\begin{minted}{python}
+			# Build a simple Sequential model
+			model = tf.keras.Sequential(
+			[keras.layers.Dense(units=1, input_shape=[1])]
+			)
+		\end{minted}
+		Compile the model:
+		\begin{minted}{python}
+			model.compile(optimizer='sgd', loss='mean_squared_error')
+		\end{minted}
+		Provide the data:
+		\begin{minted}{python}
+			# Declare model inputs and outputs for training
+			xs = np.array([-1.0,  0.0, 1.0, 2.0, 3.0, 4.0], dtype=float)
+			ys = np.array([-3.0, -1.0, 1.0, 3.0, 5.0, 7.0], dtype=float)	
+		\end{minted}
+		Train the NN:
+		\begin{minted}{python}
+			# Train the model
+			model.fit(xs, ys, epochs=500)	
+		\end{minted}
+		Use trained NN for new data:
+		\begin{minted}{python}
+			# Make a prediction
+			print(model.predict([10.0]))	
+		\end{minted}
+		\item ddd
+	
 	\end{itemize}
 	
 	

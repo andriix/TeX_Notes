@@ -5,10 +5,13 @@
 \catcode `"\active 
 \providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
 \HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
 \global\let\oldnewlabel\newlabel
 \gdef\newlabel#1#2{\newlabelxx{#1}#2}
 \gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
 \AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
 \let\newlabel\oldnewlabel
 \fi}
 \fi}
@@ -16,7 +19,14 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
+\gdef\minted@oldcachelist{,
+  default.pygstyle,
+  883649A3F1E4C4BE79F98545D1825CBA61B21CBC0C3F65FCBC0529AF95A0E584.pygtex,
+  8DAE53912271620867677DD62B9CBB8561B21CBC0C3F65FCBC0529AF95A0E584.pygtex,
+  976019B81E183679A57AA71A28CF0D9B61B21CBC0C3F65FCBC0529AF95A0E584.pygtex,
+  CBC8A9AD01A280F9A5E94A0C9CB4A6A861B21CBC0C3F65FCBC0529AF95A0E584.pygtex,
+  33AA962457FF89F5A5690FC5A6A8DA4F61B21CBC0C3F65FCBC0529AF95A0E584.pygtex}
 \babel@aux{ukrainian}{}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction to TensorFlow for AI, ML, and DL}{1}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}<name>:}{1}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Week 1}{1}{subsection.1.1}\protected@file@percent }
 \gdef \@abspage@last{1}

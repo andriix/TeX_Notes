@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.5.21)  21 MAY 2023 15:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.7.18)  19 JUL 2023 20:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -256,9 +256,9 @@ Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
 Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language10). Reported on input line 105.
+(babel)             (\language15). Reported on input line 105.
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language10). Reported on input line 108.
+(babel)             (\language15). Reported on input line 108.
 )
 (/usr/share/texlive/texmf-dist/tex/generic/babel-ukrainian/ukraineb.ldf
 File: ukraineb.ldf 2020/10/14 1.4e Ukrainian support for the Babel system
@@ -511,7 +511,7 @@ Package rerunfilecheck Info: File `e-machine_as_complexity_measure.out' has not
 Here is how much of TeX's memory you used:
  9340 strings out of 478287
  144726 string characters out of 5849289
- 446386 words of memory out of 5000000
+ 446385 words of memory out of 5000000
  27444 multiletter control sequences out of 15000+600000
  479393 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
