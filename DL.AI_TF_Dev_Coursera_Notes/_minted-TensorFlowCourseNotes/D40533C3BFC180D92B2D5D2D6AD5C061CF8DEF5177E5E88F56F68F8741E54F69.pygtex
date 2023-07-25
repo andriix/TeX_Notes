@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+			\PYG{n}{training\PYGZus{}images}  \PYG{o}{=} \PYG{n}{training\PYGZus{}images} \PYG{o}{/} \PYG{l+m+mf}{255.0}
+			\PYG{n}{test\PYGZus{}images} \PYG{o}{=} \PYG{n}{test\PYGZus{}images} \PYG{o}{/} \PYG{l+m+mf}{255.0}
+\end{Verbatim}

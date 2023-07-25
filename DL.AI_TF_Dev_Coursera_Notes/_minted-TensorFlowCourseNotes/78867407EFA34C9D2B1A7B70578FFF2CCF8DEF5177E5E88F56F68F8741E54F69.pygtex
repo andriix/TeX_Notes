@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+			\PYG{p}{(}\PYG{n}{training\PYGZus{}images}\PYG{p}{,} \PYG{n}{training\PYGZus{}labels}\PYG{p}{),}
+			\PYG{p}{(}\PYG{n}{test\PYGZus{}images}\PYG{p}{,} \PYG{n}{test\PYGZus{}labels}\PYG{p}{)} \PYG{o}{=} \PYG{n}{fmnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{()}
+\end{Verbatim}
