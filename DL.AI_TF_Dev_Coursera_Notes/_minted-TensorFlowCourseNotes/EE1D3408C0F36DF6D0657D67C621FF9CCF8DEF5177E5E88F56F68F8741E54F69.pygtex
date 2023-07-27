@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+			\PYG{n}{model}\PYG{o}{.}\PYG{n}{evaluate}\PYG{p}{(}\PYG{n}{test\PYGZus{}images}\PYG{p}{,} \PYG{n}{test\PYGZus{}labels}\PYG{p}{)}
+\end{Verbatim}

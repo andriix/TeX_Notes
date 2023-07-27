@@ -61,7 +61,7 @@
 		1) Load the Fashion MNIST dataset:
 		\begin{minted}{python}
 			fmnist = tf.keras.datasets.fashion_mnist
-		\end{minted}	
+		\end{minted}
 		2) Load the training and test split of the Fashion MNIST dataset:
 		\begin{minted}{python}
 			(training_images, training_labels), 
@@ -90,7 +90,17 @@
 			
 			model.fit(training_images, training_labels, epochs=5)
 		\end{minted}
-	
+		6) Evaluate the model on unseen data
+		\begin{minted}{python}
+			model.evaluate(test_images, test_labels)
+		\end{minted}
+		\textit{\textbf{Exploration Exercises}}\\
+		ex1: the below code creates a set of classifications for each of the test images, and then prints the first entry in the classifications.
+		\begin{minted}{python}
+			classifications = model.predict(test_images)
+		\end{minted}
+		ex2: 
+		
 	\end{itemize}
 	
 	
