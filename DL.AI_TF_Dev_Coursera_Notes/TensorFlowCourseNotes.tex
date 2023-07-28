@@ -1,4 +1,4 @@
-\documentclass[16pt]{article}
+\documentclass[20pt]{article}
 %Packages
 \usepackage[T1,T2A]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -95,11 +95,45 @@
 			model.evaluate(test_images, test_labels)
 		\end{minted}
 		\textit{\textbf{Exploration Exercises}}\\
-		ex1: the below code creates a set of classifications for each of the test images, and then prints the first entry in the classifications.
+		\textbf{ex1}: the below code c\textbf{reates a set of classifications for each of the test images}, and then prints the first entry in the classifications.
 		\begin{minted}{python}
 			classifications = model.predict(test_images)
+			print(classifications[0])
+			# The output of the model is a list of 10 numbers.
+			# These numbers are a probability that the value
+			# being classified is the corresponding value
 		\end{minted}
-		ex2: 
+		ex2\textbf{}: \textbf{adding more Neurons} we have to do more calculations, slowing down the process, but in this case they have a good impact -- \textbf{we do get more accurate}. That doesn't mean it's always a case of 'more is better', \textbf{you can hit the law of diminishing returns very quickly}!\\
+		\textbf{ex3}: it may seem vague right now, but it reinforces \textbf{the rule of thumb that the first layer in your network should be the same shape as your data}. Right now our data is 28x28 images, and 28 layers of 28 neurons would be infeasible, so it makes more sense to 'flatten' that 28,28 into a 784x1.\\
+		\textbf{ex4}: \textbf{another rule of thumb} -- the number of neurons in the last layer should match the number of classes you are classifying for.\\
+		\textbf{ex5}: consider the effects of additional layers in the network. There isn't a significant impact -- because this is relatively simple data. \textbf{For far more complex data} (including color images to be classified as flowers that you'll see in the next lesson),\textbf{ extra layers are often necessary}.\\
+		\textbf{ex6}: consider the \textbf{impact of training for more or less epochs}. Try 15 epochs -- you'll probably get a model with a much better loss than the one with 5. Try 30 epochs -- you might see the loss value decrease more slowly, and sometimes increases. This is a side effect of something called \textbf{'overfitting'}.\\
+		\textbf{ex7}: If you try to train the model without normalizing the data, you might find that the model takes longer to train, or that it's unable to learn effectively from the training data, leading to poorer performance on the test data. The reason you get different results with and without normalization is because the scale of the inputs can significantly impact the gradient of the loss function, and hence the updates to the weights during training. \textbf{Normalization ensures that the scale of the inputs is consistent}, which can make the training process more stable and efficient.
+		\textbf{ex8}: 'wouldn't it be nice if I could stop the training when I reach a desired value?' -- i.e. 85\% accuracy might be enough for you, and if you reach that after 3 epochs, why sit around waiting for it to finish a lot more epochs.... you have callbacks!
+		\begin{minted}{python}
+			class myCallback(tf.keras.callbacks.Callback):
+			def on_epoch_end(self, epoch, logs={}):
+			if(logs.get('accuracy') >= 0.85): # Experiment with changing this value
+			print("\nReached 60% accuracy so cancelling training!")
+			self.model.stop_training = True
+			
+			callbacks = myCallback()
+			
+			fmnist = tf.keras.datasets.fashion_mnist
+			(training_images, training_labels) ,  (test_images, test_labels) = fmnist.load_data()
+			
+			training_images=training_images/255.0
+			test_images=test_images/255.0
+			model = tf.keras.models.Sequential([
+			tf.keras.layers.Flatten(),
+			tf.keras.layers.Dense(128, activation=tf.nn.relu),
+			tf.keras.layers.Dense(10, activation=tf.nn.softmax)
+			])
+			model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+			# model fitting with callback
+			model.fit(training_images, training_labels, epochs=5, callbacks=[callbacks])			
+		\end{minted}
+		
 		
 	\end{itemize}
 	

@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+			\PYG{k}{class} \PYG{n+nc}{myCallback}\PYG{p}{(}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{callbacks}\PYG{o}{.}\PYG{n}{Callback}\PYG{p}{):}
+			\PYG{k}{def} \PYG{n+nf}{on\PYGZus{}epoch\PYGZus{}end}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{epoch}\PYG{p}{,} \PYG{n}{logs}\PYG{o}{=}\PYG{p}{\PYGZob{}\PYGZcb{}):}
+			\PYG{k}{if}\PYG{p}{(}\PYG{n}{logs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mf}{0.85}\PYG{p}{):} \PYG{c+c1}{\PYGZsh{} Experiment with changing this value}
+			\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Reached 60}\PYG{l+s+si}{\PYGZpc{} a}\PYG{l+s+s2}{ccuracy so cancelling training!\PYGZdq{}}\PYG{p}{)}
+			\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{o}{.}\PYG{n}{stop\PYGZus{}training} \PYG{o}{=} \PYG{k+kc}{True}
+			
+			\PYG{n}{callbacks} \PYG{o}{=} \PYG{n}{myCallback}\PYG{p}{()}
+			
+			\PYG{n}{fmnist} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{datasets}\PYG{o}{.}\PYG{n}{fashion\PYGZus{}mnist}
+			\PYG{p}{(}\PYG{n}{training\PYGZus{}images}\PYG{p}{,} \PYG{n}{training\PYGZus{}labels}\PYG{p}{)} \PYG{p}{,}  \PYG{p}{(}\PYG{n}{test\PYGZus{}images}\PYG{p}{,} \PYG{n}{test\PYGZus{}labels}\PYG{p}{)} \PYG{o}{=} \PYG{n}{fmnist}\PYG{o}{.}\PYG{n}{load\PYGZus{}data}\PYG{p}{()}
+			
+			\PYG{n}{training\PYGZus{}images}\PYG{o}{=}\PYG{n}{training\PYGZus{}images}\PYG{o}{/}\PYG{l+m+mf}{255.0}
+			\PYG{n}{test\PYGZus{}images}\PYG{o}{=}\PYG{n}{test\PYGZus{}images}\PYG{o}{/}\PYG{l+m+mf}{255.0}
+			\PYG{n}{model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{([}
+			\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Flatten}\PYG{p}{(),}
+			\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{128}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{nn}\PYG{o}{.}\PYG{n}{relu}\PYG{p}{),}
+			\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{nn}\PYG{o}{.}\PYG{n}{softmax}\PYG{p}{)}
+			\PYG{p}{])}
+			\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{optimizer}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}adam\PYGZsq{}}\PYG{p}{,} \PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sparse\PYGZus{}categorical\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,} \PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+			\PYG{c+c1}{\PYGZsh{} model fitting with callback}
+			\PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{training\PYGZus{}images}\PYG{p}{,} \PYG{n}{training\PYGZus{}labels}\PYG{p}{,} \PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{callbacks}\PYG{o}{=}\PYG{p}{[}\PYG{n}{callbacks}\PYG{p}{])}			
+\end{Verbatim}
