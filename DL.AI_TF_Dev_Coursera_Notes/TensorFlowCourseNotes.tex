@@ -79,8 +79,8 @@
 			tf.keras.layers.Dense(128, activation=tf.nn.relu), 
 			tf.keras.layers.Dense(10, activation=tf.nn.softmax)])
 		\end{minted}
-		\textbf{Sequential} - defines a sequence of layers in the neural network. \textbf{Flatten} - converts a 28x28 matrix into a 1-D array. \textbf{Dense} - adds a layer of neurons.  
-		Activation function \textbf{relu} passes values greater than 0 to the next layer. \textbf{Softmax} takes a list of values and scales these so the sum of all elements will be equal to 1. When applied to model outputs, you can think of the scaled values as the probability for that class.
+		\textbf{Sequential} - defines a sequence of layers in the neural network.\\ \textbf{Flatten} - converts a 28x28 matrix into a 1-D array.\\ \textbf{Dense} - adds a layer of neurons.  
+		Activation function \textbf{relu} passes values greater than 0 to the next layer.\\ \textbf{Softmax} takes a list of values and scales these so the sum of all elements will be equal to 1. When applied to model outputs, you can think of the scaled values as the probability for that class.
 		\\
 		5) Compile and train the model:
 		\begin{minted}{python}
@@ -131,9 +131,11 @@
 			])
 			model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 			# model fitting with callback
-			model.fit(training_images, training_labels, epochs=5, callbacks=[callbacks])			
+			model.fit(training_images, training_labels,
+			epochs=5, callbacks=[callbacks])			
 		\end{minted}
-		
+		\item \textbf{<name>}\\
+				
 		
 	\end{itemize}
 	
