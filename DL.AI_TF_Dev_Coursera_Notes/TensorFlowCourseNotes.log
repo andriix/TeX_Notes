@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  29 JUL 2023 16:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  30 JUL 2023 18:11
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -798,12 +798,7 @@ File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 56F68F8741E54F69.pygtex
 LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 2.
- [3])
-Underfull \hbox (badness 10000) in paragraph at lines 137--138
-
- []
-
-[4] (TensorFlowCourseNotes.aux)
+ [3]) [4] (TensorFlowCourseNotes.aux)
 Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
 (rerunfilecheck)             Checksum: 9E9A724906B80521F480B23101C82970;469.
 runsystem(del TensorFlowCourseNotes.pyg)...executed.
@@ -829,9 +824,9 @@ k/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fon
 ts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\MiKTeX
 \fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Local\Mi
 KTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
-Output written on TensorFlowCourseNotes.pdf (4 pages, 108538 bytes).
+Output written on TensorFlowCourseNotes.pdf (4 pages, 113272 bytes).
 PDF statistics:
- 366 PDF objects out of 1000 (max. 8388607)
+ 380 PDF objects out of 1000 (max. 8388607)
  8 named destinations out of 1000 (max. 500000)
  25 words of extra memory for PDF output out of 10000 (max. 10000000)
 
