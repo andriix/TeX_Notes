@@ -113,7 +113,8 @@
 		\begin{minted}{python}
 			class myCallback(tf.keras.callbacks.Callback):
 			def on_epoch_end(self, epoch, logs={}):
-			if(logs.get('accuracy') >= 0.85): # Experiment with changing this value
+			if logs.get('accuracy') is not None
+			and logs.get('accuracy') > 0.60:
 			print("\nReached 60% accuracy so cancelling training!")
 			self.model.stop_training = True
 			
@@ -133,10 +134,11 @@
 			# model fitting with callback
 			model.fit(training_images, training_labels,
 			epochs=5, callbacks=[callbacks])			
-		\end{minted}
-		\item \textbf{<name>}\\
-		*Завдання з програмування: Implementing Callbacks in TensorFlow using the MNIST Dataset		
-		
+		\end{minted}	
+	\end{itemize}
+	\subsection{Week 3: Convolutional NN}
+	\begin{itemize}
+		\item 
 	\end{itemize}
 	
 	

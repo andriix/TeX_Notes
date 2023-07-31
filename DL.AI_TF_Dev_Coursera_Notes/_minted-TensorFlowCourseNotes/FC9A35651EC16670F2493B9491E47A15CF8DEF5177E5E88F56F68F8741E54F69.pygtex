@@ -1,7 +1,8 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 			\PYG{k}{class} \PYG{n+nc}{myCallback}\PYG{p}{(}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{callbacks}\PYG{o}{.}\PYG{n}{Callback}\PYG{p}{):}
 			\PYG{k}{def} \PYG{n+nf}{on\PYGZus{}epoch\PYGZus{}end}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{epoch}\PYG{p}{,} \PYG{n}{logs}\PYG{o}{=}\PYG{p}{\PYGZob{}\PYGZcb{}):}
-			\PYG{k}{if}\PYG{p}{(}\PYG{n}{logs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{)} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mf}{0.85}\PYG{p}{):} \PYG{c+c1}{\PYGZsh{} Experiment with changing this value}
+			\PYG{k}{if} \PYG{n}{logs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{is} \PYG{o+ow}{not} \PYG{k+kc}{None}
+			\PYG{o+ow}{and} \PYG{n}{logs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.60}\PYG{p}{:}
 			\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Reached 60}\PYG{l+s+si}{\PYGZpc{} a}\PYG{l+s+s2}{ccuracy so cancelling training!\PYGZdq{}}\PYG{p}{)}
 			\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{o}{.}\PYG{n}{stop\PYGZus{}training} \PYG{o}{=} \PYG{k+kc}{True}
 			
