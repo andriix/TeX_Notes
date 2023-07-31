@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  29 JUL 2023 16:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  31 JUL 2023 19:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -546,14 +546,20 @@ Overfull \hbox (10.1741pt too wide) in paragraph at lines 93--96
  []
 
 [3] [4] [5] (MathForMLNotes.aux)
-Package rerunfilecheck Info: File `MathForMLNotes.out' has not changed.
-(rerunfilecheck)             Checksum: A258264C192242989BDE71A3B0A5479E;1662.
+
+Package rerunfilecheck Warning: File `MathForMLNotes.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `MathForMLNotes.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  A258264C192242989BDE71A3B0A5479E;1662.
  ) 
 Here is how much of TeX's memory you used:
- 10308 strings out of 478582
- 160633 string characters out of 2856069
- 462466 words of memory out of 3000000
- 28362 multiletter control sequences out of 15000+600000
+ 10299 strings out of 478582
+ 160513 string characters out of 2856069
+ 462321 words of memory out of 3000000
+ 28353 multiletter control sequences out of 15000+600000
  483292 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  60i,8n,63p,692b,503s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -573,9 +579,9 @@ m/cmr7.pfb><D:/ProgFiles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:/P
 rogFiles/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><D:/ProgFiles/MiKTeX/f
 onts/type1/public/amsfonts/cm/cmsy7.pfb><D:/ProgFiles/MiKTeX/fonts/type1/public
 /amsfonts/symbols/msbm10.pfb>
-Output written on MathForMLNotes.pdf (5 pages, 186699 bytes).
+Output written on MathForMLNotes.pdf (5 pages, 183515 bytes).
 PDF statistics:
- 330 PDF objects out of 1000 (max. 8388607)
+ 305 PDF objects out of 1000 (max. 8388607)
  14 named destinations out of 1000 (max. 500000)
- 65 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
