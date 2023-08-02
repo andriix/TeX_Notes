@@ -141,7 +141,40 @@
 	\subsection{Week 3: Convolutional NN}
 	\begin{itemize}
 		\item \textbf{Improving Computer Vision Accuracy using Convolutions}\\
-		
+		A neural network containing three layers -- the input layer (in the shape of the data), the output layer (in the shape of the desired output) and only one hidden layer gives accuracy about 89\% on training and 87\% on validation. How does one make that even better? One way is to use something called \textbf{convolutions}. The ultimate \textbf{concept} is that they \textbf{narrow down the content of the image to focus on specific parts} and this will likely improve the model accuracy. This is perfect for computer vision because \textbf{it often highlights features that distinguish one item from another}. Moreover, the \textbf{amount of information needed is then much less} because one will just \textbf{train on the highlighted features}.
+		That's the concept of \textbf{Convolutional Neural Networks}.
+		\begin{minted}{python}
+			# Define the model
+			model = tf.keras.models.Sequential([
+			
+			# Add convolutions and max pooling
+			tf.keras.layers.Conv2D(32, (3,3), activation='relu',
+			input_shape=(28, 28, 1)),
+			tf.keras.layers.MaxPooling2D(2, 2),
+			tf.keras.layers.Conv2D(32, (3,3), activation='relu'),
+			tf.keras.layers.MaxPooling2D(2,2),
+			
+			# Add the same layers as before
+			tf.keras.layers.Flatten(),
+			tf.keras.layers.Dense(128, activation='relu'),
+			tf.keras.layers.Dense(10, activation='softmax')
+			])
+			
+			# Print the model summary
+			model.summary()
+			
+			# Use same settings
+			model.compile(optimizer='adam',
+			loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+			
+			# Train the model
+			print(f'\nMODEL TRAINING:')
+			model.fit(training_images, training_labels, epochs=5)
+			
+			# Evaluate on the test set
+			print(f'\nMODEL EVALUATION:')
+			test_loss = model.evaluate(test_images, test_labels)
+		\end{minted} 
 		
 		
 	\end{itemize}
