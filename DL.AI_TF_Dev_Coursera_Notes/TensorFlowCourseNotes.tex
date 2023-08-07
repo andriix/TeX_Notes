@@ -175,9 +175,56 @@
 			print(f'\nMODEL EVALUATION:')
 			test_loss = model.evaluate(test_images, test_labels)
 		\end{minted} 
+		\item \textbf{Lab}:
+		\begin{minted}{python}
+			import os
+			import numpy as np
+			import tensorflow as tf
+			from tensorflow import keras
+			
+			# Load the data
+			# Get current working directory
+			current_dir = os.getcwd()
+			# Append data/mnist.npz to the previous path to get
+			the full path
+			data_path = os.path.join(current_dir, "data/mnist.npz")
+			# Get only training set
+			(training_images, training_labels), _ =
+			tf.keras.datasets.mnist.load_data(path=data_path)
+		\end{minted}
+		\textbf{Pre-processing the data}:\\
+		-- Reshape the data so that it has an extra dimension. The reason for this is that commonly you will use 3-dimensional arrays (without counting the batch dimension) to represent image data. The third dimension represents the color using RGB values. This data might be in black and white format so the third dimension doesn't really add any additional information for the classification process but it is a good practice regardless.\\
+		-- Normalize the pixel values so that these are values between 0 and 1. You can achieve this by dividing every value in the array by the maximum.
+		\begin{minted}{python}
+			def reshape_and_normalize(images):
+				### START CODE HERE
+				# Reshape the images to add an extra dimension
+				images = images.reshape(images.shape[0],
+				images.shape[1],
+				images.shape[2],
+				1)
+				# Normalize pixel values
+				images = images / 255.0
+				### END CODE HERE
+				return images
+				
+			# Defining your callback: myCallback
+			### START CODE HERE
+			# Remember to inherit from the correct class
+			class myCallback(tf.keras.callbacks.Callback):
+			def on_epoch_end(self, epoch, logs={}):
+			if logs.get('accuracy') is not None and logs.get('accuracy') > 0.995:
+				print("\nReached 99.5% accuracy so cancelling training!")
+			self.model.stop_training = True
+			### END CODE HERE
+			
+			
+		\end{minted}
 		
 		
 	\end{itemize}
 	
-	
+	%\begin{minted}{python}
+	%	
+	%\end{minted}
 \end{document}
