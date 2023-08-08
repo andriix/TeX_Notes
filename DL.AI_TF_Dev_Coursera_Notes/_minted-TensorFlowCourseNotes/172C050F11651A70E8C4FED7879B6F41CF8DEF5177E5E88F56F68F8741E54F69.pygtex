@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.image} \PYG{k+kn}{import} \PYG{n}{ImageDataGenerator}
+
+\PYG{c+c1}{\PYGZsh{} All images will be rescaled by 1./255}
+\PYG{n}{train\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}\PYG{n}{rescale}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{255}\PYG{p}{)}
+\PYG{n}{validation\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}\PYG{n}{rescale}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mi}{255}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Flow training images in batches of 128 using train\PYGZus{}datagen generator}
+\PYG{n}{train\PYGZus{}generator} \PYG{o}{=} \PYG{n}{train\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}
+\PYG{l+s+s1}{\PYGZsq{}./horse\PYGZhy{}or\PYGZhy{}human/\PYGZsq{}}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} This is the source directory for training images}
+\PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{300}\PYG{p}{,} \PYG{l+m+mi}{300}\PYG{p}{),}  \PYG{c+c1}{\PYGZsh{} All images will be resized to 300x300}
+\PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{128}\PYG{p}{,}
+\PYG{c+c1}{\PYGZsh{} Since you use binary\PYGZus{}crossentropy loss, you need binary labels}
+\PYG{n}{class\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Flow validation images in batches of 128 using validation\PYGZus{}datagen generator}
+\PYG{n}{validation\PYGZus{}generator} \PYG{o}{=} \PYG{n}{validation\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}
+\PYG{l+s+s1}{\PYGZsq{}./validation\PYGZhy{}horse\PYGZhy{}or\PYGZhy{}human/\PYGZsq{}}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} This is the source directory for validation images}
+\PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{300}\PYG{p}{,} \PYG{l+m+mi}{300}\PYG{p}{),}  \PYG{c+c1}{\PYGZsh{} All images will be resized to 300x300}
+\PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{32}\PYG{p}{,}
+\PYG{c+c1}{\PYGZsh{} Since you use binary\PYGZus{}crossentropy loss, you need binary labels}
+\PYG{n}{class\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

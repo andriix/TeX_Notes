@@ -213,7 +213,8 @@ return images
 	\end{itemize}
 	\subsection{Week 4: Real-life example}
 	\begin{itemize}
-		\item \textbf{Lab: Training with ImageDataGenerator:}
+		\item \textbf{Lab 1: Training with ImageDataGenerator:}\\
+		\textbf{Building a Small Model from Scratch}
 		\begin{minted}{python}
 import tensorflow as tf
 
@@ -254,12 +255,77 @@ model.compile(loss='binary_crossentropy',
 optimizer=RMSprop(learning_rate=0.001),
 metrics=['accuracy'])
 		\end{minted}
-		In this case, using the \textbf{RMSprop optimization algorithm} is preferable to stochastic gradient descent (SGD), because \textbf{RMSprop automates learning-rate tuning} for us. (Other optimizers, such as Adam and Adagrad, also automatically adapt the learning rate during training, and would work equally well here.)
+		In this case, using the \textbf{RMSprop optimization algorithm} is preferable to stochastic gradient descent (SGD), because \textbf{RMSprop automates learning-rate tuning} for us. (Other optimizers, such as Adam and Adagrad, also automatically adapt the learning rate during training, and would work equally well here.)\\
+		\textbf{Data Preprocessing}\\
+		Next step is to set up the data generators that will read pictures in the source folders, convert them to float32 tensors, and feed them (with their labels) to the model.
+		\begin{minted}{python}
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+# All images will be rescaled by 1./255
+train_datagen = ImageDataGenerator(rescale=1/255)
+
+# Flow training images in batches of 128 using train_datagen generator
+train_generator = train_datagen.flow_from_directory(
+'./horse-or-human/',  # This is the source directory for training images
+target_size=(300, 300),  # All images will be resized to 300x300
+batch_size=128,
+# Since we use binary_crossentropy loss, we need binary labels
+class_mode='binary')
+		\end{minted}
+		\textbf{Training}\\
+		\begin{minted}{python}
+history = model.fit(train_generator,
+steps_per_epoch=8, epochs=15, verbose=1)
+		\end{minted}
+		As a result, a \textbf{convnet} processes images by transforming pixels through layers into abstract representations, \textbf{emphasizing key features} and achieving representation sparsity, which refines information about the image's class.
+		\item \textbf{Lab 2: ImageDataGenerator with a Validation Set}\\
+		\textbf{Building a Small Model from Scratch}
+		\begin{minted}{python}
+# the same model architecture as before
+# in previous lab 1
+# the same compile settings as before
+		\end{minted}
+		\textbf{Data Preprocessing}\\
+		It will mostly be the same as last time but notice the additional code to also prepare the validation data.
+		\begin{minted}{python}
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+# All images will be rescaled by 1./255
+train_datagen = ImageDataGenerator(rescale=1/255)
+validation_datagen = ImageDataGenerator(rescale=1/255)
+
+# Flow training images in batches of 128 using train_datagen generator
+train_generator = train_datagen.flow_from_directory(
+'./horse-or-human/',  # This is the source directory for training images
+target_size=(300, 300),  # All images will be resized to 300x300
+batch_size=128,
+# Since you use binary_crossentropy loss, you need binary labels
+class_mode='binary')
+
+# Flow validation images in batches of 128 using validation_datagen generator
+validation_generator = validation_datagen.flow_from_directory(
+'./validation-horse-or-human/',  # This is the source directory for validation images
+target_size=(300, 300),  # All images will be resized to 300x300
+batch_size=32,
+# Since you use binary_crossentropy loss, you need binary labels
+class_mode='binary')
+		\end{minted}
+		\textbf{Training}\\
+		Notice that as you train with more epochs, your training accuracy might go up but your validation accuracy goes down. This can be a sign of overfitting and you need to prevent your model from reaching this point.
+		\begin{minted}{python}
+history = model.fit(
+train_generator,
+steps_per_epoch=8,  
+epochs=15,
+verbose=1,
+validation_data = validation_generator,
+validation_steps=8)
+		\end{minted}
 		
 		
 	\end{itemize}
 	
-	
+		
 	%\begin{minted}{python}
 	%	
 	%\end{minted}

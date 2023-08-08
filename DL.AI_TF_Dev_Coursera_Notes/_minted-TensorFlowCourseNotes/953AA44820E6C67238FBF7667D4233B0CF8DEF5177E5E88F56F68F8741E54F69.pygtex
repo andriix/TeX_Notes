@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{history} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}
+\PYG{n}{train\PYGZus{}generator}\PYG{p}{,}
+\PYG{n}{steps\PYGZus{}per\PYGZus{}epoch}\PYG{o}{=}\PYG{l+m+mi}{8}\PYG{p}{,}
+\PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{,}
+\PYG{n}{verbose}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}
+\PYG{n}{validation\PYGZus{}data} \PYG{o}{=} \PYG{n}{validation\PYGZus{}generator}\PYG{p}{,}
+\PYG{n}{validation\PYGZus{}steps}\PYG{o}{=}\PYG{l+m+mi}{8}\PYG{p}{)}
+\end{Verbatim}
