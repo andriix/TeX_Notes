@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{optimizer} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{optimizers}\PYG{o}{.}\PYG{n}{Adam}\PYG{p}{(),}
+\PYG{n}{loss} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}sparse\PYGZus{}categorical\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}
+\PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{training\PYGZus{}images}\PYG{p}{,} \PYG{n}{training\PYGZus{}labels}\PYG{p}{,} \PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{)}
+\end{Verbatim}

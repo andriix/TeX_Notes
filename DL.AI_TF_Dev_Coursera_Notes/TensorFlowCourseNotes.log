@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  7 AUG 2023 12:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  8 AUG 2023 13:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -721,7 +721,13 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 (_minted-TensorFlowCourseNotes/default.pygstyle)
-(_minted-TensorFlowCourseNotes/883649A3F1E4C4BE79F98545D1825CBACF8DEF5177E5E88F
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/B64B7BCBFA41AAC96F5F6081798E4
+F4DCF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
+
+
+(_minted-TensorFlowCourseNotes/B64B7BCBFA41AAC96F5F6081798E4F4DCF8DEF5177E5E88F
 56F68F8741E54F69.pygtex
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
 1.
@@ -731,8 +737,13 @@ File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ))
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/C36A34E84A81228E5EE943E034F61
+A8ECF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/8DAE53912271620867677DD62B9CBB85CF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/C36A34E84A81228E5EE943E034F61A8ECF8DEF5177E5E88F
 56F68F8741E54F69.pygtex
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
 2.
@@ -741,116 +752,250 @@ File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 ))
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/014C856DA547FDFBF9328E26168CB
+865CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/976019B81E183679A57AA71A28CF0D9BCF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/014C856DA547FDFBF9328E26168CB865CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/C18E5BF9C9DBE3EB489A232420D60
+2BDCF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/CBC8A9AD01A280F9A5E94A0C9CB4A6A8CF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/C18E5BF9C9DBE3EB489A232420D602BDCF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/3F9B83E39087BA37DDA6D319AAADC
+20FCF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/33AA962457FF89F5A5690FC5A6A8DA4FCF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/3F9B83E39087BA37DDA6D319AAADC20FCF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/3A2E34BF363E9BB513E9956B1A526
+7CCCF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/B6603FD480B28E756724FE6591158112CF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/3A2E34BF363E9BB513E9956B1A5267CCCF8DEF5177E5E88F
 56F68F8741E54F69.pygtex [1
 
 {C:/Users/khrin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}])
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/B407FD3B9866C407521BE1E49C2A1
+854CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/78867407EFA34C9D2B1A7B70578FFF2CCF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/B407FD3B9866C407521BE1E49C2A1854CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/37BEB981551317C48A870A57CF623
+601CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/D40533C3BFC180D92B2D5D2D6AD5C061CF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/37BEB981551317C48A870A57CF623601CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/6231106F2DAE0AD347690924224AA
+7D9CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/34AA152CE9AD22987AA10CF66352FB66CF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/6231106F2DAE0AD347690924224AA7D9CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/F2C51E900926A76BAD5F2951010A9
+40ACF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/8DB6E93087B2C669D311704CE2EA9F08CF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/F2C51E900926A76BAD5F2951010A940ACF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/B5CD1163ACF0E7409255F73C67B38
+EFDCF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/EE1D3408C0F36DF6D0657D67C621FF9CCF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/B5CD1163ACF0E7409255F73C67B38EFDCF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/23F3D5C58A187D31D314C2B60E353
+8C7CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/0323CFED8DEA23F5CE00598E848A272CCF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/23F3D5C58A187D31D314C2B60E3538C7CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex [2])
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/0E5E6C966754B213BE09288C8E780
+72ACF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/B5D2C3FF436A5C4959AF6E90D4420FB0CF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/0E5E6C966754B213BE09288C8E78072ACF8DEF5177E5E88F
 56F68F8741E54F69.pygtex
 LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 2.
  [3])
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/DE5FE60F62BAB99E806E10CE1851C
+795CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/E21FAE32E2AC0F6F58427C6C5F066BEFCF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/DE5FE60F62BAB99E806E10CE1851C795CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex [4])
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/7A1F6098AA61067B3B41B412751C3
+179CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
 
-(_minted-TensorFlowCourseNotes/20D02A025F781243CFFF3F8D602ACEAECF8DEF5177E5E88F
+
+(_minted-TensorFlowCourseNotes/7A1F6098AA61067B3B41B412751C3179CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex)
 \openout3 = `TensorFlowCourseNotes.pyg'.
 
 runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
- stripnl="False" -o _minted-TensorFlowCourseNotes/D6AA5A95434C23E1912102BB7E2E3
-9B1CF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+ stripnl="False" -o _minted-TensorFlowCourseNotes/17BB222651463C1D302815EE551D7
+5ADCF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
 d.
 
 
-(_minted-TensorFlowCourseNotes/D6AA5A95434C23E1912102BB7E2E39B1CF8DEF5177E5E88F
+(_minted-TensorFlowCourseNotes/17BB222651463C1D302815EE551D75ADCF8DEF5177E5E88F
 56F68F8741E54F69.pygtex [5])
-runsystem(del _minted-TensorFlowCourseNotes\BCCD03730A9148908BE9A3F8E4376071CF8
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+runsystem(pygmentize -l "python" -f latex -P commandprefix=PYG -F tokenmerge -P
+ stripnl="False" -o _minted-TensorFlowCourseNotes/0A474972ACB70C2ECA515BC1A487F
+87ACF8DEF5177E5E88F56F68F8741E54F69.pygtex TensorFlowCourseNotes.pyg)...execute
+d.
+
+
+(_minted-TensorFlowCourseNotes/0A474972ACB70C2ECA515BC1A487F87ACF8DEF5177E5E88F
+56F68F8741E54F69.pygtex)
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/61A65C593E0BBA5BD829A56DF0B3EC37CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex [6])
+Overfull \hbox (11.64207pt too wide) in paragraph at lines 257--258
+\T2A/cmr/bx/n/10 learning-rate tuni-ng \T2A/cmr/m/n/10 for us. (Other opti-mi-z
+ers, such as Adam and Adagrad,
+ []
+
+runsystem(del _minted-TensorFlowCourseNotes\883649A3F1E4C4BE79F98545D1825CBACF8
 DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
 
- [6] (TensorFlowCourseNotes.aux)
+runsystem(del _minted-TensorFlowCourseNotes\8DAE53912271620867677DD62B9CBB85CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\976019B81E183679A57AA71A28CF0D9BCF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\CBC8A9AD01A280F9A5E94A0C9CB4A6A8CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\33AA962457FF89F5A5690FC5A6A8DA4FCF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\B6603FD480B28E756724FE6591158112CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\78867407EFA34C9D2B1A7B70578FFF2CCF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\D40533C3BFC180D92B2D5D2D6AD5C061CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\34AA152CE9AD22987AA10CF66352FB66CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\8DB6E93087B2C669D311704CE2EA9F08CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\EE1D3408C0F36DF6D0657D67C621FF9CCF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\0323CFED8DEA23F5CE00598E848A272CCF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\B5D2C3FF436A5C4959AF6E90D4420FB0CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\E21FAE32E2AC0F6F58427C6C5F066BEFCF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\D7BDFD2E773266162B35C6297D3915F1CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\8CB7FC15DBC2584DE80C39DC5746FDA1CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+runsystem(del _minted-TensorFlowCourseNotes\0B24837D07ADBCBED4B3B60A89063B08CF8
+DEF5177E5E88F56F68F8741E54F69.pygtex)...executed.
+
+[7] (TensorFlowCourseNotes.aux)
 Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
-(rerunfilecheck)             Checksum: 7550621E113113924CAC6DBB7BEDFC8C;655.
+(rerunfilecheck)             Checksum: 8D1EEBB3FCFD8B5AAF6820B45C3FB79A;846.
 runsystem(del TensorFlowCourseNotes.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 14905 strings out of 478582
- 258392 string characters out of 2856069
- 592100 words of memory out of 3000000
- 32815 multiletter control sequences out of 15000+600000
- 483348 words of font info for 60 fonts, out of 8000000 for 9000
+ 14978 strings out of 478582
+ 264248 string characters out of 2856069
+ 591246 words of memory out of 3000000
+ 32862 multiletter control sequences out of 15000+600000
+ 484454 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,6n,81p,806b,796s stack positions out of 10000i,1000n,20000p,200000b,80000s
- <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labi10
-00.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tctt1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi
-600\latt1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
-/dpi600\lait1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
--t2a/dpi600\larm1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/l
-h/lh-t2a/dpi600\labx1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfo
-ur/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/p
-k/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fon
-ts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\MiKTeX
-\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Local\Mi
-KTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
-Output written on TensorFlowCourseNotes.pdf (6 pages, 127875 bytes).
+ <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcit
+1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\
+lati1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
+pi600\tctt1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t
+2a/dpi600\latt1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/
+lh-t2a/dpi600\lait1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour
+/lh/lh-t2a/dpi600\larm1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/lj
+four/lh/lh-t2a/dpi600\labx1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/p
+k/ljfour/jknappen/ec/dpi600\tcrm1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\f
+onts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKT
+eX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\
+MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Lo
+cal\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
+Output written on TensorFlowCourseNotes.pdf (7 pages, 135952 bytes).
 PDF statistics:
- 423 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 500000)
- 33 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 453 PDF objects out of 1000 (max. 8388607)
+ 13 named destinations out of 1000 (max. 500000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

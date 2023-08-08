@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{classifications} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{test\PYGZus{}images}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{classifications}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} The output of the model is a list of 10 numbers.}
+\PYG{c+c1}{\PYGZsh{} These numbers are a probability that the value}
+\PYG{c+c1}{\PYGZsh{} being classified is the corresponding value}
+\end{Verbatim}

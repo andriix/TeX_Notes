@@ -1,0 +1,32 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
+
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{([}
+\PYG{c+c1}{\PYGZsh{} Note the input shape is the desired size of the}
+\PYG{c+c1}{\PYGZsh{}image 300x300 with 3 bytes color}
+\PYG{c+c1}{\PYGZsh{} This is the first convolution}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{16}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{,}
+\PYG{n+nb}{input}\PYGZbs{}\PYG{n}{\PYGZus{}shape}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{300}\PYG{p}{,} \PYG{l+m+mi}{300}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{),}
+\PYG{c+c1}{\PYGZsh{} The second convolution}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{32}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+\PYG{c+c1}{\PYGZsh{} The third convolution}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{64}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+\PYG{c+c1}{\PYGZsh{} The fourth convolution}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{64}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+\PYG{c+c1}{\PYGZsh{} The fifth convolution}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{64}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+\PYG{c+c1}{\PYGZsh{} Flatten the results to feed into a DNN}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Flatten}\PYG{p}{(),}
+\PYG{c+c1}{\PYGZsh{} 512 neuron hidden layer}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{512}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+\PYG{c+c1}{\PYGZsh{} Only 1 output neuron. It will contain a value}
+\PYG{c+c1}{\PYGZsh{} from 0\PYGZhy{}1 where 0 for 1 class (\PYGZsq{}horses\PYGZsq{}) and 1 for}
+\PYG{c+c1}{\PYGZsh{} the other (\PYGZsq{}humans\PYGZsq{})}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sigmoid\PYGZsq{}}\PYG{p}{)}
+\PYG{p}{])}
+\end{Verbatim}

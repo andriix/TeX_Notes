@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.optimizers} \PYG{k+kn}{import} \PYG{n}{RMSprop}
+	
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}
+\PYG{n}{optimizer}\PYG{o}{=}\PYG{n}{RMSprop}\PYG{p}{(}\PYG{n}{learning\PYGZus{}rate}\PYG{o}{=}\PYG{l+m+mf}{0.001}\PYG{p}{),}
+\PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}

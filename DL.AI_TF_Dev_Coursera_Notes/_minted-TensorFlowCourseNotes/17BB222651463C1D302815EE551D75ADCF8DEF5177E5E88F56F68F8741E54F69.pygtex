@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{def} \PYG{n+nf}{reshape\PYGZus{}and\PYGZus{}normalize}\PYG{p}{(}\PYG{n}{images}\PYG{p}{):}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{} START CODE HERE}
+\PYG{c+c1}{\PYGZsh{} Reshape the images to add an extra dimension}
+\PYG{n}{images} \PYG{o}{=} \PYG{n}{images}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{(}\PYG{n}{images}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{],}
+\PYG{n}{images}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],}
+\PYG{n}{images}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{],}
+\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Normalize pixel values}
+\PYG{n}{images} \PYG{o}{=} \PYG{n}{images} \PYG{o}{/} \PYG{l+m+mf}{255.0}
+\PYG{c+c1}{\PYGZsh{}\PYGZsh{}\PYGZsh{} END CODE HERE}
+\PYG{k}{return} \PYG{n}{images}
+
+\PYG{c+c1}{\PYGZsh{} rest of the code like previously}
+\end{Verbatim}
