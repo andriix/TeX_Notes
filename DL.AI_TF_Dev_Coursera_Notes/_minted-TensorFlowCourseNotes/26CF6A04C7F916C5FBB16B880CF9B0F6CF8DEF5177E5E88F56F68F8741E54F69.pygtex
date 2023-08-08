@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.callbacks} \PYG{k+kn}{import} \PYG{n}{EarlyStopping}
+
+\PYG{c+c1}{\PYGZsh{} Define the EarlyStopping callback}
+\PYG{n}{early\PYGZus{}stopping} \PYG{o}{=} \PYG{n}{EarlyStopping}\PYG{p}{(}\PYG{n}{monitor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}loss\PYGZsq{}}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} or \PYGZsq{}val\PYGZus{}accuracy\PYGZsq{} depending}
+\PYG{c+c1}{\PYGZsh{} on what you want to monitor}
+\PYG{n}{patience}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{c+c1}{\PYGZsh{} Number of epochs with no improvement after which training will}
+\PYG{c+c1}{\PYGZsh{} be stopped}
+\PYG{n}{verbose}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}
+\PYG{n}{restore\PYGZus{}best\PYGZus{}weights}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)} \PYG{c+c1}{\PYGZsh{} Restore model weights from the}
+\PYG{c+c1}{\PYGZsh{} epoch with the best value of the monitored quantity.}
+\PYG{c+c1}{\PYGZsh{} Now, when you fit the model, you can use this callback:}
+\PYG{c+c1}{\PYGZsh{} model.fit(..., callbacks=[early\PYGZus{}stopping])}
+
+\PYG{k}{class} \PYG{n+nc}{myCallback}\PYG{p}{(}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{callbacks}\PYG{o}{.}\PYG{n}{Callback}\PYG{p}{):}
+\PYG{k}{def} \PYG{n+nf}{on\PYGZus{}epoch\PYGZus{}end}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{epoch}\PYG{p}{,} \PYG{n}{logs}\PYG{o}{=}\PYG{p}{\PYGZob{}\PYGZcb{}):}
+\PYG{k}{if} \PYG{n}{logs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{)} \PYG{o+ow}{is} \PYG{o+ow}{not} \PYG{k+kc}{None} \PYG{o+ow}{and} \PYG{n}{logs}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.999}\PYG{p}{:}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Reached 99.9}\PYG{l+s+si}{\PYGZpc{} a}\PYG{l+s+s2}{ccuracy so cancelling training!\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{model}\PYG{o}{.}\PYG{n}{stop\PYGZus{}training} \PYG{o}{=} \PYG{k+kc}{True}
+\end{Verbatim}

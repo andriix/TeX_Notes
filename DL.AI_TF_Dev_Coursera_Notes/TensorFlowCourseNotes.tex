@@ -223,7 +223,7 @@ model = tf.keras.models.Sequential([
 #image 300x300 with 3 bytes color
 # This is the first convolution
 tf.keras.layers.Conv2D(16, (3,3), activation='relu',
-input\_shape=(300, 300, 3)),
+input_shape=(300, 300, 3)),
 tf.keras.layers.MaxPooling2D(2, 2),
 # The second convolution
 tf.keras.layers.Conv2D(32, (3,3), activation='relu'),
@@ -321,8 +321,120 @@ verbose=1,
 validation_data = validation_generator,
 validation_steps=8)
 		\end{minted}
+	\item \textbf{Final Assignment: Happy or Sad}\\
+	The happy or sad dataset, which contains 80 images of emoji-like faces, 40 happy and 40 sad.\\
+	The task is to create a convolutional neural network that trains to 99.9\% accuracy on these images, which cancels training upon hitting this training accuracy threshold.
+	\begin{minted}{python}
+# IMPORTS
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import numpy as np
+import os
+
+# LOAD AND EXPLORE THE DATA
+from tensorflow.keras.preprocessing.image import load_img
+from tensorflow.keras.preprocessing.image import img_to_array
+
+base_dir = "./data/"
+happy_dir = os.path.join(base_dir, "happy/")
+sad_dir = os.path.join(base_dir, "sad/")
+
+print("Sample happy image:")
+plt.imshow(load_img(f"{os.path.join(happy_dir, os.listdir(happy_dir)[0])}"))
+plt.show()
+
+print("\nSample sad image:")
+plt.imshow(load_img(f"{os.path.join(sad_dir, os.listdir(sad_dir)[0])}"))
+plt.show()
+
+# Load the first example of a happy face
+sample_image  = load_img(f"{os.path.join(happy_dir, os.listdir(happy_dir)[0])}")
+# Convert the image into its numpy array representation
+sample_array = img_to_array(sample_image)
+print(f"Each image has shape: {sample_array.shape}")
+print(f"The maximum pixel value used is: {np.max(sample_array)}")
+	\end{minted}
+	\textbf{Defining the callback}\\
+	The \textbf{EarlyStopping callback} will monitor the validation loss (val\_loss) by default. If \textbf{the validation loss does not improve} for a specified number of epochs (defined by the patience parameter), \textbf{the training will stop}, and the \textbf{best weights} (from the epoch with the lowest validation loss) \textbf{will be restored} to the model.\\
+	Note: To use the EarlyStopping callback effectively, you should have a validation set defined when calling model.fit().
+	\begin{minted}{python}
+from tensorflow.keras.callbacks import EarlyStopping
+
+# Define the EarlyStopping callback
+early_stopping = EarlyStopping(monitor='val_loss', # or 'val_accuracy' depending
+# on what you want to monitor
+patience=10, # Number of epochs with no improvement after which training will
+# be stopped
+verbose=1,
+restore_best_weights=True) # Restore model weights from the
+# epoch with the best value of the monitored quantity.
+# Now, when you fit the model, you can use this callback:
+# model.fit(..., callbacks=[early_stopping])
+
+class myCallback(tf.keras.callbacks.Callback):
+def on_epoch_end(self, epoch, logs={}):
+if logs.get('accuracy') is not None and logs.get('accuracy') > 0.999:
+print("\nReached 99.9% accuracy so cancelling training!")
+self.model.stop_training = True 
+	\end{minted}
+	\textbf{Pre-processing the data:}
+	\begin{minted}{python}
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+def image_generator():
+	# Instantiate the ImageDataGenerator class.
+	train_datagen = ImageDataGenerator(rescale=1/255.0)
+	
+	train_generator = train_datagen.flow_from_directory(directory=base_dir,
+	target_size=(150, 150),
+	batch_size=10,
+	class_mode='binary')
+	
+	return train_generator
+
+gen = image_generator()
+	\end{minted}
+	\textbf{Creating and training your model:}
+	\begin{minted}{python}
+from tensorflow.keras import optimizers, losses
+
+def train_happy_sad_model(train_generator):
+
+	# Instantiate the callback
+	callbacks = myCallback()
+	
+	# Define the model
+	model = tf.keras.models.Sequential([
+	# This is the first convolution
+	tf.keras.layers.Conv2D(16, (3,3), activation='relu', input_shape=(150, 150, 3)),
+	tf.keras.layers.MaxPooling2D(2, 2),
+	# The second convolution
+	tf.keras.layers.Conv2D(32, (3,3), activation='relu'),
+	tf.keras.layers.MaxPooling2D(2,2),
+	# The third convolution
+	tf.keras.layers.Conv2D(32, (3,3), activation='relu'),
+	tf.keras.layers.MaxPooling2D(2,2),
+	tf.keras.layers.Flatten(),
+	tf.keras.layers.Dense(256, activation = 'relu'),
+	tf.keras.layers.Dense(1, activation = 'sigmoid')
+	])
+	
+	# Compile the model
+	model.compile(loss='binary_crossentropy',
+		optimizer=optimizers.RMSprop(learning_rate=0.001),
+		metrics=['accuracy'])     
 		
-		
+	# Train the model
+	history = model.fit(x=train_generator,
+	epochs=20,
+	callbacks=[callbacks]
+	)
+	
+	return history
+	
+hist = train_happy_sad_model(gen)
+	\end{minted}
+	*\textbf{Congratulations on finishing} the last assignment of this course!
 	\end{itemize}
 	
 		

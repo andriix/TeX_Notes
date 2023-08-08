@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.image} \PYG{k+kn}{import} \PYG{n}{ImageDataGenerator}
+
+\PYG{k}{def} \PYG{n+nf}{image\PYGZus{}generator}\PYG{p}{():}
+	\PYG{c+c1}{\PYGZsh{} Instantiate the ImageDataGenerator class.}
+	\PYG{n}{train\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}\PYG{n}{rescale}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{l+m+mf}{255.0}\PYG{p}{)}
+	
+	\PYG{n}{train\PYGZus{}generator} \PYG{o}{=} \PYG{n}{train\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}\PYG{n}{directory}\PYG{o}{=}\PYG{n}{base\PYGZus{}dir}\PYG{p}{,}
+	\PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{),}
+	\PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{,}
+	\PYG{n}{class\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{)}
+	
+	\PYG{k}{return} \PYG{n}{train\PYGZus{}generator}
+
+\PYG{n}{gen} \PYG{o}{=} \PYG{n}{image\PYGZus{}generator}\PYG{p}{()}
+\end{Verbatim}
