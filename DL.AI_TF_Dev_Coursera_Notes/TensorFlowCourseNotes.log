@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  8 AUG 2023 19:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  8 AUG 2023 20:01
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -880,14 +880,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 275--1
 
 (_minted-TensorFlowCourseNotes/69823F7F04D490B6117DE5A8B345B3A7CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex [10]) [11] (TensorFlowCourseNotes.aux)
-Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
-(rerunfilecheck)             Checksum: 8D1EEBB3FCFD8B5AAF6820B45C3FB79A;846.
+
+Package rerunfilecheck Warning: File `TensorFlowCourseNotes.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `TensorFlowCourseNotes.out':
+(rerunfilecheck)             Before: 8D1EEBB3FCFD8B5AAF6820B45C3FB79A;846
+(rerunfilecheck)             After:  BF89BF2130071DA2E189E90926018AB0;1292.
 runsystem(del TensorFlowCourseNotes.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 14986 strings out of 478582
- 265253 string characters out of 2856069
+ 14988 strings out of 478582
+ 265276 string characters out of 2856069
  591964 words of memory out of 3000000
  32856 multiletter control sequences out of 15000+600000
  484454 words of font info for 68 fonts, out of 8000000 for 9000
@@ -906,9 +912,9 @@ onts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKT
 eX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\
 MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
-Output written on TensorFlowCourseNotes.pdf (11 pages, 149147 bytes).
+Output written on TensorFlowCourseNotes.pdf (11 pages, 153374 bytes).
 PDF statistics:
- 483 PDF objects out of 1000 (max. 8388607)
- 17 named destinations out of 1000 (max. 500000)
+ 496 PDF objects out of 1000 (max. 8388607)
+ 19 named destinations out of 1000 (max. 500000)
  41 words of extra memory for PDF output out of 10000 (max. 10000000)
 
