@@ -1,0 +1,197 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Download the dataset}
+\PYG{c+c1}{\PYGZsh{} !wget \PYGZhy{}\PYGZhy{}no\PYGZhy{}check\PYGZhy{}certificate https://storage.googleapis.com/mledu\PYGZhy{}datasets/cats\PYGZus{}and\PYGZus{}dogs\PYGZus{}filtered.zip}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Unzip it}
+\PYG{k+kn}{import} \PYG{n+nn}{zipfile}
+\PYG{c+c1}{\PYGZsh{} Unzip the archive}
+\PYG{n}{local\PYGZus{}zip} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}./cats\PYGZus{}and\PYGZus{}dogs\PYGZus{}filtered.zip\PYGZsq{}}
+\PYG{n}{zip\PYGZus{}ref} \PYG{o}{=} \PYG{n}{zipfile}\PYG{o}{.}\PYG{n}{ZipFile}\PYG{p}{(}\PYG{n}{local\PYGZus{}zip}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{zip\PYGZus{}ref}\PYG{o}{.}\PYG{n}{extractall}\PYG{p}{()}
+\PYG{n}{zip\PYGZus{}ref}\PYG{o}{.}\PYG{n}{close}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Subdirectories}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{n}{base\PYGZus{}dir} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}cats\PYGZus{}and\PYGZus{}dogs\PYGZus{}filtered\PYGZsq{}}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Contents of base directory:\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{base\PYGZus{}dir}\PYG{p}{))}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Contents of train directory:\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{base\PYGZus{}dir}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{/train\PYGZsq{}}\PYG{p}{))}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Contents of validation directory:\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{base\PYGZus{}dir}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{/validation\PYGZsq{}}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Assign each of these directories to a variable}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{n}{train\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{base\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{validation\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{base\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}validation\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Directory with training cat/dog pictures}
+\PYG{n}{train\PYGZus{}cats\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{train\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}cats\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{train\PYGZus{}dogs\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{train\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}dogs\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Directory with validation cat/dog pictures}
+\PYG{n}{validation\PYGZus{}cats\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{validation\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}cats\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{validation\PYGZus{}dogs\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{validation\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}dogs\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Filenames}
+\PYG{n}{train\PYGZus{}cat\PYGZus{}fnames} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(} \PYG{n}{train\PYGZus{}cats\PYGZus{}dir} \PYG{p}{)}
+\PYG{n}{train\PYGZus{}dog\PYGZus{}fnames} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(} \PYG{n}{train\PYGZus{}dogs\PYGZus{}dir} \PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{train\PYGZus{}cat\PYGZus{}fnames}\PYG{p}{[:}\PYG{l+m+mi}{10}\PYG{p}{])}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{train\PYGZus{}dog\PYGZus{}fnames}\PYG{p}{[:}\PYG{l+m+mi}{10}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Total number of cat and dog images in the train}
+\PYG{c+c1}{\PYGZsh{} and validation directories}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}total training cat images :\PYGZsq{}}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}      \PYG{n}{train\PYGZus{}cats\PYGZus{}dir} \PYG{p}{)} \PYG{p}{))}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}total training dog images :\PYGZsq{}}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}      \PYG{n}{train\PYGZus{}dogs\PYGZus{}dir} \PYG{p}{)} \PYG{p}{))}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}total validation cat images :\PYGZsq{}}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(} \PYG{n}{validation\PYGZus{}cats\PYGZus{}dir} \PYG{p}{)} \PYG{p}{))}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}total validation dog images :\PYGZsq{}}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(} \PYG{n}{validation\PYGZus{}dogs\PYGZus{}dir} \PYG{p}{)} \PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Building a Small Model from Scratch to get to \PYGZti{}72\PYGZpc{} Accuracy \PYGZhy{}\PYGZgt{}}
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{([}
+	\PYG{c+c1}{\PYGZsh{} Note the input shape is the desired size of the image 150x150}
+	\PYG{c+c1}{\PYGZsh{} with 3 bytes color}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{16}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{,} \PYG{n}{input\PYGZus{}shape}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{32}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{64}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+	\PYG{c+c1}{\PYGZsh{} Flatten the results to feed into a DNN}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Flatten}\PYG{p}{(),}
+	\PYG{c+c1}{\PYGZsh{} 512 neuron hidden layer}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{512}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+	\PYG{c+c1}{\PYGZsh{} Only 1 output neuron. It will contain a value from 0\PYGZhy{}1}
+	\PYG{c+c1}{\PYGZsh{} where 0 for 1 class (\PYGZsq{}cats\PYGZsq{}) and 1 for the other (\PYGZsq{}dogs\PYGZsq{})}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sigmoid\PYGZsq{}}\PYG{p}{)}
+\PYG{p}{])}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Model configuration}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.optimizers} \PYG{k+kn}{import} \PYG{n}{RMSprop}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{optimizer}\PYG{o}{=}\PYG{n}{RMSprop}\PYG{p}{(}\PYG{n}{learning\PYGZus{}rate}\PYG{o}{=}\PYG{l+m+mf}{0.001}\PYG{p}{),}
+\PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}
+\PYG{n}{metrics} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Data Preprocessing}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.image} \PYG{k+kn}{import} \PYG{n}{ImageDataGenerator}
+\PYG{c+c1}{\PYGZsh{} All images will be rescaled by 1./255.}
+\PYG{n}{train\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(} \PYG{n}{rescale} \PYG{o}{=} \PYG{l+m+mf}{1.0}\PYG{o}{/}\PYG{l+m+mf}{255.} \PYG{p}{)}
+\PYG{n}{test\PYGZus{}datagen}  \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(} \PYG{n}{rescale} \PYG{o}{=} \PYG{l+m+mf}{1.0}\PYG{o}{/}\PYG{l+m+mf}{255.} \PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Flow training images in batches of 20 using train\PYGZus{}datagen generator}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{train\PYGZus{}generator} \PYG{o}{=} \PYG{n}{train\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}\PYG{n}{train\PYGZus{}dir}\PYG{p}{,}
+	\PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,}
+	\PYG{n}{class\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{,}
+	\PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Flow validation images in batches of 20 using test\PYGZus{}datagen generator}
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{validation\PYGZus{}generator} \PYG{o}{=}  \PYG{n}{test\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}\PYG{n}{validation\PYGZus{}dir}\PYG{p}{,}
+	\PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,}
+	\PYG{n}{class\PYGZus{}mode}  \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{,}
+	\PYG{n}{target\PYGZus{}size} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Training}
+\PYG{n}{history} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}
+	\PYG{n}{train\PYGZus{}generator}\PYG{p}{,}
+	\PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{,}
+	\PYG{n}{validation\PYGZus{}data}\PYG{o}{=}\PYG{n}{validation\PYGZus{}generator}\PYG{p}{,}
+	\PYG{n}{verbose}\PYG{o}{=}\PYG{l+m+mi}{2}
+	\PYG{p}{)}
+	
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Take a look at actually running a prediction using the model}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{google.colab} \PYG{k+kn}{import} \PYG{n}{files}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.utils} \PYG{k+kn}{import} \PYG{n}{load\PYGZus{}img}\PYG{p}{,} \PYG{n}{img\PYGZus{}to\PYGZus{}array}
+\PYG{n}{uploaded}\PYG{o}{=}\PYG{n}{files}\PYG{o}{.}\PYG{n}{upload}\PYG{p}{()}
+\PYG{k}{for} \PYG{n}{fn} \PYG{o+ow}{in} \PYG{n}{uploaded}\PYG{o}{.}\PYG{n}{keys}\PYG{p}{():}
+\PYG{c+c1}{\PYGZsh{} predicting images}
+\PYG{n}{path}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}/content/\PYGZsq{}} \PYG{o}{+} \PYG{n}{fn}
+\PYG{n}{img}\PYG{o}{=}\PYG{n}{load\PYGZus{}img}\PYG{p}{(}\PYG{n}{path}\PYG{p}{,} \PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}
+\PYG{n}{x}\PYG{o}{=}\PYG{n}{img\PYGZus{}to\PYGZus{}array}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}
+\PYG{n}{x} \PYG{o}{/=} \PYG{l+m+mi}{255}
+\PYG{n}{x}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{expand\PYGZus{}dims}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n}{images} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{vstack}\PYG{p}{([}\PYG{n}{x}\PYG{p}{])}
+\PYG{n}{classes} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{images}\PYG{p}{,} \PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{10}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{classes}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+\PYG{k}{if} \PYG{n}{classes}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{\PYGZgt{}}\PYG{l+m+mf}{0.5}\PYG{p}{:}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fn} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} is a dog\PYGZdq{}}\PYG{p}{)}
+\PYG{k}{else}\PYG{p}{:}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{fn} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{} is a cat\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Visualizing Intermediate Representations}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{import} \PYG{n+nn}{random}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.utils} \PYG{k+kn}{import} \PYG{n}{img\PYGZus{}to\PYGZus{}array}\PYG{p}{,} \PYG{n}{load\PYGZus{}img}
+\PYG{c+c1}{\PYGZsh{} Define a new Model that will take an image as input, and will output}
+\PYG{c+c1}{\PYGZsh{} intermediate representations for all layers in the previous model}
+\PYG{n}{successive\PYGZus{}outputs} \PYG{o}{=} \PYG{p}{[}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{output} \PYG{k}{for} \PYG{n}{layer} \PYG{o+ow}{in} \PYG{n}{model}\PYG{o}{.}\PYG{n}{layers}\PYG{p}{]}
+\PYG{n}{visualization\PYGZus{}model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Model}\PYG{p}{(}\PYG{n}{inputs} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{input}\PYG{p}{,} \PYG{n}{outputs} \PYG{o}{=} \PYG{n}{successive\PYGZus{}outputs}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Prepare a random input image from the training set.}
+\PYG{n}{cat\PYGZus{}img\PYGZus{}files} \PYG{o}{=} \PYG{p}{[}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{train\PYGZus{}cats\PYGZus{}dir}\PYG{p}{,} \PYG{n}{f}\PYG{p}{)} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n}{train\PYGZus{}cat\PYGZus{}fnames}\PYG{p}{]}
+\PYG{n}{dog\PYGZus{}img\PYGZus{}files} \PYG{o}{=} \PYG{p}{[}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{train\PYGZus{}dogs\PYGZus{}dir}\PYG{p}{,} \PYG{n}{f}\PYG{p}{)} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n}{train\PYGZus{}dog\PYGZus{}fnames}\PYG{p}{]}
+\PYG{n}{img\PYGZus{}path} \PYG{o}{=} \PYG{n}{random}\PYG{o}{.}\PYG{n}{choice}\PYG{p}{(}\PYG{n}{cat\PYGZus{}img\PYGZus{}files} \PYG{o}{+} \PYG{n}{dog\PYGZus{}img\PYGZus{}files}\PYG{p}{)}
+\PYG{n}{img} \PYG{o}{=} \PYG{n}{load\PYGZus{}img}\PYG{p}{(}\PYG{n}{img\PYGZus{}path}\PYG{p}{,} \PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}  \PYG{c+c1}{\PYGZsh{} this is a PIL image}
+\PYG{n}{x}   \PYG{o}{=} \PYG{n}{img\PYGZus{}to\PYGZus{}array}\PYG{p}{(}\PYG{n}{img}\PYG{p}{)}                           \PYG{c+c1}{\PYGZsh{} Numpy array with shape (150, 150, 3)}
+\PYG{n}{x}   \PYG{o}{=} \PYG{n}{x}\PYG{o}{.}\PYG{n}{reshape}\PYG{p}{((}\PYG{l+m+mi}{1}\PYG{p}{,)} \PYG{o}{+} \PYG{n}{x}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}                   \PYG{c+c1}{\PYGZsh{} Numpy array with shape (1, 150, 150, 3)}
+\PYG{c+c1}{\PYGZsh{} Scale by 1/255}
+\PYG{n}{x} \PYG{o}{/=} \PYG{l+m+mf}{255.0}
+\PYG{c+c1}{\PYGZsh{} Run the image through the network, thus obtaining all}
+\PYG{c+c1}{\PYGZsh{} intermediate representations for this image.}
+\PYG{n}{successive\PYGZus{}feature\PYGZus{}maps} \PYG{o}{=} \PYG{n}{visualization\PYGZus{}model}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} These are the names of the layers, so you can have them as part of our plot}
+\PYG{n}{layer\PYGZus{}names} \PYG{o}{=} \PYG{p}{[}\PYG{n}{layer}\PYG{o}{.}\PYG{n}{name} \PYG{k}{for} \PYG{n}{layer} \PYG{o+ow}{in} \PYG{n}{model}\PYG{o}{.}\PYG{n}{layers}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} Display the representations}
+\PYG{k}{for} \PYG{n}{layer\PYGZus{}name}\PYG{p}{,} \PYG{n}{feature\PYGZus{}map} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{layer\PYGZus{}names}\PYG{p}{,} \PYG{n}{successive\PYGZus{}feature\PYGZus{}maps}\PYG{p}{):}
+\PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{feature\PYGZus{}map}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)} \PYG{o}{==} \PYG{l+m+mi}{4}\PYG{p}{:}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Just do this for the conv / maxpool layers, not the fully\PYGZhy{}connected layers}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{n\PYGZus{}features} \PYG{o}{=} \PYG{n}{feature\PYGZus{}map}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}  \PYG{c+c1}{\PYGZsh{} number of features in the feature map}
+\PYG{n}{size}       \PYG{o}{=} \PYG{n}{feature\PYGZus{}map}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[} \PYG{l+m+mi}{1}\PYG{p}{]}  \PYG{c+c1}{\PYGZsh{} feature map shape (1, size, size, n\PYGZus{}features)}
+\PYG{c+c1}{\PYGZsh{} Tile the images in this matrix}
+\PYG{n}{display\PYGZus{}grid} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{zeros}\PYG{p}{((}\PYG{n}{size}\PYG{p}{,} \PYG{n}{size} \PYG{o}{*} \PYG{n}{n\PYGZus{}features}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Postprocess the feature to be visually palatable}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{n\PYGZus{}features}\PYG{p}{):}
+\PYG{n}{x}  \PYG{o}{=} \PYG{n}{feature\PYGZus{}map}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{p}{:,} \PYG{p}{:,} \PYG{n}{i}\PYG{p}{]}
+\PYG{n}{x} \PYG{o}{\PYGZhy{}=} \PYG{n}{x}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{()}
+\PYG{n}{x} \PYG{o}{/=} \PYG{n}{x}\PYG{o}{.}\PYG{n}{std} \PYG{p}{()}
+\PYG{n}{x} \PYG{o}{*=}  \PYG{l+m+mi}{64}
+\PYG{n}{x} \PYG{o}{+=} \PYG{l+m+mi}{128}
+\PYG{n}{x}  \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{clip}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{255}\PYG{p}{)}\PYG{o}{.}\PYG{n}{astype}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}uint8\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{display\PYGZus{}grid}\PYG{p}{[:,} \PYG{n}{i} \PYG{o}{*} \PYG{n}{size} \PYG{p}{:} \PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{*} \PYG{n}{size}\PYG{p}{]} \PYG{o}{=} \PYG{n}{x} \PYG{c+c1}{\PYGZsh{} Tile each filter into a horizontal grid}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Display the grid}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{scale} \PYG{o}{=} \PYG{l+m+mf}{20.} \PYG{o}{/} \PYG{n}{n\PYGZus{}features}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(} \PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{n}{scale} \PYG{o}{*} \PYG{n}{n\PYGZus{}features}\PYG{p}{,} \PYG{n}{scale}\PYG{p}{)} \PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title} \PYG{p}{(} \PYG{n}{layer\PYGZus{}name} \PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{grid}  \PYG{p}{(} \PYG{k+kc}{False} \PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{imshow}\PYG{p}{(} \PYG{n}{display\PYGZus{}grid}\PYG{p}{,} \PYG{n}{aspect}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}auto\PYGZsq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}viridis\PYGZsq{}} \PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Evaluating Accuracy and Loss for the Model}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Retrieve a list of list results on training and test data}
+\PYG{c+c1}{\PYGZsh{} sets for each training epoch}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{acc}      \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}     \PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}} \PYG{p}{]}
+\PYG{n}{val\PYGZus{}acc}  \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[} \PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}accuracy\PYGZsq{}} \PYG{p}{]}
+\PYG{n}{loss}     \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}    \PYG{l+s+s1}{\PYGZsq{}loss\PYGZsq{}} \PYG{p}{]}
+\PYG{n}{val\PYGZus{}loss} \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}loss\PYGZsq{}} \PYG{p}{]}
+\PYG{n}{epochs}   \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{))} \PYG{c+c1}{\PYGZsh{} Get number of epochs}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Plot training and validation accuracy per epoch}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}  \PYG{p}{(} \PYG{n}{epochs}\PYG{p}{,}     \PYG{n}{acc} \PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}  \PYG{p}{(} \PYG{n}{epochs}\PYG{p}{,} \PYG{n}{val\PYGZus{}acc} \PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Training and validation accuracy\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Plot training and validation loss per epoch}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}  \PYG{p}{(} \PYG{n}{epochs}\PYG{p}{,}     \PYG{n}{loss} \PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}  \PYG{p}{(} \PYG{n}{epochs}\PYG{p}{,} \PYG{n}{val\PYGZus{}loss} \PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Training and validation loss\PYGZsq{}}   \PYG{p}{)}
+\end{Verbatim}

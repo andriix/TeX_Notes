@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  8 AUG 2023 20:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  9 AUG 2023 10:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -611,6 +611,26 @@ runsystem(if not exist _minted-TensorFlowCourseNotes mkdir _minted-TensorFlowCo
 urseNotes)...executed.
 
 
+(D:\ProgFiles\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(D:\ProgFiles\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+
+(D:\ProgFiles\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(D:\ProgFiles\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(D:\ProgFiles\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen170
+\Gin@req@width=\dimen171
+)
 (D:\ProgFiles\MiKTeX\tex/latex/xcolor\xcolor.sty
 Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
 
@@ -618,10 +638,6 @@ Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 227.
-
-(D:\ProgFiles\MiKTeX\tex/latex/graphics-def\pdftex.def
-File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
-)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
 Package xcolor Info: Model `RGB' extended on input line 1368.
@@ -651,28 +667,28 @@ LaTeX Warning: Unused global option(s):
 (TensorFlowCourseNotes.aux)
 \openout1 = `TensorFlowCourseNotes.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 18.
-LaTeX Font Info:    ... okay on input line 18.
-LaTeX Info: Redefining \th on input line 18.
-Package hyperref Info: Link coloring OFF on input line 18.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 20.
+LaTeX Font Info:    ... okay on input line 20.
+LaTeX Info: Redefining \th on input line 20.
+Package hyperref Info: Link coloring OFF on input line 20.
  (D:\ProgFiles\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 (C:\Users\khrin\AppData\Roaming\MiKTeX\tex/latex/refcount\refcount.sty
@@ -684,9 +700,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count319
 )
-LaTeX Info: Redefining \ref on input line 18.
-LaTeX Info: Redefining \pageref on input line 18.
-LaTeX Info: Redefining \nameref on input line 18.
+LaTeX Info: Redefining \ref on input line 20.
+LaTeX Info: Redefining \pageref on input line 20.
+LaTeX Info: Redefining \nameref on input line 20.
  (TensorFlowCourseNotes.out) (TensorFlowCourseNotes.out)
 \@outlinefile=\write5
 \openout5 = `TensorFlowCourseNotes.out'.
@@ -695,23 +711,31 @@ LaTeX Info: Redefining \nameref on input line 18.
 (D:\ProgFiles\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count320
-\scratchdimen=\dimen170
+\scratchdimen=\dimen172
 \scratchbox=\box62
 \nofMPsegments=\count321
 \nofMParguments=\count322
 \everyMPshowfont=\toks28
 \MPscratchCnt=\count323
-\MPscratchDim=\dimen171
+\MPscratchDim=\dimen173
 \MPnumerator=\count324
 \makeMPintoPDFobject=\count325
 \everyMPtoPDFconversion=\toks29
-)
-LaTeX Font Info:    Trying to load font information for U+msa on input line 20.
+) (D:\ProgFiles\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
 
- (D:\ProgFiles\MiKTeX\tex/latex/amsfonts\umsa.fd
+(D:\ProgFiles\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+LaTeX Font Info:    Trying to load font information for U+msa on input line 22.
+
+
+(D:\ProgFiles\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 20.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 22.
 
 
 (D:\ProgFiles\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -829,7 +853,7 @@ LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
 
 (_minted-TensorFlowCourseNotes/88419AF4306C7564BF876E1AA800162ACF8DEF5177E5E88F
 56F68F8741E54F69.pygtex
-Overfull \hbox (11.64207pt too wide) in paragraph at lines 258--1
+Overfull \hbox (11.64207pt too wide) in paragraph at lines 260--1
 \T2A/cmr/bx/n/10 learning-rate tuni-ng \T2A/cmr/m/n/10 for us. (Other opti-mi-z
 ers, such as Adam and Adagrad,
  []
@@ -840,7 +864,7 @@ ers, such as Adam and Adagrad,
 
 (_minted-TensorFlowCourseNotes/2059CE7EB519DBB29955733662E93A88CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex
-Underfull \hbox (badness 10000) in paragraph at lines 275--1
+Underfull \hbox (badness 10000) in paragraph at lines 277--1
 
  []
 
@@ -879,23 +903,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 275--1
 
 
 (_minted-TensorFlowCourseNotes/69823F7F04D490B6117DE5A8B345B3A7CF8DEF5177E5E88F
-56F68F8741E54F69.pygtex [10]) [11] (TensorFlowCourseNotes.aux)
+56F68F8741E54F69.pygtex [10])
+\openout3 = `TensorFlowCourseNotes.pyg'.
 
-Package rerunfilecheck Warning: File `TensorFlowCourseNotes.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: Checksums for `TensorFlowCourseNotes.out':
-(rerunfilecheck)             Before: 8D1EEBB3FCFD8B5AAF6820B45C3FB79A;846
-(rerunfilecheck)             After:  BF89BF2130071DA2E189E90926018AB0;1292.
+(_minted-TensorFlowCourseNotes/9295D23CC65265A9F3FF677282FF4AEDCF8DEF5177E5E88F
+56F68F8741E54F69.pygtex
+Underfull \hbox (badness 10000) in paragraph at lines 445--1
+
+ []
+
+[11] [12] [13] [14])
+<./images//overfittingCatsDogs.png, id=102, 222.8325pt x 311.9655pt>
+File: ./images//overfittingCatsDogs.png Graphic file (type png)
+<use ./images//overfittingCatsDogs.png>
+Package pdftex.def Info: ./images//overfittingCatsDogs.png  used on input line 
+643.
+(pdftex.def)             Requested size: 222.83195pt x 311.96474pt.
+ [15] [16 <./images//overfittingCatsDogs.png>]
+(TensorFlowCourseNotes.aux)
+Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
+(rerunfilecheck)             Checksum: 5F94C51B0E6DA3731E7D9AA1BABD5C18;1473.
 runsystem(del TensorFlowCourseNotes.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 14988 strings out of 478582
- 265276 string characters out of 2856069
- 591964 words of memory out of 3000000
- 32856 multiletter control sequences out of 15000+600000
+ 15364 strings out of 478582
+ 272515 string characters out of 2856069
+ 605976 words of memory out of 3000000
+ 33201 multiletter control sequences out of 15000+600000
  484454 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,6n,81p,806b,796s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -912,9 +948,9 @@ onts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKT
 eX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\
 MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
-Output written on TensorFlowCourseNotes.pdf (11 pages, 153374 bytes).
+Output written on TensorFlowCourseNotes.pdf (16 pages, 204092 bytes).
 PDF statistics:
- 496 PDF objects out of 1000 (max. 8388607)
- 19 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 540 PDF objects out of 1000 (max. 8388607)
+ 24 named destinations out of 1000 (max. 500000)
+ 62 words of extra memory for PDF output out of 10000 (max. 10000000)
 

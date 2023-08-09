@@ -8,6 +8,8 @@
 \usepackage{amsfonts}
 \usepackage{changepage}
 \usepackage{minted}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
 %\setminted[python]{breaklines}
 
 %Header information
@@ -19,7 +21,7 @@
 	\maketitle
 	
 	\section{Introduction to TensorFlow for AI, ML, and DL}
-	\subsection{Week 1}
+	\subsection{Week 1: First NN}
 	\begin{itemize}
 		
 		\item \textbf{Simple example aka "Hello, World!":}
@@ -52,7 +54,7 @@ model.fit(xs, ys, epochs=500)
 print(model.predict([10.0]))	
 		\end{minted}
 	\end{itemize}
-	\subsection{Week 2}
+	\subsection{Week 2: Intro to CV}
 	\begin{itemize}
 		\item \textbf{A Computer Vision Example: Fashion MNIST dataset}
 		\\
@@ -211,7 +213,7 @@ return images
 # rest of the code like previously
 		\end{minted}
 	\end{itemize}
-	\subsection{Week 4: Real-life example}
+	\subsection{Week 4: Usage of real-world images}
 	\begin{itemize}
 		\item \textbf{Lab 1: Training with ImageDataGenerator:}\\
 		\textbf{Building a Small Model from Scratch}
@@ -440,7 +442,210 @@ hist = train_happy_sad_model(gen)
 	\section{Convolutional Neural Networks in TensorFlow}
 	\subsection{Week 1: Larger Dataset}
 	\begin{itemize}
-		\item ****
+		\item \textbf{Lab: More sophisticated images with CNN}\\
+		\begin{minted}{python}
+# -> Download the dataset
+# !wget --no-check-certificate https://storage.googleapis.com/mledu-datasets/cats_and_dogs_filtered.zip
+
+# -> Unzip it
+import zipfile
+# Unzip the archive
+local_zip = './cats_and_dogs_filtered.zip'
+zip_ref = zipfile.ZipFile(local_zip, 'r')
+zip_ref.extractall()
+zip_ref.close()
+
+# -> Subdirectories 
+import os
+base_dir = 'cats_and_dogs_filtered'
+print("Contents of base directory:")
+print(os.listdir(base_dir))
+print("\nContents of train directory:")
+print(os.listdir(f'{base_dir}/train'))
+print("\nContents of validation directory:")
+print(os.listdir(f'{base_dir}/validation'))
+
+# -> Assign each of these directories to a variable
+import os
+train_dir = os.path.join(base_dir, 'train')
+validation_dir = os.path.join(base_dir, 'validation')
+# Directory with training cat/dog pictures
+train_cats_dir = os.path.join(train_dir, 'cats')
+train_dogs_dir = os.path.join(train_dir, 'dogs')
+# Directory with validation cat/dog pictures
+validation_cats_dir = os.path.join(validation_dir, 'cats')
+validation_dogs_dir = os.path.join(validation_dir, 'dogs')
+
+# -> Filenames
+train_cat_fnames = os.listdir( train_cats_dir )
+train_dog_fnames = os.listdir( train_dogs_dir )
+print(train_cat_fnames[:10])
+print(train_dog_fnames[:10])
+
+# -> Total number of cat and dog images in the train
+# and validation directories
+print('total training cat images :', len(os.listdir(      train_cats_dir ) ))
+print('total training dog images :', len(os.listdir(      train_dogs_dir ) ))
+print('total validation cat images :', len(os.listdir( validation_cats_dir ) ))
+print('total validation dog images :', len(os.listdir( validation_dogs_dir ) ))
+
+# -> Building a Small Model from Scratch to get to ~72% Accuracy ->
+import tensorflow as tf
+model = tf.keras.models.Sequential([
+	# Note the input shape is the desired size of the image 150x150
+	# with 3 bytes color
+	tf.keras.layers.Conv2D(16, (3,3), activation='relu', input_shape=(150, 150, 3)),
+	tf.keras.layers.MaxPooling2D(2,2),
+	tf.keras.layers.Conv2D(32, (3,3), activation='relu'),
+	tf.keras.layers.MaxPooling2D(2,2), 
+	tf.keras.layers.Conv2D(64, (3,3), activation='relu'), 
+	tf.keras.layers.MaxPooling2D(2,2),
+	# Flatten the results to feed into a DNN
+	tf.keras.layers.Flatten(), 
+	# 512 neuron hidden layer
+	tf.keras.layers.Dense(512, activation='relu'), 
+	# Only 1 output neuron. It will contain a value from 0-1
+	# where 0 for 1 class ('cats') and 1 for the other ('dogs')
+	tf.keras.layers.Dense(1, activation='sigmoid')  
+])
+model.summary()
+
+# -> Model configuration
+from tensorflow.keras.optimizers import RMSprop
+model.compile(optimizer=RMSprop(learning_rate=0.001),
+loss='binary_crossentropy',
+metrics = ['accuracy'])
+
+# -> Data Preprocessing
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+# All images will be rescaled by 1./255.
+train_datagen = ImageDataGenerator( rescale = 1.0/255. )
+test_datagen  = ImageDataGenerator( rescale = 1.0/255. )
+# --------------------
+# Flow training images in batches of 20 using train_datagen generator
+# --------------------
+train_generator = train_datagen.flow_from_directory(train_dir,
+	batch_size=20,
+	class_mode='binary',
+	target_size=(150, 150))     
+# --------------------
+# Flow validation images in batches of 20 using test_datagen generator
+# --------------------
+validation_generator =  test_datagen.flow_from_directory(validation_dir,
+	batch_size=20,
+	class_mode  = 'binary',
+	target_size = (150, 150))
+
+# -> Training
+history = model.fit(
+	train_generator,
+	epochs=15,
+	validation_data=validation_generator,
+	verbose=2
+	)
+	
+# -> Take a look at actually running a prediction using the model
+import numpy as np
+from google.colab import files
+from tensorflow.keras.utils import load_img, img_to_array
+uploaded=files.upload()
+for fn in uploaded.keys():
+# predicting images
+path='/content/' + fn
+img=load_img(path, target_size=(150, 150))
+x=img_to_array(img)
+x /= 255
+x=np.expand_dims(x, axis=0)
+images = np.vstack([x])
+classes = model.predict(images, batch_size=10)
+print(classes[0])
+if classes[0]>0.5:
+print(fn + " is a dog")
+else:
+print(fn + " is a cat")
+
+# -> Visualizing Intermediate Representations
+import numpy as np
+import random
+from tensorflow.keras.utils import img_to_array, load_img
+# Define a new Model that will take an image as input, and will output
+# intermediate representations for all layers in the previous model
+successive_outputs = [layer.output for layer in model.layers]
+visualization_model = tf.keras.models.Model(inputs = model.input, outputs = successive_outputs)
+# Prepare a random input image from the training set.
+cat_img_files = [os.path.join(train_cats_dir, f) for f in train_cat_fnames]
+dog_img_files = [os.path.join(train_dogs_dir, f) for f in train_dog_fnames]
+img_path = random.choice(cat_img_files + dog_img_files)
+img = load_img(img_path, target_size=(150, 150))  # this is a PIL image
+x   = img_to_array(img)                           # Numpy array with shape (150, 150, 3)
+x   = x.reshape((1,) + x.shape)                   # Numpy array with shape (1, 150, 150, 3)
+# Scale by 1/255
+x /= 255.0
+# Run the image through the network, thus obtaining all
+# intermediate representations for this image.
+successive_feature_maps = visualization_model.predict(x)
+# These are the names of the layers, so you can have them as part of our plot
+layer_names = [layer.name for layer in model.layers]
+# Display the representations
+for layer_name, feature_map in zip(layer_names, successive_feature_maps):
+if len(feature_map.shape) == 4:
+#-------------------------------------------
+# Just do this for the conv / maxpool layers, not the fully-connected layers
+#-------------------------------------------
+n_features = feature_map.shape[-1]  # number of features in the feature map
+size       = feature_map.shape[ 1]  # feature map shape (1, size, size, n_features)
+# Tile the images in this matrix
+display_grid = np.zeros((size, size * n_features))
+#-------------------------------------------------
+# Postprocess the feature to be visually palatable
+#-------------------------------------------------
+for i in range(n_features):
+x  = feature_map[0, :, :, i]
+x -= x.mean()
+x /= x.std ()
+x *=  64
+x += 128
+x  = np.clip(x, 0, 255).astype('uint8')
+display_grid[:, i * size : (i + 1) * size] = x # Tile each filter into a horizontal grid
+#-----------------
+# Display the grid
+#-----------------
+scale = 20. / n_features
+plt.figure( figsize=(scale * n_features, scale) )
+plt.title ( layer_name )
+plt.grid  ( False )
+plt.imshow( display_grid, aspect='auto', cmap='viridis' ) 
+
+# -> Evaluating Accuracy and Loss for the Model
+#-----------------------------------------------------------
+# Retrieve a list of list results on training and test data
+# sets for each training epoch
+#-----------------------------------------------------------
+acc      = history.history[     'accuracy' ]
+val_acc  = history.history[ 'val_accuracy' ]
+loss     = history.history[    'loss' ]
+val_loss = history.history['val_loss' ]
+epochs   = range(len(acc)) # Get number of epochs
+#------------------------------------------------
+# Plot training and validation accuracy per epoch
+#------------------------------------------------
+plt.plot  ( epochs,     acc )
+plt.plot  ( epochs, val_acc )
+plt.title ('Training and validation accuracy')
+plt.figure()
+#------------------------------------------------
+# Plot training and validation loss per epoch
+#------------------------------------------------
+plt.plot  ( epochs,     loss )
+plt.plot  ( epochs, val_loss )
+plt.title ('Training and validation loss'   )
+		\end{minted}
+		\includegraphics{overfittingCatsDogs.png}
+		\\
+		The model is \textbf{overfitting} like it's getting out of fashion. The training accuracy (in blue) gets close to 100\% while the validation accuracy (in orange) stalls as 70\%. The validation loss reaches its minimum after only five epochs.\\
+		Since you have \textbf{a relatively small number of training examples (2000), overfitting should be the number one concern}. Overfitting happens when a model exposed to too few examples learns patterns that do not generalize to new data, i.e. when the model starts using irrelevant features for making predictions.
+		\item 
+		
 	\end{itemize}
 
 \end{document}
