@@ -1,0 +1,115 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Setup the pretrained model}
+\PYG{c+c1}{\PYGZsh{} Download the pre\PYGZhy{}trained weights. No top means it excludes the fully connected layer it uses for classification.}
+\PYG{err}{!}\PYG{n}{wget} \PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{no}\PYG{o}{\PYGZhy{}}\PYG{n}{check}\PYG{o}{\PYGZhy{}}\PYG{n}{certificate} \PYGZbs{}
+\PYG{n}{https}\PYG{p}{:}\PYG{o}{//}\PYG{n}{storage}\PYG{o}{.}\PYG{n}{googleapis}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{mledu}\PYG{o}{\PYGZhy{}}\PYG{n}{datasets}\PYG{o}{/}\PYG{n}{inception\PYGZus{}v3\PYGZus{}weights\PYGZus{}tf\PYGZus{}dim\PYGZus{}ordering\PYGZus{}tf\PYGZus{}kernels\PYGZus{}notop}\PYG{o}{.}\PYG{n}{h5} \PYGZbs{}
+\PYG{o}{\PYGZhy{}}\PYG{n}{O} \PYG{o}{/}\PYG{n}{tmp}\PYG{o}{/}\PYG{n}{inception\PYGZus{}v3\PYGZus{}weights\PYGZus{}tf\PYGZus{}dim\PYGZus{}ordering\PYGZus{}tf\PYGZus{}kernels\PYGZus{}notop}\PYG{o}{.}\PYG{n}{h5}
+
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.applications.inception\PYGZus{}v3} \PYG{k+kn}{import} \PYG{n}{InceptionV3}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras} \PYG{k+kn}{import} \PYG{n}{layers}
+\PYG{c+c1}{\PYGZsh{} Set the weights file you downloaded into a variable}
+\PYG{n}{local\PYGZus{}weights\PYGZus{}file} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}/tmp/inception\PYGZus{}v3\PYGZus{}weights\PYGZus{}tf\PYGZus{}dim\PYGZus{}ordering\PYGZus{}tf\PYGZus{}kernels\PYGZus{}notop.h5\PYGZsq{}}
+\PYG{c+c1}{\PYGZsh{} Initialize the base model.}
+\PYG{c+c1}{\PYGZsh{} Set the input shape and remove the dense layers.}
+\PYG{n}{pre\PYGZus{}trained\PYGZus{}model} \PYG{o}{=} \PYG{n}{InceptionV3}\PYG{p}{(}\PYG{n}{input\PYGZus{}shape} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{),}
+	\PYG{n}{include\PYGZus{}top} \PYG{o}{=} \PYG{k+kc}{False}\PYG{p}{,}
+	\PYG{n}{weights} \PYG{o}{=} \PYG{k+kc}{None}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Load the pre\PYGZhy{}trained weights you downloaded.}
+\PYG{n}{pre\PYGZus{}trained\PYGZus{}model}\PYG{o}{.}\PYG{n}{load\PYGZus{}weights}\PYG{p}{(}\PYG{n}{local\PYGZus{}weights\PYGZus{}file}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Freeze the weights of the layers.}
+\PYG{k}{for} \PYG{n}{layer} \PYG{o+ow}{in} \PYG{n}{pre\PYGZus{}trained\PYGZus{}model}\PYG{o}{.}\PYG{n}{layers}\PYG{p}{:}
+\PYG{n}{layer}\PYG{o}{.}\PYG{n}{trainable} \PYG{o}{=} \PYG{k+kc}{False}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Choose `mixed7` as the last layer of your base model}
+\PYG{n}{last\PYGZus{}layer} \PYG{o}{=} \PYG{n}{pre\PYGZus{}trained\PYGZus{}model}\PYG{o}{.}\PYG{n}{get\PYGZus{}layer}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}mixed7\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}last layer output shape: \PYGZsq{}}\PYG{p}{,} \PYG{n}{last\PYGZus{}layer}\PYG{o}{.}\PYG{n}{output\PYGZus{}shape}\PYG{p}{)}
+\PYG{n}{last\PYGZus{}output} \PYG{o}{=} \PYG{n}{last\PYGZus{}layer}\PYG{o}{.}\PYG{n}{output}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Add dense layers for your classifier}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.optimizers} \PYG{k+kn}{import} \PYG{n}{RMSprop}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras} \PYG{k+kn}{import} \PYG{n}{Model}
+\PYG{c+c1}{\PYGZsh{} Flatten the output layer to 1 dimension}
+\PYG{n}{x} \PYG{o}{=} \PYG{n}{layers}\PYG{o}{.}\PYG{n}{Flatten}\PYG{p}{()(}\PYG{n}{last\PYGZus{}output}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Add a fully connected layer with 1,024 hidden units and ReLU activation}
+\PYG{n}{x} \PYG{o}{=} \PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1024}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{)(}\PYG{n}{x}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Add a dropout rate of 0.2}
+\PYG{n}{x} \PYG{o}{=} \PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.2}\PYG{p}{)(}\PYG{n}{x}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Add a final sigmoid layer for classification}
+\PYG{n}{x} \PYG{o}{=} \PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}  \PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sigmoid\PYGZsq{}}\PYG{p}{)(}\PYG{n}{x}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Append the dense network to the base model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{Model}\PYG{p}{(}\PYG{n}{pre\PYGZus{}trained\PYGZus{}model}\PYG{o}{.}\PYG{n}{input}\PYG{p}{,} \PYG{n}{x}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print the model summary. See your dense network connected at the end.}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Set the training parameters}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{optimizer} \PYG{o}{=} \PYG{n}{RMSprop}\PYG{p}{(}\PYG{n}{learning\PYGZus{}rate}\PYG{o}{=}\PYG{l+m+mf}{0.0001}\PYG{p}{),}
+	\PYG{n}{loss} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}binary\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}
+	\PYG{n}{metrics} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Prepare the dataset}
+\PYG{c+c1}{\PYGZsh{} Download the dataset}
+\PYG{err}{!}\PYG{n}{wget} \PYG{n}{https}\PYG{p}{:}\PYG{o}{//}\PYG{n}{storage}\PYG{o}{.}\PYG{n}{googleapis}\PYG{o}{.}\PYG{n}{com}\PYG{o}{/}\PYG{n}{tensorflow}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{public}\PYG{o}{/}\PYG{n}{course2}\PYG{o}{/}\PYG{n}{cats\PYGZus{}and\PYGZus{}dogs\PYGZus{}filtered}\PYG{o}{.}\PYG{n}{zip}
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{zipfile}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.image} \PYG{k+kn}{import} \PYG{n}{ImageDataGenerator}
+\PYG{c+c1}{\PYGZsh{} Extract the archive}
+\PYG{n}{zip\PYGZus{}ref} \PYG{o}{=} \PYG{n}{zipfile}\PYG{o}{.}\PYG{n}{ZipFile}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}./cats\PYGZus{}and\PYGZus{}dogs\PYGZus{}filtered.zip\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{zip\PYGZus{}ref}\PYG{o}{.}\PYG{n}{extractall}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}tmp/\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{zip\PYGZus{}ref}\PYG{o}{.}\PYG{n}{close}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Define our example directories and files}
+\PYG{n}{base\PYGZus{}dir} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}tmp/cats\PYGZus{}and\PYGZus{}dogs\PYGZus{}filtered\PYGZsq{}}
+\PYG{n}{train\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(} \PYG{n}{base\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{validation\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(} \PYG{n}{base\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}validation\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Directory with training cat pictures}
+\PYG{n}{train\PYGZus{}cats\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{train\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}cats\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Directory with training dog pictures}
+\PYG{n}{train\PYGZus{}dogs\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{train\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}dogs\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Directory with validation cat pictures}
+\PYG{n}{validation\PYGZus{}cats\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{validation\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}cats\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Directory with validation dog pictures}
+\PYG{n}{validation\PYGZus{}dogs\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{validation\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}dogs\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Add our data\PYGZhy{}augmentation parameters to ImageDataGenerator}
+\PYG{n}{train\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}\PYG{n}{rescale} \PYG{o}{=} \PYG{l+m+mf}{1.}\PYG{o}{/}\PYG{l+m+mf}{255.}\PYG{p}{,}
+\PYG{n}{rotation\PYGZus{}range} \PYG{o}{=} \PYG{l+m+mi}{40}\PYG{p}{,}
+\PYG{n}{width\PYGZus{}shift\PYGZus{}range} \PYG{o}{=} \PYG{l+m+mf}{0.2}\PYG{p}{,}
+\PYG{n}{height\PYGZus{}shift\PYGZus{}range} \PYG{o}{=} \PYG{l+m+mf}{0.2}\PYG{p}{,}
+\PYG{n}{shear\PYGZus{}range} \PYG{o}{=} \PYG{l+m+mf}{0.2}\PYG{p}{,}
+\PYG{n}{zoom\PYGZus{}range} \PYG{o}{=} \PYG{l+m+mf}{0.2}\PYG{p}{,}
+\PYG{n}{horizontal\PYGZus{}flip} \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Note that the validation data should not be augmented!}
+\PYG{n}{test\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(} \PYG{n}{rescale} \PYG{o}{=} \PYG{l+m+mf}{1.0}\PYG{o}{/}\PYG{l+m+mf}{255.} \PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Flow training images in batches of 20 using train\PYGZus{}datagen generator}
+\PYG{n}{train\PYGZus{}generator} \PYG{o}{=} \PYG{n}{train\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}\PYG{n}{train\PYGZus{}dir}\PYG{p}{,}
+\PYG{n}{batch\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{20}\PYG{p}{,}
+\PYG{n}{class\PYGZus{}mode} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{,}
+\PYG{n}{target\PYGZus{}size} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{} Flow validation images in batches of 20 using test\PYGZus{}datagen generator}
+\PYG{n}{validation\PYGZus{}generator} \PYG{o}{=}  \PYG{n}{test\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(} \PYG{n}{validation\PYGZus{}dir}\PYG{p}{,}
+\PYG{n}{batch\PYGZus{}size}  \PYG{o}{=} \PYG{l+m+mi}{20}\PYG{p}{,}
+\PYG{n}{class\PYGZus{}mode}  \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{,}
+\PYG{n}{target\PYGZus{}size} \PYG{o}{=} \PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Train the model}
+\PYG{c+c1}{\PYGZsh{} Train the model.}
+\PYG{n}{history} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}
+	\PYG{n}{train\PYGZus{}generator}\PYG{p}{,}
+	\PYG{n}{validation\PYGZus{}data} \PYG{o}{=} \PYG{n}{validation\PYGZus{}generator}\PYG{p}{,}
+	\PYG{n}{steps\PYGZus{}per\PYGZus{}epoch} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{,}
+	\PYG{n}{epochs} \PYG{o}{=} \PYG{l+m+mi}{20}\PYG{p}{,}
+	\PYG{n}{validation\PYGZus{}steps} \PYG{o}{=} \PYG{l+m+mi}{50}\PYG{p}{,}
+	\PYG{n}{verbose} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Evaluate the results}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{n}{acc} \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{val\PYGZus{}acc} \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}accuracy\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{loss} \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}loss\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{val\PYGZus{}loss} \PYG{o}{=} \PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}loss\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{epochs} \PYG{o}{=} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{))}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{epochs}\PYG{p}{,} \PYG{n}{acc}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}Training accuracy\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{epochs}\PYG{p}{,} \PYG{n}{val\PYGZus{}acc}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}Validation accuracy\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Training and validation accuracy\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{loc}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{()}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\end{Verbatim}
