@@ -1,0 +1,212 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{os}
+\PYG{k+kn}{import} \PYG{n+nn}{zipfile}
+\PYG{k+kn}{import} \PYG{n+nn}{random}
+\PYG{k+kn}{import} \PYG{n+nn}{shutil}
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.image} \PYG{k+kn}{import} \PYG{n}{ImageDataGenerator}
+\PYG{k+kn}{from} \PYG{n+nn}{shutil} \PYG{k+kn}{import} \PYG{n}{copyfile}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Download the dataset}
+\PYG{err}{!}\PYG{n}{wget} \PYG{o}{\PYGZhy{}\PYGZhy{}}\PYG{n}{no}\PYG{o}{\PYGZhy{}}\PYG{n}{check}\PYG{o}{\PYGZhy{}}\PYG{n}{certificate} \PYGZbs{}
+\PYG{l+s+s2}{\PYGZdq{}https://download.microsoft.com/download/3/E/1/3E1C3F21\PYGZhy{}ECDB\PYGZhy{}4869\PYGZhy{}8368\PYGZhy{}6DEBA77B919F/kagglecatsanddogs\PYGZus{}5340.zip\PYGZdq{}} \PYGZbs{}
+\PYG{o}{\PYGZhy{}}\PYG{n}{O} \PYG{l+s+s2}{\PYGZdq{}/tmp/cats\PYGZhy{}and\PYGZhy{}dogs.zip\PYGZdq{}}
+\PYG{n}{local\PYGZus{}zip} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}/tmp/cats\PYGZhy{}and\PYGZhy{}dogs.zip\PYGZsq{}}
+\PYG{n}{zip\PYGZus{}ref}   \PYG{o}{=} \PYG{n}{zipfile}\PYG{o}{.}\PYG{n}{ZipFile}\PYG{p}{(}\PYG{n}{local\PYGZus{}zip}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{zip\PYGZus{}ref}\PYG{o}{.}\PYG{n}{extractall}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}/tmp\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{zip\PYGZus{}ref}\PYG{o}{.}\PYG{n}{close}\PYG{p}{()}
+\PYG{n}{source\PYGZus{}path} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}/tmp/PetImages\PYGZsq{}}
+\PYG{n}{source\PYGZus{}path\PYGZus{}dogs} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{source\PYGZus{}path}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Dog\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{source\PYGZus{}path\PYGZus{}cats} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{source\PYGZus{}path}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Cat\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Deletes all non\PYGZhy{}image files (there are two .db files bundled into the dataset)}
+\PYG{err}{!}\PYG{n}{find} \PYG{o}{/}\PYG{n}{tmp}\PYG{o}{/}\PYG{n}{PetImages}\PYG{o}{/} \PYG{o}{\PYGZhy{}}\PYG{n+nb}{type} \PYG{n}{f} \PYG{err}{!} \PYG{o}{\PYGZhy{}}\PYG{n}{name} \PYG{l+s+s2}{\PYGZdq{}*.jpg\PYGZdq{}} \PYG{o}{\PYGZhy{}}\PYG{n}{exec} \PYG{n}{rm} \PYG{p}{\PYGZob{}\PYGZcb{}} \PYG{o}{+}
+\PYG{c+c1}{\PYGZsh{} os.listdir returns a list containing all files under the given path}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}There are }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{source\PYGZus{}path\PYGZus{}dogs}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images of dogs.\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}There are }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{source\PYGZus{}path\PYGZus{}cats}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images of cats.\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Define root directory}
+\PYG{n}{root\PYGZus{}dir} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}/tmp/cats\PYGZhy{}v\PYGZhy{}dogs\PYGZsq{}}
+\PYG{c+c1}{\PYGZsh{} Empty directory to prevent FileExistsError is the function is run several times}
+\PYG{k}{if} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{exists}\PYG{p}{(}\PYG{n}{root\PYGZus{}dir}\PYG{p}{):}
+\PYG{n}{shutil}\PYG{o}{.}\PYG{n}{rmtree}\PYG{p}{(}\PYG{n}{root\PYGZus{}dir}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} GRADED FUNCTION: create\PYGZus{}train\PYGZus{}val\PYGZus{}dirs}
+\PYG{k}{def} \PYG{n+nf}{create\PYGZus{}train\PYGZus{}val\PYGZus{}dirs}\PYG{p}{(}\PYG{n}{root\PYGZus{}path}\PYG{p}{):}
+\PYG{+w}{	}\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{	Creates directories for the train and test sets}
+\PYG{l+s+sd}{	Args:}
+\PYG{l+s+sd}{	root\PYGZus{}path (string) \PYGZhy{} the base directory path to create subdirectories from}
+\PYG{l+s+sd}{	Returns:}
+\PYG{l+s+sd}{	None}
+\PYG{l+s+sd}{	\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+	\PYG{c+c1}{\PYGZsh{} Create training and validation directories}
+	\PYG{n}{training\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{root\PYGZus{}path}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}training\PYGZsq{}}\PYG{p}{)}
+	\PYG{n}{validation\PYGZus{}dir} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{root\PYGZus{}path}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}validation\PYGZsq{}}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Create subdirectories for cats and dogs under training and validation directories}
+	\PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{training\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}cats\PYGZsq{}}\PYG{p}{))}
+	\PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{training\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}dogs\PYGZsq{}}\PYG{p}{))}
+	\PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{validation\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}cats\PYGZsq{}}\PYG{p}{))}
+	\PYG{n}{os}\PYG{o}{.}\PYG{n}{makedirs}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{validation\PYGZus{}dir}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}dogs\PYGZsq{}}\PYG{p}{))}
+\PYG{k}{try}\PYG{p}{:}
+	\PYG{n}{create\PYGZus{}train\PYGZus{}val\PYGZus{}dirs}\PYG{p}{(}\PYG{n}{root\PYGZus{}path}\PYG{o}{=}\PYG{n}{root\PYGZus{}dir}\PYG{p}{)}
+\PYG{k}{except} \PYG{n+ne}{FileExistsError}\PYG{p}{:}
+	\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}You should not be seeing this since the upper directory is removed beforehand\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Test your create\PYGZus{}train\PYGZus{}val\PYGZus{}dirs function}
+\PYG{k}{for} \PYG{n}{rootdir}\PYG{p}{,} \PYG{n}{dirs}\PYG{p}{,} \PYG{n}{files} \PYG{o+ow}{in} \PYG{n}{os}\PYG{o}{.}\PYG{n}{walk}\PYG{p}{(}\PYG{n}{root\PYGZus{}dir}\PYG{p}{):}
+	\PYG{k}{for} \PYG{n}{subdir} \PYG{o+ow}{in} \PYG{n}{dirs}\PYG{p}{:}
+		\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{rootdir}\PYG{p}{,} \PYG{n}{subdir}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} GRADED FUNCTION: split\PYGZus{}data}
+\PYG{k}{def} \PYG{n+nf}{split\PYGZus{}data}\PYG{p}{(}\PYG{n}{SOURCE\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{TRAINING\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{VALIDATION\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{SPLIT\PYGZus{}SIZE}\PYG{p}{):}
+\PYG{+w}{	}\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{	Splits the data into train and test sets}
+\PYG{l+s+sd}{	Args:}
+\PYG{l+s+sd}{	SOURCE\PYGZus{}DIR (string): directory path containing the images}
+\PYG{l+s+sd}{	TRAINING\PYGZus{}DIR (string): directory path to be used for training}
+\PYG{l+s+sd}{	VALIDATION\PYGZus{}DIR (string): directory path to be used for validation}
+\PYG{l+s+sd}{	SPLIT\PYGZus{}SIZE (float): proportion of the dataset to be used for training}
+\PYG{l+s+sd}{	Returns:}
+\PYG{l+s+sd}{	None}
+\PYG{l+s+sd}{	\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+	\PYG{n}{files} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{SOURCE\PYGZus{}DIR}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Filter out files with zero length}
+	\PYG{n}{files} \PYG{o}{=} \PYG{p}{[}\PYG{n}{f} \PYG{k}{for} \PYG{n}{f} \PYG{o+ow}{in} \PYG{n}{files} \PYG{k}{if} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{getsize}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{SOURCE\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{f}\PYG{p}{))} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{]}
+	\PYG{c+c1}{\PYGZsh{} Shuffle the files}
+	\PYG{n}{random}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{files}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Determine the split index}
+	\PYG{n}{split\PYGZus{}idx} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{files}\PYG{p}{)} \PYG{o}{*} \PYG{n}{SPLIT\PYGZus{}SIZE}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Split the files into training and validation sets}
+	\PYG{n}{training\PYGZus{}files} \PYG{o}{=} \PYG{n}{files}\PYG{p}{[:}\PYG{n}{split\PYGZus{}idx}\PYG{p}{]}
+	\PYG{n}{validation\PYGZus{}files} \PYG{o}{=} \PYG{n}{files}\PYG{p}{[}\PYG{n}{split\PYGZus{}idx}\PYG{p}{:]}
+	\PYG{c+c1}{\PYGZsh{} Copy the training files}
+	\PYG{k}{for} \PYG{n}{file\PYGZus{}name} \PYG{o+ow}{in} \PYG{n}{training\PYGZus{}files}\PYG{p}{:}
+		\PYG{n}{source} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{SOURCE\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{)}
+		\PYG{n}{destination} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{)}
+		\PYG{n}{copyfile}\PYG{p}{(}\PYG{n}{source}\PYG{p}{,} \PYG{n}{destination}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Copy the validation files}
+	\PYG{k}{for} \PYG{n}{file\PYGZus{}name} \PYG{o+ow}{in} \PYG{n}{validation\PYGZus{}files}\PYG{p}{:}
+		\PYG{n}{source} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{SOURCE\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{)}
+		\PYG{n}{destination} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{file\PYGZus{}name}\PYG{p}{)}
+		\PYG{n}{copyfile}\PYG{p}{(}\PYG{n}{source}\PYG{p}{,} \PYG{n}{destination}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Test your split\PYGZus{}data function}
+\PYG{c+c1}{\PYGZsh{} Define paths}
+\PYG{n}{CAT\PYGZus{}SOURCE\PYGZus{}DIR} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}/tmp/PetImages/Cat/\PYGZdq{}}
+\PYG{n}{DOG\PYGZus{}SOURCE\PYGZus{}DIR} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}/tmp/PetImages/Dog/\PYGZdq{}}
+\PYG{n}{TRAINING\PYGZus{}DIR} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}/tmp/cats\PYGZhy{}v\PYGZhy{}dogs/training/\PYGZdq{}}
+\PYG{n}{VALIDATION\PYGZus{}DIR} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}/tmp/cats\PYGZhy{}v\PYGZhy{}dogs/validation/\PYGZdq{}}
+\PYG{n}{TRAINING\PYGZus{}CATS\PYGZus{}DIR} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DIR}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}cats/\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{VALIDATION\PYGZus{}CATS\PYGZus{}DIR} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}DIR}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}cats/\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{TRAINING\PYGZus{}DOGS\PYGZus{}DIR} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DIR}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}dogs/\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{VALIDATION\PYGZus{}DOGS\PYGZus{}DIR} \PYG{o}{=} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}DIR}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}dogs/\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Empty directories in case you run this cell multiple times}
+\PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{))} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+	\PYG{k}{for} \PYG{n}{file} \PYG{o+ow}{in} \PYG{n}{os}\PYG{o}{.}\PYG{n}{scandir}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{):}
+		\PYG{n}{os}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{file}\PYG{o}{.}\PYG{n}{path}\PYG{p}{)}
+\PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{))} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+	\PYG{k}{for} \PYG{n}{file} \PYG{o+ow}{in} \PYG{n}{os}\PYG{o}{.}\PYG{n}{scandir}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{):}
+		\PYG{n}{os}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{file}\PYG{o}{.}\PYG{n}{path}\PYG{p}{)}
+\PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{))} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+	\PYG{k}{for} \PYG{n}{file} \PYG{o+ow}{in} \PYG{n}{os}\PYG{o}{.}\PYG{n}{scandir}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{):}
+		\PYG{n}{os}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{file}\PYG{o}{.}\PYG{n}{path}\PYG{p}{)}
+\PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{))} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{:}
+	\PYG{k}{for} \PYG{n}{file} \PYG{o+ow}{in} \PYG{n}{os}\PYG{o}{.}\PYG{n}{scandir}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{):}
+		\PYG{n}{os}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{file}\PYG{o}{.}\PYG{n}{path}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Define proportion of images used for training}
+\PYG{n}{split\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mf}{.9}
+\PYG{c+c1}{\PYGZsh{} Run the function}
+\PYG{c+c1}{\PYGZsh{} NOTE: Messages about zero length images should be printed out}
+\PYG{n}{split\PYGZus{}data}\PYG{p}{(}\PYG{n}{CAT\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{TRAINING\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{VALIDATION\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{split\PYGZus{}size}\PYG{p}{)}
+\PYG{n}{split\PYGZus{}data}\PYG{p}{(}\PYG{n}{DOG\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{TRAINING\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{VALIDATION\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{split\PYGZus{}size}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Check that the number of images matches the expected output}
+\PYG{c+c1}{\PYGZsh{} Function should perform copies rather than moving images so original directories should contain unchanged images}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n\PYGZbs{}n}\PYG{l+s+s2}{Original cat\PYGZsq{}s directory has }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{CAT\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}Original dog\PYGZsq{}s directory has }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{DOG\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Training and validation splits}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}There are }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images of cats for training\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}There are }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images of dogs for training\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}There are }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}CATS\PYGZus{}DIR}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images of cats for validation\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}There are }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{os}\PYG{o}{.}\PYG{n}{listdir}\PYG{p}{(}\PYG{n}{VALIDATION\PYGZus{}DOGS\PYGZus{}DIR}\PYG{p}{))}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{ images of dogs for validation\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} GRADED FUNCTION: train\PYGZus{}val\PYGZus{}generators}
+\PYG{k}{def} \PYG{n+nf}{train\PYGZus{}val\PYGZus{}generators}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{VALIDATION\PYGZus{}DIR}\PYG{p}{):}
+\PYG{+w}{	}\PYG{l+s+sd}{\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+\PYG{l+s+sd}{	Creates the training and validation data generators}
+\PYG{l+s+sd}{	Args:}
+\PYG{l+s+sd}{	TRAINING\PYGZus{}DIR (string): directory path containing the training images}
+\PYG{l+s+sd}{	VALIDATION\PYGZus{}DIR (string): directory path containing the testing/validation images}
+\PYG{l+s+sd}{	Returns:}
+\PYG{l+s+sd}{	train\PYGZus{}generator, validation\PYGZus{}generator \PYGZhy{} tuple containing the generators}
+\PYG{l+s+sd}{	\PYGZdq{}\PYGZdq{}\PYGZdq{}}
+	\PYG{c+c1}{\PYGZsh{} Instantiate the ImageDataGenerator class}
+	\PYG{n}{train\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}\PYG{n}{rescale}\PYG{o}{=}\PYG{l+m+mf}{1.0}\PYG{o}{/}\PYG{l+m+mf}{255.}\PYG{p}{)}
+
+	\PYG{c+c1}{\PYGZsh{} Pass in the appropriate arguments to the flow\PYGZus{}from\PYGZus{}directory method}
+	\PYG{n}{train\PYGZus{}generator} \PYG{o}{=} \PYG{n}{train\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}\PYG{n}{directory}\PYG{o}{=}\PYG{n}{TRAINING\PYGZus{}DIR}\PYG{p}{,}
+		\PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,}
+		\PYG{n}{class\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{,}
+		\PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}
+	\PYG{c+c1}{\PYGZsh{} Instantiate the ImageDataGenerator class}
+	\PYG{n}{validation\PYGZus{}datagen} \PYG{o}{=} \PYG{n}{ImageDataGenerator}\PYG{p}{(}\PYG{n}{rescale}\PYG{o}{=}\PYG{l+m+mf}{1.0}\PYG{o}{/}\PYG{l+m+mf}{255.}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Pass in the appropriate arguments to the flow\PYGZus{}from\PYGZus{}directory method}
+	\PYG{n}{validation\PYGZus{}generator} \PYG{o}{=} \PYG{n}{validation\PYGZus{}datagen}\PYG{o}{.}\PYG{n}{flow\PYGZus{}from\PYGZus{}directory}\PYG{p}{(}\PYG{n}{directory}\PYG{o}{=}\PYG{n}{VALIDATION\PYGZus{}DIR}\PYG{p}{,}
+		\PYG{n}{batch\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mi}{20}\PYG{p}{,}
+		\PYG{n}{class\PYGZus{}mode}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZsq{}}\PYG{p}{,}
+		\PYG{n}{target\PYGZus{}size}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{))}
+	\PYG{k}{return} \PYG{n}{train\PYGZus{}generator}\PYG{p}{,} \PYG{n}{validation\PYGZus{}generator}
+\PYG{c+c1}{\PYGZsh{} Test generators}
+\PYG{n}{train\PYGZus{}generator}\PYG{p}{,} \PYG{n}{validation\PYGZus{}generator} \PYG{o}{=} \PYG{n}{train\PYGZus{}val\PYGZus{}generators}\PYG{p}{(}\PYG{n}{TRAINING\PYGZus{}DIR}\PYG{p}{,} \PYG{n}{VALIDATION\PYGZus{}DIR}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} GRADED FUNCTION: create\PYGZus{}model}
+\PYG{k}{def} \PYG{n+nf}{create\PYGZus{}model}\PYG{p}{():}
+	\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.optimizers} \PYG{k+kn}{import} \PYG{n}{RMSprop}
+	\PYG{n}{model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{models}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{([}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{16}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{,} \PYG{n}{input\PYGZus{}shape}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{150}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)),}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{32}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{64}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{),}
+		\PYG{c+c1}{\PYGZsh{} Flatten the results to feed into a DNN}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Flatten}\PYG{p}{(),}
+		\PYG{c+c1}{\PYGZsh{} 512 neuron hidden layer}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{512}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+		\PYG{c+c1}{\PYGZsh{} Only 1 output neuron}
+		\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sigmoid\PYGZsq{}}\PYG{p}{)}
+	\PYG{p}{])}
+	\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{optimizer}\PYG{o}{=}\PYG{n}{RMSprop}\PYG{p}{(}\PYG{n}{learning\PYGZus{}rate}\PYG{o}{=}\PYG{l+m+mf}{0.001}\PYG{p}{),}
+		\PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}
+		\PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+	\PYG{k}{return} \PYG{n}{model}
+\PYG{c+c1}{\PYGZsh{} Get the untrained model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{create\PYGZus{}model}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Train the model}
+\PYG{c+c1}{\PYGZsh{} Note that this may take some time.}
+\PYG{n}{history} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{train\PYGZus{}generator}\PYG{p}{,}
+	\PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{,}
+	\PYG{n}{verbose}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}
+	\PYG{n}{validation\PYGZus{}data}\PYG{o}{=}\PYG{n}{validation\PYGZus{}generator}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Retrieve a list of list results on training and test data}
+\PYG{c+c1}{\PYGZsh{} sets for each training epoch}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{acc}\PYG{o}{=}\PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{val\PYGZus{}acc}\PYG{o}{=}\PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}accuracy\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{loss}\PYG{o}{=}\PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}loss\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{val\PYGZus{}loss}\PYG{o}{=}\PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}loss\PYGZsq{}}\PYG{p}{]}
+\PYG{n}{epochs}\PYG{o}{=}\PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{acc}\PYG{p}{))} \PYG{c+c1}{\PYGZsh{} Get number of epochs}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Plot training and validation accuracy per epoch}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{epochs}\PYG{p}{,} \PYG{n}{acc}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Training Accuracy\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{epochs}\PYG{p}{,} \PYG{n}{val\PYGZus{}acc}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Validation Accuracy\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Training and validation accuracy\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{c+c1}{\PYGZsh{} Plot training and validation loss per epoch}
+\PYG{c+c1}{\PYGZsh{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{epochs}\PYG{p}{,} \PYG{n}{loss}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Training Loss\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{epochs}\PYG{p}{,} \PYG{n}{val\PYGZus{}loss}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}b\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}Validation Loss\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\end{Verbatim}
