@@ -4,6 +4,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english,ukrainian]{babel}
 \usepackage{hyperref}
+\usepackage{xcolor}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{changepage}
@@ -11,6 +12,8 @@
 \usepackage{graphicx}
 \graphicspath{ {./images/} }
 %\setminted[python]{breaklines}
+
+\newcommand{\speciallink}[2]{\textbf{\textcolor{red}{\href{#1}{#2}}}}
 
 %Header information
 \title{"DeepLearning.AI TensorFlow Developer" Specialization }
@@ -20,7 +23,7 @@
 \begin{document}
 	\maketitle
 	
-	\section{Introduction to TensorFlow for AI, ML, and DL}
+	\section{C1: Introduction to TensorFlow for AI, ML, and DL}
 	\subsection{Week 1: First NN}
 	\begin{itemize}
 		
@@ -439,7 +442,7 @@ hist = train_happy_sad_model(gen)
 	*\textbf{Congratulations on finishing} the last assignment of this course!
 	\end{itemize}
 	
-	\section{Convolutional Neural Networks in TensorFlow}
+	\section{C2: Convolutional Neural Networks in TensorFlow}
 	\subsection{Week 1: Larger Dataset}
 	\begin{itemize}
 		\item \textbf{Lab: More sophisticated images with CNN}\\
@@ -888,7 +891,15 @@ train_datagen = ImageDataGenerator(
 			\item \textbf{fill\_mode}: Points outside the boundaries are filled according to the given mode ('nearest', 'reflect', etc.).
 		\end{itemize}
 		\item \textbf{Week assignment:}
-		
+		The famous \underline{\textbf{cats vs dogs}} dataset to train a model that can classify images of dogs from images of cats. Create a Convolutional Neural Network in Tensorflow and leverage Keras' image preprocessing utilities, more so this time around since Keras provides excellent support for augmenting image data.
+		\begin{minted}{python}
+	"""
+	Should be done!!!
+	"""
+		\end{minted}
+		\speciallink{https://drive.google.com/file/d/1JNBMLpp1g1mV0Si3-v9yWOUR6RE38esN/view?usp=drive_link}{C2W2 notebook} for week's assignment.
 	\end{itemize}
+	\subsection{Week 3: Transfer Learning}
+
 
 \end{document}
