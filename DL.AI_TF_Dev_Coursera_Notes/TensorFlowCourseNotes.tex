@@ -1030,6 +1030,56 @@ plt.show()
 		\end{minted}
 		\speciallink{https://drive.google.com/file/d/16ZbMF6Fvof5xWldWO1TGm0zRj4-4dfV2/view?usp=drive_link}{C2W3 notebook} for week's assignment.		
 	\end{itemize}
+	\subsection{Week 4: Multiclass Classifications}
+	\begin{itemize}
+		\item The \textbf{key change} here is the loss function. Whereas before you were using binary\_crossentropy for 2 classes, you will change it to \textbf{categorical\_crossentropy} to extend it to more classes.
+		\begin{minted}{python}
+model.compile(
+	loss = 'categorical_crossentropy',
+	optimizer='rmsprop',
+	metrics=['accuracy']
+)
+		\end{minted}
+		Prepare the ImageDataGenerator:
+		\begin{minted}{python}
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
+TRAINING_DIR = "tmp/rps-train/rps"
+training_datagen = ImageDataGenerator(
+	rescale = 1./255,
+	rotation_range=40,
+	width_shift_range=0.2,
+	height_shift_range=0.2,
+	shear_range=0.2,
+	zoom_range=0.2,
+	horizontal_flip=True,
+	fill_mode='nearest')
+
+VALIDATION_DIR = "tmp/rps-test/rps-test-set"
+validation_datagen = ImageDataGenerator(rescale = 1./255)
+
+train_generator = training_datagen.flow_from_directory(
+	TRAINING_DIR,
+	target_size=(150,150),
+	class_mode='categorical',
+	batch_size=126
+)
+
+validation_generator = validation_datagen.flow_from_directory(
+	VALIDATION_DIR,
+	target_size=(150,150),
+	class_mode='categorical',
+	batch_size=126
+)
+		\end{minted}
+	\item \textbf{Week's assignment:}\\
+	***** 
+	\begin{minted}{python}
+		"""
+		Should be done!!!
+		"""
+	\end{minted}
+	\speciallink{link}{C2W4 notebook} for week's assignment.		
+	\end{itemize}
 
 \end{document}
