@@ -1,0 +1,19 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.text} \PYG{k+kn}{import} \PYG{n}{Tokenizer}
+
+\PYG{c+c1}{\PYGZsh{} Define input sentences}
+\PYG{n}{sentences} \PYG{o}{=} \PYG{p}{[}
+\PYG{l+s+s1}{\PYGZsq{}i love my dog\PYGZsq{}}\PYG{p}{,}
+\PYG{l+s+s1}{\PYGZsq{}I, love my cat\PYGZsq{}}
+\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} Initialize the Tokenizer class}
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{Tokenizer}\PYG{p}{(}\PYG{n}{num\PYGZus{}words} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Generate indices for each word in the corpus}
+\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{fit\PYGZus{}on\PYGZus{}texts}\PYG{p}{(}\PYG{n}{sentences}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Get the indices and print it}
+\PYG{n}{word\PYGZus{}index} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{word\PYGZus{}index}\PYG{p}{)}
+\end{Verbatim}
