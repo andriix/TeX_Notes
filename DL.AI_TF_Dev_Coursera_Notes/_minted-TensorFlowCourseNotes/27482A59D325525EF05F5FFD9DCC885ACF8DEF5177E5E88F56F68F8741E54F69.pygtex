@@ -1,0 +1,99 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow\PYGZus{}datasets} \PYG{k}{as} \PYG{n+nn}{tfds}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Load the IMDB Reviews dataset}
+\PYG{n}{imdb}\PYG{p}{,} \PYG{n}{info} \PYG{o}{=} \PYG{n}{tfds}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}imdb\PYGZus{}reviews\PYGZdq{}}\PYG{p}{,} \PYG{n}{with\PYGZus{}info}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{as\PYGZus{}supervised}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Split the dataset}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{c+c1}{\PYGZsh{} Get the train and test sets}
+\PYG{n}{train\PYGZus{}data}\PYG{p}{,} \PYG{n}{test\PYGZus{}data} \PYG{o}{=} \PYG{n}{imdb}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{],} \PYG{n}{imdb}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}test\PYGZsq{}}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} Initialize sentences and labels lists}
+\PYG{n}{training\PYGZus{}sentences} \PYG{o}{=} \PYG{p}{[]}
+\PYG{n}{training\PYGZus{}labels} \PYG{o}{=} \PYG{p}{[]}
+\PYG{n}{testing\PYGZus{}sentences} \PYG{o}{=} \PYG{p}{[]}
+\PYG{n}{testing\PYGZus{}labels} \PYG{o}{=} \PYG{p}{[]}
+\PYG{c+c1}{\PYGZsh{} Loop over all training examples and save the sentences and labels}
+\PYG{k}{for} \PYG{n}{s}\PYG{p}{,}\PYG{n}{l} \PYG{o+ow}{in} \PYG{n}{train\PYGZus{}data}\PYG{p}{:}
+	\PYG{n}{training\PYGZus{}sentences}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{s}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{()}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}utf8\PYGZsq{}}\PYG{p}{))}
+	\PYG{n}{training\PYGZus{}labels}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{l}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{())}
+\PYG{c+c1}{\PYGZsh{} Loop over all test examples and save the sentences and labels}
+\PYG{k}{for} \PYG{n}{s}\PYG{p}{,}\PYG{n}{l} \PYG{o+ow}{in} \PYG{n}{test\PYGZus{}data}\PYG{p}{:}
+	\PYG{n}{testing\PYGZus{}sentences}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{s}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{()}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}utf8\PYGZsq{}}\PYG{p}{))}
+	\PYG{n}{testing\PYGZus{}labels}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{l}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{())}
+
+\PYG{c+c1}{\PYGZsh{} Convert labels lists to numpy array}
+\PYG{n}{training\PYGZus{}labels\PYGZus{}final} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{training\PYGZus{}labels}\PYG{p}{)}
+\PYG{n}{testing\PYGZus{}labels\PYGZus{}final} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{testing\PYGZus{}labels}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Generate Padded Sequences}
+\PYG{c+c1}{\PYGZsh{} Parameters}
+\PYG{n}{vocab\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{10000}
+\PYG{n}{max\PYGZus{}length} \PYG{o}{=} \PYG{l+m+mi}{120}
+\PYG{n}{embedding\PYGZus{}dim} \PYG{o}{=} \PYG{l+m+mi}{16}
+\PYG{n}{trunc\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}post\PYGZsq{}}
+\PYG{n}{oov\PYGZus{}tok} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}OOV\PYGZgt{}\PYGZdq{}}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.text} \PYG{k+kn}{import} \PYG{n}{Tokenizer}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.sequence} \PYG{k+kn}{import} \PYG{n}{pad\PYGZus{}sequences}
+\PYG{c+c1}{\PYGZsh{} Initialize the Tokenizer class}
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{Tokenizer}\PYG{p}{(}\PYG{n}{num\PYGZus{}words} \PYG{o}{=} \PYG{n}{vocab\PYGZus{}size}\PYG{p}{,} \PYG{n}{oov\PYGZus{}token}\PYG{o}{=}\PYG{n}{oov\PYGZus{}tok}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Generate the word index dictionary for the training sentences}
+\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{fit\PYGZus{}on\PYGZus{}texts}\PYG{p}{(}\PYG{n}{training\PYGZus{}sentences}\PYG{p}{)}
+\PYG{n}{word\PYGZus{}index} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}
+\PYG{c+c1}{\PYGZsh{} Generate and pad the training sequences}
+\PYG{n}{sequences} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{training\PYGZus{}sentences}\PYG{p}{)}
+\PYG{n}{padded} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{sequences}\PYG{p}{,}\PYG{n}{maxlen}\PYG{o}{=}\PYG{n}{max\PYGZus{}length}\PYG{p}{,} \PYG{n}{truncating}\PYG{o}{=}\PYG{n}{trunc\PYGZus{}type}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Generate and pad the test sequences}
+\PYG{n}{testing\PYGZus{}sequences} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{testing\PYGZus{}sentences}\PYG{p}{)}
+\PYG{n}{testing\PYGZus{}padded} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{testing\PYGZus{}sequences}\PYG{p}{,}\PYG{n}{maxlen}\PYG{o}{=}\PYG{n}{max\PYGZus{}length}\PYG{p}{,} \PYG{n}{truncating}\PYG{o}{=}\PYG{n}{trunc\PYGZus{}type}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Build and Compile the Model}
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
+\PYG{c+c1}{\PYGZsh{} Build the model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{([}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Embedding}\PYG{p}{(}\PYG{n}{vocab\PYGZus{}size}\PYG{p}{,} \PYG{n}{embedding\PYGZus{}dim}\PYG{p}{,} \PYG{n}{input\PYGZus{}length}\PYG{o}{=}\PYG{n}{max\PYGZus{}length}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Flatten}\PYG{p}{(),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sigmoid\PYGZsq{}}\PYG{p}{)}
+\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Setup the training parameters}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}\PYG{n}{optimizer}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}adam\PYGZsq{}}\PYG{p}{,}\PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Print the model summary}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Train the Model}
+\PYG{n}{num\PYGZus{}epochs} \PYG{o}{=} \PYG{l+m+mi}{10}
+\PYG{c+c1}{\PYGZsh{} Train the model}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{padded}\PYG{p}{,} \PYG{n}{training\PYGZus{}labels\PYGZus{}final}\PYG{p}{,} \PYG{n}{epochs}\PYG{o}{=}\PYG{n}{num\PYGZus{}epochs}\PYG{p}{,} \PYG{n}{validation\PYGZus{}data}\PYG{o}{=}\PYG{p}{(}\PYG{n}{testing\PYGZus{}padded}\PYG{p}{,} \PYG{n}{testing\PYGZus{}labels\PYGZus{}final}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Visualize Word Embeddings}
+\PYG{c+c1}{\PYGZsh{} Get the embedding layer from the model (i.e. first layer)}
+\PYG{n}{embedding\PYGZus{}layer} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{layers}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} Get the weights of the embedding layer}
+\PYG{n}{embedding\PYGZus{}weights} \PYG{o}{=} \PYG{n}{embedding\PYGZus{}layer}\PYG{o}{.}\PYG{n}{get\PYGZus{}weights}\PYG{p}{()[}\PYG{l+m+mi}{0}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} Print the shape. Expected is (vocab\PYGZus{}size, embedding\PYGZus{}dim)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{embedding\PYGZus{}weights}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Get the index\PYGZhy{}word dictionary}
+\PYG{n}{reverse\PYGZus{}word\PYGZus{}index} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{index\PYGZus{}word}
+\PYG{c+c1}{\PYGZsh{} loop to generate the files. You will loop vocab\PYGZus{}size\PYGZhy{}1 times, skipping the 0 key because it is just for the padding}
+\PYG{k+kn}{import} \PYG{n+nn}{io}
+\PYG{c+c1}{\PYGZsh{} Open writeable files}
+\PYG{n}{out\PYGZus{}v} \PYG{o}{=} \PYG{n}{io}\PYG{o}{.}\PYG{n}{open}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}vecs.tsv\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{,} \PYG{n}{encoding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}utf\PYGZhy{}8\PYGZsq{}}\PYG{p}{)}
+\PYG{n}{out\PYGZus{}m} \PYG{o}{=} \PYG{n}{io}\PYG{o}{.}\PYG{n}{open}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}meta.tsv\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}w\PYGZsq{}}\PYG{p}{,} \PYG{n}{encoding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}utf\PYGZhy{}8\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Initialize the loop. Start counting at `1` because `0` is just for the padding}
+\PYG{k}{for} \PYG{n}{word\PYGZus{}num} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{vocab\PYGZus{}size}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{} Get the word associated at the current index}
+	\PYG{n}{word\PYGZus{}name} \PYG{o}{=} \PYG{n}{reverse\PYGZus{}word\PYGZus{}index}\PYG{p}{[}\PYG{n}{word\PYGZus{}num}\PYG{p}{]}
+	\PYG{c+c1}{\PYGZsh{} Get the embedding weights associated with the current index}
+	\PYG{n}{word\PYGZus{}embedding} \PYG{o}{=} \PYG{n}{embedding\PYGZus{}weights}\PYG{p}{[}\PYG{n}{word\PYGZus{}num}\PYG{p}{]}
+	\PYG{c+c1}{\PYGZsh{} Write the word name}
+	\PYG{n}{out\PYGZus{}m}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{word\PYGZus{}name} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Write the word embedding}
+	\PYG{n}{out\PYGZus{}v}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}t}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{([}\PYG{n+nb}{str}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n}{word\PYGZus{}embedding}\PYG{p}{])} \PYG{o}{+} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Close the files}
+\PYG{n}{out\PYGZus{}v}\PYG{o}{.}\PYG{n}{close}\PYG{p}{()}
+\PYG{n}{out\PYGZus{}m}\PYG{o}{.}\PYG{n}{close}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Now you can go to the Tensorflow Embedding Projector and load the two files}
+\PYG{c+c1}{\PYGZsh{} you downloaded to see the visualization. You can search for words like worst and}
+\PYG{c+c1}{\PYGZsh{} fantastic and see the other words closely located to these.}
+\end{Verbatim}
