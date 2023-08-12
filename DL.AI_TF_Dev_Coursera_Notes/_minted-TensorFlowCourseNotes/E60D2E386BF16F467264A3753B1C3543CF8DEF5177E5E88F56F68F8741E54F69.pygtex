@@ -1,0 +1,53 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Get the train set}
+\PYG{n}{train\PYGZus{}data} \PYG{o}{=} \PYG{n}{imdb\PYGZus{}plaintext}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} Initialize sentences list}
+\PYG{n}{training\PYGZus{}sentences} \PYG{o}{=} \PYG{p}{[]}
+\PYG{c+c1}{\PYGZsh{} Loop over all training examples and save to the list}
+\PYG{k}{for} \PYG{n}{s}\PYG{p}{,}\PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n}{train\PYGZus{}data}\PYG{p}{:}
+\PYG{n}{training\PYGZus{}sentences}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{s}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{()}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}utf8\PYGZsq{}}\PYG{p}{))}
+
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.text} \PYG{k+kn}{import} \PYG{n}{Tokenizer}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.sequence} \PYG{k+kn}{import} \PYG{n}{pad\PYGZus{}sequences}
+\PYG{n}{vocab\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{10000}
+\PYG{n}{oov\PYGZus{}tok} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}OOV\PYGZgt{}\PYGZsq{}}
+\PYG{c+c1}{\PYGZsh{} Initialize the Tokenizer class}
+\PYG{n}{tokenizer\PYGZus{}plaintext} \PYG{o}{=} \PYG{n}{Tokenizer}\PYG{p}{(}\PYG{n}{num\PYGZus{}words} \PYG{o}{=} \PYG{l+m+mi}{10000}\PYG{p}{,} \PYG{n}{oov\PYGZus{}token}\PYG{o}{=}\PYG{n}{oov\PYGZus{}tok}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Generate the word index dictionary for the training sentences}
+\PYG{n}{tokenizer\PYGZus{}plaintext}\PYG{o}{.}\PYG{n}{fit\PYGZus{}on\PYGZus{}texts}\PYG{p}{(}\PYG{n}{training\PYGZus{}sentences}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Generate the training sequences}
+\PYG{n}{sequences} \PYG{o}{=} \PYG{n}{tokenizer\PYGZus{}plaintext}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{training\PYGZus{}sentences}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Decode the first sequence using the Tokenizer class}
+\PYG{n}{tokenizer\PYGZus{}plaintext}\PYG{o}{.}\PYG{n}{sequences\PYGZus{}to\PYGZus{}texts}\PYG{p}{(}\PYG{n}{sequences}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{l+m+mi}{1}\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Total number of words in the word index dictionary}
+\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{tokenizer\PYGZus{}plaintext}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print the subwords}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{subwords}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Encode the first plaintext sentence using the subword text encoder}
+\PYG{n}{tokenized\PYGZus{}string} \PYG{o}{=} \PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n}{training\PYGZus{}sentences}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{tokenized\PYGZus{}string}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Decode the sequence}
+\PYG{n}{original\PYGZus{}string} \PYG{o}{=} \PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{n}{tokenized\PYGZus{}string}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print the result}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{n}{original\PYGZus{}string}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Define sample sentence}
+\PYG{n}{sample\PYGZus{}string} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}TensorFlow, from basics to mastery\PYGZsq{}}
+\PYG{c+c1}{\PYGZsh{} Encode using the plain text tokenizer}
+\PYG{n}{tokenized\PYGZus{}string} \PYG{o}{=} \PYG{n}{tokenizer\PYGZus{}plaintext}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{([}\PYG{n}{sample\PYGZus{}string}\PYG{p}{])}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Tokenized string is }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{tokenized\PYGZus{}string}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{} Decode and print the result}
+\PYG{n}{original\PYGZus{}string} \PYG{o}{=} \PYG{n}{tokenizer\PYGZus{}plaintext}\PYG{o}{.}\PYG{n}{sequences\PYGZus{}to\PYGZus{}texts}\PYG{p}{(}\PYG{n}{tokenized\PYGZus{}string}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}The original string: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{original\PYGZus{}string}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{} Encode using the subword text encoder}
+\PYG{n}{tokenized\PYGZus{}string} \PYG{o}{=} \PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{encode}\PYG{p}{(}\PYG{n}{sample\PYGZus{}string}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Tokenized string is }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{tokenized\PYGZus{}string}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{} Decode and print the results}
+\PYG{n}{original\PYGZus{}string} \PYG{o}{=} \PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{n}{tokenized\PYGZus{}string}\PYG{p}{)}
+\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}The original string: }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{original\PYGZus{}string}\PYG{p}{))}
+
+\PYG{c+c1}{\PYGZsh{} Show token to subword mapping:}
+\PYG{k}{for} \PYG{n}{ts} \PYG{o+ow}{in} \PYG{n}{tokenized\PYGZus{}string}\PYG{p}{:}
+	\PYG{n+nb}{print} \PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{ \PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZgt{} }\PYG{l+s+si}{\PYGZob{}\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{ts}\PYG{p}{,} \PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{([}\PYG{n}{ts}\PYG{p}{])))}
+\end{Verbatim}

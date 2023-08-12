@@ -1,0 +1,21 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Print description of features}
+\PYG{n}{info\PYGZus{}plaintext}\PYG{o}{.}\PYG{n}{features}
+\PYG{c+c1}{\PYGZsh{} Take 2 training examples and print the text feature}
+\PYG{k}{for} \PYG{n}{example} \PYG{o+ow}{in} \PYG{n}{imdb\PYGZus{}plaintext}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{take}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{):}
+	\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{example}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{())}
+
+\PYG{c+c1}{\PYGZsh{} Print description of features}
+\PYG{n}{info\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{features}
+\PYG{c+c1}{\PYGZsh{} Take 2 training examples and print its contents}
+\PYG{k}{for} \PYG{n}{example} \PYG{o+ow}{in} \PYG{n}{imdb\PYGZus{}subwords}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{take}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{):}
+	\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{example}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} You can get the encoder object included in}
+\PYG{c+c1}{\PYGZsh{} the download and use it to decode the sequences}
+\PYG{c+c1}{\PYGZsh{} Get the encoder}
+\PYG{n}{tokenizer\PYGZus{}subwords} \PYG{o}{=} \PYG{n}{info\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{features}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}text\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{encoder}
+\PYG{c+c1}{\PYGZsh{} Take 2 training examples and decode the text feature}
+\PYG{k}{for} \PYG{n}{example} \PYG{o+ow}{in} \PYG{n}{imdb\PYGZus{}subwords}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{take}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{):}
+	\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{n}{example}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]))}
+\end{Verbatim}
