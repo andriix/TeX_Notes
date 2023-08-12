@@ -1,0 +1,31 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.text} \PYG{k+kn}{import} \PYG{n}{Tokenizer}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.sequence} \PYG{k+kn}{import} \PYG{n}{pad\PYGZus{}sequences}
+
+\PYG{c+c1}{\PYGZsh{} Initialize the Tokenizer class}
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{Tokenizer}\PYG{p}{(}\PYG{n}{oov\PYGZus{}token}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}OOV\PYGZgt{}\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Generate the word index dictionary}
+\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{fit\PYGZus{}on\PYGZus{}texts}\PYG{p}{(}\PYG{n}{sentences}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print the length of the word index}
+\PYG{n}{word\PYGZus{}index} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}number of words in word\PYGZus{}index: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{word\PYGZus{}index}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print the word index}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}word\PYGZus{}index: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{word\PYGZus{}index}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} Generate and pad the sequences}
+\PYG{n}{sequences} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{sentences}\PYG{p}{)}
+\PYG{n}{padded} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{sequences}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}post\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print a sample headline}
+\PYG{n}{index} \PYG{o}{=} \PYG{l+m+mi}{2}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}sample headline: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sentences}\PYG{p}{[}\PYG{n}{index}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}padded sequence: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{padded}\PYG{p}{[}\PYG{n}{index}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} Print dimensions of padded sequences}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}shape of padded sequences: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{padded}\PYG{o}{.}\PYG{n}{shape}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

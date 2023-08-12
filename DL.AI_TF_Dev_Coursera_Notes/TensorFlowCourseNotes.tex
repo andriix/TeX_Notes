@@ -1073,7 +1073,7 @@ validation_generator = validation_datagen.flow_from_directory(
 )
 		\end{minted}
 	\item \textbf{Week's assignment:}\\
-	***** 
+	Multi-class classification problem using the \textbf{Sign Language MNIST} dataset.
 	\begin{minted}{python}
 		"""
 		Should be done!!!
@@ -1105,8 +1105,116 @@ tokenizer.fit_on_texts(sentences)
 word_index = tokenizer.word_index
 print(word_index)
 		\end{minted}
-		
-		
+		\item \textbf{Lab 2: Sequences and Padding}\\
+		\textbf{Text to sequences of tokens}
+		\begin{minted}{python}
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+# Define your input texts
+sentences = [
+	'I love my dog',
+	'I love my cat',
+	'You love my dog!',
+	'Do you think my dog is amazing?'
+]
+
+# Initialize the Tokenizer class
+tokenizer = Tokenizer(num_words = 100, oov_token="<OOV>")
+
+# Tokenize the input sentences
+tokenizer.fit_on_texts(sentences)
+
+# Get the word index dictionary
+word_index = tokenizer.word_index
+
+# Generate list of token sequences
+sequences = tokenizer.texts_to_sequences(sentences)
+
+# Print the result
+print("\nWord Index = " , word_index)
+print("\nSequences = " , sequences)
+		\end{minted}
+		\textbf{Pad the sequences into a uniform length}
+		\begin{minted}{python}
+# Pad the sequences to a uniform length
+padded = pad_sequences(sequences, maxlen=5, padding='post', truncating='post')
+
+# Print the result
+print("\nPadded Sequences:")
+print(padded)
+		\end{minted}
+		\item \textbf{Lab 3: Tokenizing the Sarcasm Dataset}\\
+		Load JSON file into my workplace
+		\begin{minted}{python}
+import json
+
+# Load the JSON file
+with open("./sarcasm.json", 'r') as f:
+	datastore = json.load(f)
+		\end{minted}
+		Collect all urls, headlines, and labels for easier processing
+		\begin{minted}{python}
+# Initialize lists
+sentences = [] 
+labels = []
+urls = []
+
+# Append elements in the dictionaries into each list
+for item in datastore:
+	sentences.append(item['headline'])
+	labels.append(item['is_sarcastic'])
+	urls.append(item['article_link'])
+		\end{minted}
+		Preprocessing the headlines
+		\begin{minted}{python}
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+
+# Initialize the Tokenizer class
+tokenizer = Tokenizer(oov_token="<OOV>")
+
+# Generate the word index dictionary
+tokenizer.fit_on_texts(sentences)
+
+# Print the length of the word index
+word_index = tokenizer.word_index
+print(f'number of words in word_index: {len(word_index)}')
+
+# Print the word index
+print(f'word_index: {word_index}')
+print()
+
+# Generate and pad the sequences
+sequences = tokenizer.texts_to_sequences(sentences)
+padded = pad_sequences(sequences, padding='post')
+
+# Print a sample headline
+index = 2
+print(f'sample headline: {sentences[index]}')
+print(f'padded sequence: {padded[index]}')
+print()
+
+# Print dimensions of padded sequences
+print(f'shape of padded sequences: {padded.shape}')
+		\end{minted}
+		\item \textbf{Week's assignment:}\\
+		Work with a variation of the \textbf{BBC News Classification Dataset}, which contains 2225 examples of news articles with their respective categories (labels).
+		\begin{minted}{python}
+			"""
+			Should be done!!!
+			"""
+		\end{minted}
+		\speciallink{https://drive.google.com/file/d/1hFbnjZD2dOPpg8sjhsqmuyK4HTFAAGRq/view?usp=drive\_link}{C3W1 notebook} for week's assignment.
 	\end{itemize}
 
+
+%\item \textbf{Week's assignment:}\\
+% *short description___
+%\begin{minted}{python}
+%	"""
+%	Should be done!!!
+%	"""
+%\end{minted}
+%\speciallink{*link___}{C_W_ notebook} for week's assignment.
 \end{document}

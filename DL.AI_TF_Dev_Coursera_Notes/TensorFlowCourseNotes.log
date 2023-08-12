@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  11 AUG 2023 22:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  12 AUG 2023 10:10
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1002,17 +1002,47 @@ Overfull \hbox (6.2822pt too wide) in paragraph at lines 1084--1084
 
 
 (_minted-TensorFlowCourseNotes/D1AE5712C6C2F11D4CD30F3027A63A0BCF8DEF5177E5E88F
-56F68F8741E54F69.pygtex [26]) [27] (TensorFlowCourseNotes.aux)
+56F68F8741E54F69.pygtex [26])
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/02C3BAC158AD88E20DD06AA57A93AD89CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex [27])
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/EDC25C9E0A7CCD03A652D7D83A57A529CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex)
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/D12D712CB3CBC49E33AFA9AB09118A4FCF8DEF5177E5E88F
+56F68F8741E54F69.pygtex)
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/42EE76B0B20868118D12D0CB2F473F5BCF8DEF5177E5E88F
+56F68F8741E54F69.pygtex)
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/641A975BE3BAF1D9DB10007EA65987C9CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex [28])
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/E9655AD902E5830503C03D21C7EEF58CCF8DEF5177E5E88F
+56F68F8741E54F69.pygtex) [29] (TensorFlowCourseNotes.aux)
 Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
 (rerunfilecheck)             Checksum: 35DDAE8DD5ABAA25C3CF00B0E30DB977;2721.
 runsystem(del TensorFlowCourseNotes.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 15435 strings out of 478582
- 278044 string characters out of 2856069
- 606743 words of memory out of 3000000
- 33230 multiletter control sequences out of 15000+600000
+ 15473 strings out of 478582
+ 281856 string characters out of 2856069
+ 607181 words of memory out of 3000000
+ 33248 multiletter control sequences out of 15000+600000
  484454 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,7n,81p,806b,796s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -1029,9 +1059,9 @@ onts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKT
 eX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\
 MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
-Output written on TensorFlowCourseNotes.pdf (27 pages, 239634 bytes).
+Output written on TensorFlowCourseNotes.pdf (29 pages, 244889 bytes).
 PDF statistics:
- 637 PDF objects out of 1000 (max. 8388607)
- 40 named destinations out of 1000 (max. 500000)
+ 650 PDF objects out of 1000 (max. 8388607)
+ 42 named destinations out of 1000 (max. 500000)
  102 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Pad the sequences to a uniform length}
+\PYG{n}{padded} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{sequences}\PYG{p}{,} \PYG{n}{maxlen}\PYG{o}{=}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}post\PYGZsq{}}\PYG{p}{,} \PYG{n}{truncating}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}post\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print the result}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Padded Sequences:\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{padded}\PYG{p}{)}
+\end{Verbatim}

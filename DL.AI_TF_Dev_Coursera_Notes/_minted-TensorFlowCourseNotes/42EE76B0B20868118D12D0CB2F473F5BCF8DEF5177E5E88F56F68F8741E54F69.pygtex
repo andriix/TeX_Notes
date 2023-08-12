@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Initialize lists}
+\PYG{n}{sentences} \PYG{o}{=} \PYG{p}{[]}
+\PYG{n}{labels} \PYG{o}{=} \PYG{p}{[]}
+\PYG{n}{urls} \PYG{o}{=} \PYG{p}{[]}
+
+\PYG{c+c1}{\PYGZsh{} Append elements in the dictionaries into each list}
+\PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{datastore}\PYG{p}{:}
+	\PYG{n}{sentences}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}headline\PYGZsq{}}\PYG{p}{])}
+	\PYG{n}{labels}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}is\PYGZus{}sarcastic\PYGZsq{}}\PYG{p}{])}
+	\PYG{n}{urls}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}article\PYGZus{}link\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}

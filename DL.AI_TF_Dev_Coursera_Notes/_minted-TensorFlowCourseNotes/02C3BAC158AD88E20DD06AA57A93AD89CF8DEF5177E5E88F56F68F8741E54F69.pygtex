@@ -1,0 +1,28 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.text} \PYG{k+kn}{import} \PYG{n}{Tokenizer}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.sequence} \PYG{k+kn}{import} \PYG{n}{pad\PYGZus{}sequences}
+
+\PYG{c+c1}{\PYGZsh{} Define your input texts}
+\PYG{n}{sentences} \PYG{o}{=} \PYG{p}{[}
+	\PYG{l+s+s1}{\PYGZsq{}I love my dog\PYGZsq{}}\PYG{p}{,}
+	\PYG{l+s+s1}{\PYGZsq{}I love my cat\PYGZsq{}}\PYG{p}{,}
+	\PYG{l+s+s1}{\PYGZsq{}You love my dog!\PYGZsq{}}\PYG{p}{,}
+	\PYG{l+s+s1}{\PYGZsq{}Do you think my dog is amazing?\PYGZsq{}}
+\PYG{p}{]}
+
+\PYG{c+c1}{\PYGZsh{} Initialize the Tokenizer class}
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{Tokenizer}\PYG{p}{(}\PYG{n}{num\PYGZus{}words} \PYG{o}{=} \PYG{l+m+mi}{100}\PYG{p}{,} \PYG{n}{oov\PYGZus{}token}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}OOV\PYGZgt{}\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Tokenize the input sentences}
+\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{fit\PYGZus{}on\PYGZus{}texts}\PYG{p}{(}\PYG{n}{sentences}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Get the word index dictionary}
+\PYG{n}{word\PYGZus{}index} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}
+
+\PYG{c+c1}{\PYGZsh{} Generate list of token sequences}
+\PYG{n}{sequences} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{sentences}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Print the result}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Word Index = \PYGZdq{}} \PYG{p}{,} \PYG{n}{word\PYGZus{}index}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{Sequences = \PYGZdq{}} \PYG{p}{,} \PYG{n}{sequences}\PYG{p}{)}
+\end{Verbatim}
