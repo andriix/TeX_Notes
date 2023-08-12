@@ -1,0 +1,30 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{BUFFER\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{10000}
+\PYG{n}{BATCH\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{64}
+\PYG{c+c1}{\PYGZsh{} Get the train and test splits}
+\PYG{n}{train\PYGZus{}data}\PYG{p}{,} \PYG{n}{test\PYGZus{}data} \PYG{o}{=} \PYG{n}{imdb\PYGZus{}subwords}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{],} \PYG{n}{imdb\PYGZus{}subwords}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}test\PYGZsq{}}\PYG{p}{],}
+\PYG{c+c1}{\PYGZsh{} Shuffle the training data}
+\PYG{n}{train\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{train\PYGZus{}data}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Batch and pad the datasets to the maximum length of the sequences}
+\PYG{n}{train\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{train\PYGZus{}dataset}\PYG{o}{.}\PYG{n}{padded\PYGZus{}batch}\PYG{p}{(}\PYG{n}{BATCH\PYGZus{}SIZE}\PYG{p}{)}
+\PYG{n}{test\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{test\PYGZus{}data}\PYG{o}{.}\PYG{n}{padded\PYGZus{}batch}\PYG{p}{(}\PYG{n}{BATCH\PYGZus{}SIZE}\PYG{p}{)}
+
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
+\PYG{c+c1}{\PYGZsh{} Define dimensionality of the embedding}
+\PYG{n}{embedding\PYGZus{}dim} \PYG{o}{=} \PYG{l+m+mi}{64}
+\PYG{c+c1}{\PYGZsh{} Build the model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{([}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Embedding}\PYG{p}{(}\PYG{n}{tokenizer\PYGZus{}subwords}\PYG{o}{.}\PYG{n}{vocab\PYGZus{}size}\PYG{p}{,} \PYG{n}{embedding\PYGZus{}dim}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{GlobalAveragePooling1D}\PYG{p}{(),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+	\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sigmoid\PYGZsq{}}\PYG{p}{)}
+\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Print the model summary}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{()}
+
+\PYG{n}{num\PYGZus{}epochs} \PYG{o}{=} \PYG{l+m+mi}{10}
+\PYG{c+c1}{\PYGZsh{} Set the training parameters}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}\PYG{n}{optimizer}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}adam\PYGZsq{}}\PYG{p}{,}\PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Start training}
+\PYG{n}{history} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{train\PYGZus{}dataset}\PYG{p}{,} \PYG{n}{epochs}\PYG{o}{=}\PYG{n}{num\PYGZus{}epochs}\PYG{p}{,} \PYG{n}{validation\PYGZus{}data}\PYG{o}{=}\PYG{n}{test\PYGZus{}dataset}\PYG{p}{)}
+\end{Verbatim}

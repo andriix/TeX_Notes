@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow\PYGZus{}datasets} \PYG{k}{as} \PYG{n+nn}{tfds}
+\PYG{c+c1}{\PYGZsh{} Download the plain text default config}
+\PYG{n}{imdb\PYGZus{}plaintext}\PYG{p}{,} \PYG{n}{info\PYGZus{}plaintext} \PYG{o}{=} \PYG{n}{tfds}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}imdb\PYGZus{}reviews\PYGZdq{}}\PYG{p}{,} \PYG{n}{with\PYGZus{}info}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{as\PYGZus{}supervised}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Download the subword encoded pretokenized dataset}
+\PYG{n}{imdb\PYGZus{}subwords}\PYG{p}{,} \PYG{n}{info\PYGZus{}subwords} \PYG{o}{=} \PYG{n}{tfds}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}imdb\PYGZus{}reviews/subwords8k\PYGZdq{}}\PYG{p}{,} \PYG{n}{with\PYGZus{}info}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{as\PYGZus{}supervised}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\end{Verbatim}
