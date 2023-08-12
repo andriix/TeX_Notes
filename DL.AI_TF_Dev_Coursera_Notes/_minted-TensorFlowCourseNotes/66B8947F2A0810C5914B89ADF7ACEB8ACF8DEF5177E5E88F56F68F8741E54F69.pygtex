@@ -1,0 +1,102 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Download dataset}
+\PYG{k+kn}{import} \PYG{n+nn}{json}
+\PYG{c+c1}{\PYGZsh{} Load the JSON file}
+\PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}./sarcasm.json\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+\PYG{n}{datastore} \PYG{o}{=} \PYG{n}{json}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{n}{f}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Initialize the lists}
+\PYG{n}{sentences} \PYG{o}{=} \PYG{p}{[]}
+\PYG{n}{labels} \PYG{o}{=} \PYG{p}{[]}
+\PYG{c+c1}{\PYGZsh{} Collect sentences and labels into the lists}
+\PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{datastore}\PYG{p}{:}
+	\PYG{n}{sentences}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}headline\PYGZsq{}}\PYG{p}{])}
+	\PYG{n}{labels}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}is\PYGZus{}sarcastic\PYGZsq{}}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Hyperparameters}
+\PYG{c+c1}{\PYGZsh{} Number of examples to use for training}
+\PYG{n}{training\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{20000}
+\PYG{c+c1}{\PYGZsh{} Vocabulary size of the tokenizer}
+\PYG{n}{vocab\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{10000}
+\PYG{c+c1}{\PYGZsh{} Maximum length of the padded sequences}
+\PYG{n}{max\PYGZus{}length} \PYG{o}{=} \PYG{l+m+mi}{32}
+\PYG{c+c1}{\PYGZsh{} Output dimensions of the Embedding layer}
+\PYG{n}{embedding\PYGZus{}dim} \PYG{o}{=} \PYG{l+m+mi}{16}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Split the dataset}
+\PYG{c+c1}{\PYGZsh{} Split the sentences}
+\PYG{n}{training\PYGZus{}sentences} \PYG{o}{=} \PYG{n}{sentences}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{n}{training\PYGZus{}size}\PYG{p}{]}
+\PYG{n}{testing\PYGZus{}sentences} \PYG{o}{=} \PYG{n}{sentences}\PYG{p}{[}\PYG{n}{training\PYGZus{}size}\PYG{p}{:]}
+\PYG{c+c1}{\PYGZsh{} Split the labels}
+\PYG{n}{training\PYGZus{}labels} \PYG{o}{=} \PYG{n}{labels}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{:}\PYG{n}{training\PYGZus{}size}\PYG{p}{]}
+\PYG{n}{testing\PYGZus{}labels} \PYG{o}{=} \PYG{n}{labels}\PYG{p}{[}\PYG{n}{training\PYGZus{}size}\PYG{p}{:]}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Preprocessing the train and test sets}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.text} \PYG{k+kn}{import} \PYG{n}{Tokenizer}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.sequence} \PYG{k+kn}{import} \PYG{n}{pad\PYGZus{}sequences}
+\PYG{c+c1}{\PYGZsh{} Parameters for padding and OOV tokens}
+\PYG{n}{trunc\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}post\PYGZsq{}}
+\PYG{n}{padding\PYGZus{}type}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}post\PYGZsq{}}
+\PYG{n}{oov\PYGZus{}tok} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZlt{}OOV\PYGZgt{}\PYGZdq{}}
+\PYG{c+c1}{\PYGZsh{} Initialize the Tokenizer class}
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{Tokenizer}\PYG{p}{(}\PYG{n}{num\PYGZus{}words}\PYG{o}{=}\PYG{n}{vocab\PYGZus{}size}\PYG{p}{,} \PYG{n}{oov\PYGZus{}token}\PYG{o}{=}\PYG{n}{oov\PYGZus{}tok}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Generate the word index dictionary}
+\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{fit\PYGZus{}on\PYGZus{}texts}\PYG{p}{(}\PYG{n}{training\PYGZus{}sentences}\PYG{p}{)}
+\PYG{n}{word\PYGZus{}index} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}
+\PYG{c+c1}{\PYGZsh{} Generate and pad the training sequences}
+\PYG{n}{training\PYGZus{}sequences} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{training\PYGZus{}sentences}\PYG{p}{)}
+\PYG{n}{training\PYGZus{}padded} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{training\PYGZus{}sequences}\PYG{p}{,} \PYG{n}{maxlen}\PYG{o}{=}\PYG{n}{max\PYGZus{}length}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{n}{padding\PYGZus{}type}\PYG{p}{,} \PYG{n}{truncating}\PYG{o}{=}\PYG{n}{trunc\PYGZus{}type}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Generate and pad the testing sequences}
+\PYG{n}{testing\PYGZus{}sequences} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{testing\PYGZus{}sentences}\PYG{p}{)}
+\PYG{n}{testing\PYGZus{}padded} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{testing\PYGZus{}sequences}\PYG{p}{,} \PYG{n}{maxlen}\PYG{o}{=}\PYG{n}{max\PYGZus{}length}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{n}{padding\PYGZus{}type}\PYG{p}{,} \PYG{n}{truncating}\PYG{o}{=}\PYG{n}{trunc\PYGZus{}type}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Convert the labels lists into numpy arrays}
+\PYG{n}{training\PYGZus{}labels} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{training\PYGZus{}labels}\PYG{p}{)}
+\PYG{n}{testing\PYGZus{}labels} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{testing\PYGZus{}labels}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Build and Compile the Model}
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
+\PYG{c+c1}{\PYGZsh{} Initialize a GlobalAveragePooling1D (GAP1D) layer}
+\PYG{n}{gap1d\PYGZus{}layer} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{GlobalAveragePooling1D}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Define sample array}
+\PYG{n}{sample\PYGZus{}array} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{([[[}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{2}\PYG{p}{],[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{],[}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{l+m+mi}{1}\PYG{p}{]]])}
+\PYG{c+c1}{\PYGZsh{} Print shape and contents of sample array}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}shape of sample\PYGZus{}array = }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sample\PYGZus{}array}\PYG{o}{.}\PYG{n}{shape}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}sample array: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sample\PYGZus{}array}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Pass the sample array to the GAP1D layer}
+\PYG{n}{output} \PYG{o}{=} \PYG{n}{gap1d\PYGZus{}layer}\PYG{p}{(}\PYG{n}{sample\PYGZus{}array}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print shape and contents of the GAP1D output array}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}output shape of gap1d\PYGZus{}layer: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{output}\PYG{o}{.}\PYG{n}{shape}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}output array of gap1d\PYGZus{}layer: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{output}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{()}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Build the model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{Sequential}\PYG{p}{([}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Embedding}\PYG{p}{(}\PYG{n}{vocab\PYGZus{}size}\PYG{p}{,} \PYG{n}{embedding\PYGZus{}dim}\PYG{p}{,} \PYG{n}{input\PYGZus{}length}\PYG{o}{=}\PYG{n}{max\PYGZus{}length}\PYG{p}{),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{GlobalAveragePooling1D}\PYG{p}{(),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{24}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}relu\PYGZsq{}}\PYG{p}{),}
+\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{layers}\PYG{o}{.}\PYG{n}{Dense}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}sigmoid\PYGZsq{}}\PYG{p}{)}
+\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Print the model summary}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{()}
+
+\PYG{c+c1}{\PYGZsh{} Compile the model}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}\PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}binary\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}\PYG{n}{optimizer}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}adam\PYGZsq{}}\PYG{p}{,}\PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{])}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Train the Model}
+\PYG{n}{num\PYGZus{}epochs} \PYG{o}{=} \PYG{l+m+mi}{30}
+\PYG{c+c1}{\PYGZsh{} Train the model}
+\PYG{n}{history} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}\PYG{n}{training\PYGZus{}padded}\PYG{p}{,} \PYG{n}{training\PYGZus{}labels}\PYG{p}{,} \PYG{n}{epochs}\PYG{o}{=}\PYG{n}{num\PYGZus{}epochs}\PYG{p}{,} \PYG{n}{validation\PYGZus{}data}\PYG{o}{=}\PYG{p}{(}\PYG{n}{testing\PYGZus{}padded}\PYG{p}{,} \PYG{n}{testing\PYGZus{}labels}\PYG{p}{),} \PYG{n}{verbose}\PYG{o}{=}\PYG{l+m+mi}{2}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} \PYGZhy{}\PYGZgt{} Visualize the Results}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{c+c1}{\PYGZsh{} Plot utility}
+\PYG{k}{def} \PYG{n+nf}{plot\PYGZus{}graphs}\PYG{p}{(}\PYG{n}{history}\PYG{p}{,} \PYG{n}{string}\PYG{p}{):}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{n}{string}\PYG{p}{])}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}\PYGZsq{}}\PYG{o}{+}\PYG{n}{string}\PYG{p}{])}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Epochs\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{n}{string}\PYG{p}{)}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{([}\PYG{n}{string}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}val\PYGZus{}\PYGZsq{}}\PYG{o}{+}\PYG{n}{string}\PYG{p}{])}
+\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Plot the accuracy and loss}
+\PYG{n}{plot\PYGZus{}graphs}\PYG{p}{(}\PYG{n}{history}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}accuracy\PYGZdq{}}\PYG{p}{)}
+\PYG{n}{plot\PYGZus{}graphs}\PYG{p}{(}\PYG{n}{history}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}loss\PYGZdq{}}\PYG{p}{)}
+\end{Verbatim}
