@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{BUFFER\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{10000}
+\PYG{n}{BATCH\PYGZus{}SIZE} \PYG{o}{=} \PYG{l+m+mi}{256}
+\PYG{c+c1}{\PYGZsh{} Get the train and test splits}
+\PYG{n}{train\PYGZus{}data}\PYG{p}{,} \PYG{n}{test\PYGZus{}data} \PYG{o}{=} \PYG{n}{dataset}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}train\PYGZsq{}}\PYG{p}{],} \PYG{n}{dataset}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}test\PYGZsq{}}\PYG{p}{],}
+\PYG{c+c1}{\PYGZsh{} Shuffle the training data}
+\PYG{n}{train\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{train\PYGZus{}data}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{BUFFER\PYGZus{}SIZE}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Batch and pad the datasets to the maximum length of the sequences}
+\PYG{n}{train\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{train\PYGZus{}dataset}\PYG{o}{.}\PYG{n}{padded\PYGZus{}batch}\PYG{p}{(}\PYG{n}{BATCH\PYGZus{}SIZE}\PYG{p}{)}
+\PYG{n}{test\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{test\PYGZus{}data}\PYG{o}{.}\PYG{n}{padded\PYGZus{}batch}\PYG{p}{(}\PYG{n}{BATCH\PYGZus{}SIZE}\PYG{p}{)}
+\end{Verbatim}
