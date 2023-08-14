@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{tensorflow} \PYG{k}{as} \PYG{n+nn}{tf}
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.layers} \PYG{k+kn}{import} \PYG{n}{Embedding}\PYG{p}{,} \PYG{n}{LSTM}\PYG{p}{,} \PYG{n}{Dense}\PYG{p}{,} \PYG{n}{Bidirectional}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.models} \PYG{k+kn}{import} \PYG{n}{Sequential}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.text} \PYG{k+kn}{import} \PYG{n}{Tokenizer}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.preprocessing.sequence} \PYG{k+kn}{import} \PYG{n}{pad\PYGZus{}sequences}
+\PYG{k+kn}{from} \PYG{n+nn}{tensorflow.keras.optimizers} \PYG{k+kn}{import} \PYG{n}{Adam}
+
+\PYG{c+c1}{\PYGZsh{} Load the dataset}
+\PYG{n}{data} \PYG{o}{=} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}./irish\PYGZhy{}lyrics\PYGZhy{}eof.txt\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Lowercase and split the text}
+\PYG{n}{corpus} \PYG{o}{=} \PYG{n}{data}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{()}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Preview the result}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{corpus}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Initialize the Tokenizer class}
+\PYG{n}{tokenizer} \PYG{o}{=} \PYG{n}{Tokenizer}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Generate the word index dictionary}
+\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{fit\PYGZus{}on\PYGZus{}texts}\PYG{p}{(}\PYG{n}{corpus}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Define the total words. You add 1 for the index `0` which is just the padding token.}
+\PYG{n}{total\PYGZus{}words} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}word index dictionary: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}total words: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{total\PYGZus{}words}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

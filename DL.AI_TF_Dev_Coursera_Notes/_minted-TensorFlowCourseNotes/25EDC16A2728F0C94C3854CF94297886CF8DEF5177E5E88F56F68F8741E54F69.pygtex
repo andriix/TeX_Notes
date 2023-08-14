@@ -1,0 +1,42 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Initialize the sequences list}
+\PYG{n}{input\PYGZus{}sequences} \PYG{o}{=} \PYG{p}{[]}
+\PYG{c+c1}{\PYGZsh{} Loop over every line}
+\PYG{k}{for} \PYG{n}{line} \PYG{o+ow}{in} \PYG{n}{corpus}\PYG{p}{:}
+	\PYG{c+c1}{\PYGZsh{} Tokenize the current line}
+	\PYG{n}{token\PYGZus{}list} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{([}\PYG{n}{line}\PYG{p}{])[}\PYG{l+m+mi}{0}\PYG{p}{]}
+	\PYG{c+c1}{\PYGZsh{} Loop over the line several times to generate the subphrases}
+	\PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{token\PYGZus{}list}\PYG{p}{)):}
+		\PYG{c+c1}{\PYGZsh{} Generate the subphrase}
+		\PYG{n}{n\PYGZus{}gram\PYGZus{}sequence} \PYG{o}{=} \PYG{n}{token\PYGZus{}list}\PYG{p}{[:}\PYG{n}{i}\PYG{o}{+}\PYG{l+m+mi}{1}\PYG{p}{]}
+		\PYG{c+c1}{\PYGZsh{} Append the subphrase to the sequences list}
+		\PYG{n}{input\PYGZus{}sequences}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{n\PYGZus{}gram\PYGZus{}sequence}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Get the length of the longest line}
+\PYG{n}{max\PYGZus{}sequence\PYGZus{}len} \PYG{o}{=} \PYG{n+nb}{max}\PYG{p}{([}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n}{input\PYGZus{}sequences}\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Pad all sequences}
+\PYG{n}{input\PYGZus{}sequences} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{input\PYGZus{}sequences}\PYG{p}{,} \PYG{n}{maxlen}\PYG{o}{=}\PYG{n}{max\PYGZus{}sequence\PYGZus{}len}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}pre\PYGZsq{}}\PYG{p}{))}
+\PYG{c+c1}{\PYGZsh{} Create inputs and label by splitting the last token in the subphrases}
+\PYG{n}{xs}\PYG{p}{,} \PYG{n}{labels} \PYG{o}{=} \PYG{n}{input\PYGZus{}sequences}\PYG{p}{[:,:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{],}\PYG{n}{input\PYGZus{}sequences}\PYG{p}{[:,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}
+\PYG{c+c1}{\PYGZsh{} Convert the label into one\PYGZhy{}hot arrays}
+\PYG{n}{ys} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{utils}\PYG{o}{.}\PYG{n}{to\PYGZus{}categorical}\PYG{p}{(}\PYG{n}{labels}\PYG{p}{,} \PYG{n}{num\PYGZus{}classes}\PYG{o}{=}\PYG{n}{total\PYGZus{}words}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Get sample sentence}
+\PYG{n}{sentence} \PYG{o}{=} \PYG{n}{corpus}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{.}\PYG{n}{split}\PYG{p}{()}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}sample sentence: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sentence}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Initialize token list}
+\PYG{n}{token\PYGZus{}list} \PYG{o}{=} \PYG{p}{[]}
+\PYG{c+c1}{\PYGZsh{} Look up the indices of each word and append to the list}
+\PYG{k}{for} \PYG{n}{word} \PYG{o+ow}{in} \PYG{n}{sentence}\PYG{p}{:}
+	\PYG{n}{token\PYGZus{}list}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{word\PYGZus{}index}\PYG{p}{[}\PYG{n}{word}\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Print the token list}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{token\PYGZus{}list}\PYG{p}{)}
+
+\PYG{c+c1}{\PYGZsh{} Pick element}
+\PYG{n}{elem\PYGZus{}number} \PYG{o}{=} \PYG{l+m+mi}{6}
+\PYG{c+c1}{\PYGZsh{} Print token list and phrase}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}token list: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{xs}\PYG{p}{[}\PYG{n}{elem\PYGZus{}number}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}decoded to text: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{sequences\PYGZus{}to\PYGZus{}texts}\PYG{p}{([}\PYG{n}{xs}\PYG{p}{[}\PYG{n}{elem\PYGZus{}number}\PYG{p}{]])}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print label}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}one\PYGZhy{}hot label: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{ys}\PYG{p}{[}\PYG{n}{elem\PYGZus{}number}\PYG{p}{]}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}index of label: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{ys}\PYG{p}{[}\PYG{n}{elem\PYGZus{}number}\PYG{p}{])}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}
