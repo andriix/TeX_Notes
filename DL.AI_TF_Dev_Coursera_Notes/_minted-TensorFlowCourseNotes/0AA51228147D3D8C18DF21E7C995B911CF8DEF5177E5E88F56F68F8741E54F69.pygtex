@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Hyperparameters}
+\PYG{n}{embedding\PYGZus{}dim} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{n}{lstm\PYGZus{}units} \PYG{o}{=} \PYG{l+m+mi}{150}
+\PYG{n}{learning\PYGZus{}rate} \PYG{o}{=} \PYG{l+m+mf}{0.01}
+\PYG{c+c1}{\PYGZsh{} Build the model}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{Sequential}\PYG{p}{([}
+	\PYG{n}{Embedding}\PYG{p}{(}\PYG{n}{total\PYGZus{}words}\PYG{p}{,} \PYG{n}{embedding\PYGZus{}dim}\PYG{p}{,} \PYG{n}{input\PYGZus{}length}\PYG{o}{=}\PYG{n}{max\PYGZus{}sequence\PYGZus{}len}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{),}
+	\PYG{n}{Bidirectional}\PYG{p}{(}\PYG{n}{LSTM}\PYG{p}{(}\PYG{n}{lstm\PYGZus{}units}\PYG{p}{)),}
+	\PYG{n}{Dense}\PYG{p}{(}\PYG{n}{total\PYGZus{}words}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}softmax\PYGZsq{}}\PYG{p}{)}
+\PYG{p}{])}
+\PYG{c+c1}{\PYGZsh{} Use categorical crossentropy because this is a multi\PYGZhy{}class problem}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}
+	\PYG{n}{loss}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}categorical\PYGZus{}crossentropy\PYGZsq{}}\PYG{p}{,}
+	\PYG{n}{optimizer}\PYG{o}{=}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{keras}\PYG{o}{.}\PYG{n}{optimizers}\PYG{o}{.}\PYG{n}{Adam}\PYG{p}{(}\PYG{n}{learning\PYGZus{}rate}\PYG{o}{=}\PYG{n}{learning\PYGZus{}rate}\PYG{p}{),}
+	\PYG{n}{metrics}\PYG{o}{=}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{]}
+\PYG{p}{)}
+\PYG{c+c1}{\PYGZsh{} Print the model summary}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{()}
+\end{Verbatim}

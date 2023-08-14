@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k}{as} \PYG{n+nn}{plt}
+\PYG{c+c1}{\PYGZsh{} Plot utility}
+\PYG{k}{def} \PYG{n+nf}{plot\PYGZus{}graphs}\PYG{p}{(}\PYG{n}{history}\PYG{p}{,} \PYG{n}{string}\PYG{p}{):}
+	\PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{history}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{n}{string}\PYG{p}{])}
+	\PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Epochs\PYGZdq{}}\PYG{p}{)}
+	\PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{n}{string}\PYG{p}{)}
+	\PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+\PYG{c+c1}{\PYGZsh{} Visualize the accuracy}
+\PYG{n}{plot\PYGZus{}graphs}\PYG{p}{(}\PYG{n}{history}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}accuracy\PYGZsq{}}\PYG{p}{)}
+\end{Verbatim}

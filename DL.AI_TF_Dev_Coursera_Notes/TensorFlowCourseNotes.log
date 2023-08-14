@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  13 AUG 2023 20:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  14 AUG 2023 17:09
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -919,7 +919,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 448--1
  []
 
 [11] [12] [13] [14])
-<./images//overfittingCatsDogs.png, id=130, 222.8325pt x 311.9655pt>
+<./images//overfittingCatsDogs.png, id=134, 222.8325pt x 311.9655pt>
 File: ./images//overfittingCatsDogs.png Graphic file (type png)
 <use ./images//overfittingCatsDogs.png>
 Package pdftex.def Info: ./images//overfittingCatsDogs.png  used on input line 
@@ -1048,7 +1048,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1212--1
 
 (_minted-TensorFlowCourseNotes/66B8947F2A0810C5914B89ADF7ACEB8ACF8DEF5177E5E88F
 56F68F8741E54F69.pygtex [31] [32] [33])
-<./images//c3w2_lab2.png, id=214, 218.61674pt x 327.02174pt>
+<./images//c3w2_lab2.png, id=218, 218.61674pt x 327.02174pt>
 File: ./images//c3w2_lab2.png Graphic file (type png)
 <use ./images//c3w2_lab2.png>
 Package pdftex.def Info: ./images//c3w2_lab2.png  used on input line 1415.
@@ -1083,7 +1083,7 @@ Package pdftex.def Info: ./images//c3w2_lab2.png  used on input line 1415.
 
 (_minted-TensorFlowCourseNotes/5E3B067F83987E8BCCC15B42AD9737B8CF8DEF5177E5E88F
 56F68F8741E54F69.pygtex [37])
-<./images//c3w2_lab3.png, id=232, 573.94424pt x 218.0145pt>
+<./images//c3w2_lab3.png, id=236, 573.94424pt x 218.0145pt>
 File: ./images//c3w2_lab3.png Graphic file (type png)
 <use ./images//c3w2_lab3.png>
 Package pdftex.def Info: ./images//c3w2_lab3.png  used on input line 1584.
@@ -1139,26 +1139,69 @@ Overfull \hbox (3.26027pt too wide) in paragraph at lines 1658--1
 
 
 (_minted-TensorFlowCourseNotes/51CB13EEEBB204E5852B46575B5B115BCF8DEF5177E5E88F
-56F68F8741E54F69.pygtex) [41] (TensorFlowCourseNotes.aux)
+56F68F8741E54F69.pygtex)
+\openout3 = `TensorFlowCourseNotes.pyg'.
 
-Package rerunfilecheck Warning: File `TensorFlowCourseNotes.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: Checksums for `TensorFlowCourseNotes.out':
-(rerunfilecheck)             Before: 6701F200C8FD1EB73EF3472A6CAF8E6C;3085
-(rerunfilecheck)             After:  C59DDF1D17B4B763F0BDA28B6E7C178F;3376.
+(_minted-TensorFlowCourseNotes/129C24C2172043ABC718721AE39A0A95CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex [41])
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/25EDC16A2728F0C94C3854CF94297886CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex [42])
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/0AA51228147D3D8C18DF21E7C995B911CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex
+Underfull \hbox (badness 10000) in paragraph at lines 1796--1
+
+ []
+
+)
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/9C7B9951FD1B1BC892132FAC7CAEE31CCF8DEF5177E5E88F
+56F68F8741E54F69.pygtex)
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/5C98FF39D8F1AA6006212C825F8FBF89CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex [43])
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/30BE0877C9A79D77A3A32664EB961111CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex)
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/28B28F46BAFC1A256870CDEE921DF3D9CF8DEF5177E5E88F
+56F68F8741E54F69.pygtex [44])
+Underfull \hbox (badness 10000) in paragraph at lines 1892--1893
+
+ []
+
+\openout3 = `TensorFlowCourseNotes.pyg'.
+
+
+(_minted-TensorFlowCourseNotes/E9655AD902E5830503C03D21C7EEF58CCF8DEF5177E5E88F
+56F68F8741E54F69.pygtex) [45] (TensorFlowCourseNotes.aux)
+Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
+(rerunfilecheck)             Checksum: C59DDF1D17B4B763F0BDA28B6E7C178F;3376.
 runsystem(del TensorFlowCourseNotes.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 15592 strings out of 478582
- 291560 string characters out of 2856069
- 610386 words of memory out of 3000000
- 33306 multiletter control sequences out of 15000+600000
+ 15642 strings out of 478582
+ 296322 string characters out of 2856069
+ 611977 words of memory out of 3000000
+ 33329 multiletter control sequences out of 15000+600000
  484454 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,7n,81p,806b,796s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 75i,7n,81p,806b,804s stack positions out of 10000i,1000n,20000p,200000b,80000s
  <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcit
 1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\
 lati1000.pk> <C:\Users\khrin\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/d
@@ -1172,9 +1215,9 @@ onts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKT
 eX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\
 MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
-Output written on TensorFlowCourseNotes.pdf (41 pages, 344194 bytes).
+Output written on TensorFlowCourseNotes.pdf (45 pages, 354535 bytes).
 PDF statistics:
- 742 PDF objects out of 1000 (max. 8388607)
- 57 named destinations out of 1000 (max. 500000)
- 128 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 767 PDF objects out of 1000 (max. 8388607)
+ 61 named destinations out of 1000 (max. 500000)
+ 136 words of extra memory for PDF output out of 10000 (max. 10000000)
 

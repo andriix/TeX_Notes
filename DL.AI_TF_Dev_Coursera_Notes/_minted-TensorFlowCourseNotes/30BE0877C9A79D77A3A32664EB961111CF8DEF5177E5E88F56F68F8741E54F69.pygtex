@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Define seed text}
+\PYG{n}{seed\PYGZus{}text} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}Laurence went to Dublin\PYGZdq{}}
+\PYG{c+c1}{\PYGZsh{} Define total words to predict}
+\PYG{n}{next\PYGZus{}words} \PYG{o}{=} \PYG{l+m+mi}{100}
+\PYG{c+c1}{\PYGZsh{} Loop until desired length is reached}
+\PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{next\PYGZus{}words}\PYG{p}{):}
+	\PYG{c+c1}{\PYGZsh{} Convert the seed text to a token sequence}
+	\PYG{n}{token\PYGZus{}list} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{texts\PYGZus{}to\PYGZus{}sequences}\PYG{p}{([}\PYG{n}{seed\PYGZus{}text}\PYG{p}{])[}\PYG{l+m+mi}{0}\PYG{p}{]}
+	\PYG{c+c1}{\PYGZsh{} Pad the sequence}
+	\PYG{n}{token\PYGZus{}list} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{([}\PYG{n}{token\PYGZus{}list}\PYG{p}{],} \PYG{n}{maxlen}\PYG{o}{=}\PYG{n}{max\PYGZus{}sequence\PYGZus{}len}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}pre\PYGZsq{}}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Feed to the model and get the probabilities for each index}
+	\PYG{n}{probabilities} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{token\PYGZus{}list}\PYG{p}{)}
+	\PYG{c+c1}{\PYGZsh{} Get the index with the highest probability}
+	\PYG{n}{predicted} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{probabilities}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)[}\PYG{l+m+mi}{0}\PYG{p}{]}
+	\PYG{c+c1}{\PYGZsh{} Ignore if index is 0 because that is just the padding.}
+	\PYG{k}{if} \PYG{n}{predicted} \PYG{o}{!=} \PYG{l+m+mi}{0}\PYG{p}{:}
+		\PYG{c+c1}{\PYGZsh{} Look up the word associated with the index.}
+		\PYG{n}{output\PYGZus{}word} \PYG{o}{=} \PYG{n}{tokenizer}\PYG{o}{.}\PYG{n}{index\PYGZus{}word}\PYG{p}{[}\PYG{n}{predicted}\PYG{p}{]}
+		\PYG{c+c1}{\PYGZsh{} Combine with the seed text}
+		\PYG{n}{seed\PYGZus{}text} \PYG{o}{+=} \PYG{l+s+s2}{\PYGZdq{} \PYGZdq{}} \PYG{o}{+} \PYG{n}{output\PYGZus{}word}
+\PYG{c+c1}{\PYGZsh{} Print the result	}
+\PYG{n+nb}{print}\PYG{p}{(}\PYG{n}{seed\PYGZus{}text}\PYG{p}{)}
+\end{Verbatim}
