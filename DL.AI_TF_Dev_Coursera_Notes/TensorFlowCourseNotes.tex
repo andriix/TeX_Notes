@@ -1898,10 +1898,24 @@ print(seed_text)
 			"""
 		\end{minted}
 		\speciallink{https://drive.google.com/file/d/173BJXUhqEiVZcDve6qjLl98AQPyrJvWQ/view?usp=drive\_link}{C3W4 notebook} for week's assignment.
-		
-		
 	\end{itemize}	
-
+	\section{C4: Sequences, Time Series and Prediction in TensorFlow}
+	\subsection{Week 1: Sequences and Prediction}
+	\begin{itemize}
+		\item \textbf{Time Series Forecasting}\\
+		\textbf{Naive Forecasting}: A simple method where the next value is assumed to be the same as the last value. It can serve as a baseline and sometimes performs surprisingly well.\\
+		\textbf{Measuring Performance}: To evaluate the forecasting model, the time series is typically split into training, validation, and test periods. This is known as fixed partitioning.\\
+		\textbf{Seasonality Consideration}: If the time series has seasonality, each period should contain a whole number of seasons (e.g., one year, two years) to avoid uneven representation of months.\\
+		\textbf{Training and Validation Process}: Train the model on the training period and evaluate it on the validation period to find the right architecture and hyperparameters.\\
+		\textbf{Retraining with Test Data}: Once satisfied with the performance, the model can be retrained using both training and validation data, and then tested on the test period. Sometimes, retraining with test data is done as it's the closest data to the current point in time.\\
+		\textbf{Roll-Forward Partitioning}: An alternative to fixed partitioning, where the training period is gradually increased (e.g., by one day or one week at a time), and the model is continually refined.\\
+		\item *
+		
+		
+		
+		
+		
+	\end{itemize}
 %\item \textbf{Week's assignment:}\\
 %*short description___
 %\begin{minted}{python}
