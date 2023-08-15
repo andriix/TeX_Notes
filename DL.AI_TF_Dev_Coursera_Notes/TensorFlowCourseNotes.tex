@@ -1909,9 +1909,19 @@ print(seed_text)
 		\textbf{Training and Validation Process}: Train the model on the training period and evaluate it on the validation period to find the right architecture and hyperparameters.\\
 		\textbf{Retraining with Test Data}: Once satisfied with the performance, the model can be retrained using both training and validation data, and then tested on the test period. Sometimes, retraining with test data is done as it's the closest data to the current point in time.\\
 		\textbf{Roll-Forward Partitioning}: An alternative to fixed partitioning, where the training period is gradually increased (e.g., by one day or one week at a time), and the model is continually refined.\\
-		\item *
-		
-		
+		\item \textbf{Moving Average Forecasting}: A method that calculates the average of values over a fixed period (e.g., 30 days). It eliminates noise but does not anticipate trend or seasonality.\\
+		\textbf{Differencing Technique}: To avoid the limitations of moving average, the trend and seasonality can be removed by studying the difference between the value at time T and an earlier period (e.g., a year earlier).\\
+		\textbf{Final Forecasts}: The forecasts for the original time series are obtained by adding back the value at time T minus 365, resulting in improved forecasts.\\
+		\textbf{Noise Reduction}: The final forecasts may still contain noise from past values. This can be further smoothed by applying a moving average to the past values, leading to even better results.\\
+		\textbf{Simple vs. Complex Models}: Simple approaches like \textbf{moving averages} can sometimes be highly effective, and deep learning or more complex models may not always be necessary.
+		\item \textbf{Week's assignment:}\\
+		Work with time series data. All of the data is generated and the task is to implement several functions to split the data, create forecasts and evaluate the quality of those forecasts.
+		\begin{minted}{python}
+			"""
+			Should be done!!!
+			"""
+		\end{minted}
+		\speciallink{https://drive.google.com/file/d/1wYCVYszbeBfWRB6kX9NINBWFseD8nd59/view?usp=drive\_link}{C4W1 notebook} for week's assignment.		
 		
 		
 		
