@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  15 AUG 2023 21:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.3) (preloaded format=pdflatex 2023.6.10)  16 AUG 2023 08:50
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1203,16 +1203,22 @@ li-ke \T2A/cmr/bx/n/10 movi-ng averages
 
 
 (_minted-TensorFlowCourseNotes/E9655AD902E5830503C03D21C7EEF58CCF8DEF5177E5E88F
-56F68F8741E54F69.pygtex) [46] (TensorFlowCourseNotes.aux)
-Package rerunfilecheck Info: File `TensorFlowCourseNotes.out' has not changed.
-(rerunfilecheck)             Checksum: C109B0AF47075C83BCE3635E500966E7;3946.
+56F68F8741E54F69.pygtex) [46] [47] (TensorFlowCourseNotes.aux)
+
+Package rerunfilecheck Warning: File `TensorFlowCourseNotes.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `TensorFlowCourseNotes.out':
+(rerunfilecheck)             Before: C109B0AF47075C83BCE3635E500966E7;3946
+(rerunfilecheck)             After:  5F8270D473CB3C0ABD9AD2D6179CD1AC;4050.
 runsystem(del TensorFlowCourseNotes.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 15649 strings out of 478582
- 296649 string characters out of 2856069
- 611435 words of memory out of 3000000
+ 15651 strings out of 478582
+ 296670 string characters out of 2856069
+ 609836 words of memory out of 3000000
  33331 multiletter control sequences out of 15000+600000
  484454 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1230,9 +1236,9 @@ onts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\khrin\AppData\Local\MiKT
 eX\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\khrin\AppData\Local\
 MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\khrin\AppData\Lo
 cal\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1728.pk>
-Output written on TensorFlowCourseNotes.pdf (46 pages, 361087 bytes).
+Output written on TensorFlowCourseNotes.pdf (47 pages, 361792 bytes).
 PDF statistics:
- 786 PDF objects out of 1000 (max. 8388607)
- 64 named destinations out of 1000 (max. 500000)
+ 791 PDF objects out of 1000 (max. 8388607)
+ 66 named destinations out of 1000 (max. 500000)
  152 words of extra memory for PDF output out of 10000 (max. 10000000)
 
